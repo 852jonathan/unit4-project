@@ -1,4 +1,4 @@
-import CompsLayoutsNavbar from '@/components/layouts/Navbar'
+import CompsLayoutsNavbar from '@/components/layouts/navbar/Navbar'
 
 export default function CompLayout({ children }) {
   return (

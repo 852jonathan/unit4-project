@@ -2,6 +2,7 @@
   "extends": [
     "next",
     "next/core-web-vitals",
+    "next/babel", // added by Jon
     "airbnb-base",
     "airbnb/rules/react",
     "airbnb/hooks"
