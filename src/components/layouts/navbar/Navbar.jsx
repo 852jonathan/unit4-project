@@ -7,10 +7,11 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
-import Popover from '@mui/material/Popover';
+import Popover from '@mui/material/Popover'
 
-
+import LocalMallIcon from '@mui/icons-material/LocalMall'
 import MenuIcon from '@mui/icons-material/Menu'
+import LanguageIcon from '@mui/icons-material/Language'
 
 import theme from '@/assets/theme'
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
@@ -22,8 +23,8 @@ import FormsAuthLogin from '@/forms/Login'
 function LoginPopper() {
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
   };
 
   const handleClose = () => {
@@ -60,7 +61,7 @@ function LoginPopper() {
 export default function CompsLayoutsNavbar() {
   return (
     <ThemeProvider theme={theme}>
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, margin: 0 }}>
       <AppBar position="static" >
       {/* <AppBar position="static" elevation={0} > Remove shadow */}
         <Toolbar sx={{ display: 'flex'}}>
@@ -82,14 +83,12 @@ export default function CompsLayoutsNavbar() {
             LOGO
           </Typography>
 
-
-          <Button color="inherit" sx={{ mr: 3 }}>EN / 繁</Button>
+          <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large"/>}>EN / 繁</Button>
           <Button color="inherit" sx={{ mr: 3 }}>My Profile</Button>
           <LoginPopper />
 
-
           <CompsStyledBadge badgeContent={5} color="secondary">
-            <Button variant="contained" color="secondary">Bag</Button>
+            <Button variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
           </CompsStyledBadge>
 
         </Toolbar>

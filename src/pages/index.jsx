@@ -6,7 +6,7 @@ export default function PagesHome() {
     <CompsLayout>
       <div id="pages-home">
       {/* <CompsVideoPlayer/> */}
-        <h1 className="text-center">Burger</h1>
+        <h1>Homepage</h1>
       </div>
     </CompsLayout>
   )
