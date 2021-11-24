@@ -1,86 +1,101 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { ThemeProvider } from '@mui/material'
-import { styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import InputLabel from '@mui/material/InputLabel';
-import TextField from '@mui/material/TextField';
-import GoogleIcon from '@mui/icons-material/Google';
+import TextField from '@mui/material/TextField'
+import GoogleIcon from '@mui/icons-material/Google'
 
-import theme from '@/assets/theme'
-import CompsModalsRegister from '@/components/modals/Register'
+// import authEmailLogin from '@/api/controllers/auth/email/login'
 
-import PropTypes from 'prop-types'
-import { Formik, Field, Form, ErrorMessage } from 'formik'
-import { useFormik } from 'formik';
+import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
+
+import CompsModalsRegister from '@/components/modals/Register'
+import theme from '@/assets/theme'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
-    color: 'amber',
+    color: 'amber'
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: 'amber',
+    borderBottomColor: 'amber'
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: 'amber',
+      borderColor: 'amber'
     },
     '&:hover fieldset': {
-      borderColor: 'amber',
+      borderColor: 'amber'
     },
     '&.Mui-focused fieldset': {
-      borderColor: 'amber',
-    },
-  },
-});
-
+      borderColor: 'amber'
+    }
+  }
+})
 
 const RenderForm = ({ errors, touched, isSubmitting }) => (
-
   <ThemeProvider theme={theme}>
-  <Form>
-    <Typography align="center" variant="h6"  sx={{ mx: 2, mt: 2 }}>LOGIN</Typography>
-    <Box sx={{ m: 2 }}>
-    <CssTextField id="email-input" label="Email" name="email" error={touched.email && Boolean(errors.email)}/>
-      {/* <Typography htmlFor="email">Email</Typography> */}
-      {/* <Field
-        id="email"
-        className={`form-control ${(errors.email && touched.email ? ' is-invalid' : '')}`}
-        name="email"
-        type="text"
-      /> */}
-      <ErrorMessage component="div" name="email"/>
-    </Box>
+    <Form>
+      <Typography align="center" variant="h6" sx={{ mx: 2, mt: 2 }}>LOGIN</Typography>
+      <Box sx={{ m: 2 }}>
+        {/* <CssTextField
+          id="email-input"
+          label="Email"
+          name="email"
+          error={touched.email && Boolean(errors.email)}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.email}
+        /> */}
+        <Field
+          id="email-input"
+          label="Email"
+          name="email"
+          error={touched.email && Boolean(errors.email)}
+          helperText={touched.email && errors.email ? errors.email : ''}
+          as={CssTextField}
+        />
+      </Box>
+
+      <Box sx={{ m: 2 }}>
+        {/* <CssTextField
+          id="password-input"
+          label="Password"
+          name="password"
+          error={touched.email && Boolean(errors.email)}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.password}
+        /> */}
+        <Field
+          id="password-input"
+          label="Password"
+          name="password"
+          error={touched.password && Boolean(errors.password)}
+          helperText={touched.password && errors.password ? errors.password : ''}
+          as={CssTextField}
+        />
+      </Box>
+
+      <Box sx={{ m: 2 }}>
+        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
+      </Box>
+    </Form>
 
     <Box sx={{ m: 2 }}>
-    <CssTextField id="password-input" label="Password" name="passwordHash" error={touched.email && Boolean(errors.email)}/>
-
-      {/* <Typography htmlFor="passwordHash">Password</Typography> */}
-      {/* <Field
-        id="passwordHash"
-        className={`form-control ${(errors.passwordHash && touched.passwordHash ? ' is-invalid' : '')}`}
-        name="passwordHash"
-        type="password"
-      /> */}
-      <ErrorMessage component="div" name="passwordHash" />
+      <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
     </Box>
-    <Box sx={{ m: 2 }}>
-    <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
+    <Box width="10vw" sx={{ m: 2 }}>
+      <GoogleIcon fontSize="large" sx={{ mx: 'auto' }} />
     </Box>
 
-  </Form>
-  <Box sx={{ m: 2 }}>
-  <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
-  </Box>
-  <Box width='10vw' sx={{ m: 2 }}>
-  <GoogleIcon fontSize="large" sx={{ mx: 'auto' }}/>
-  </Box>
-  <CompsModalsRegister />
-</ThemeProvider>
+    <CompsModalsRegister />
+  </ThemeProvider>
 
 )
 RenderForm.propTypes = {
@@ -91,14 +106,14 @@ RenderForm.propTypes = {
 
 const authLoginSchema = yup.object().shape({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
-  passwordHash: yup.string('Enter your password').min(6, 'Password should be of minimum 8 characters length').required('Password is required')
+  password: yup.string('Enter your password').min(6, 'Minimum 6 characters').required('Password is required')
 })
 
 const FormsAuthLogin = ({ onSubmit }) => (
   <Formik
     initialValues={{
       email: '',
-      passwordHash: ''
+      password: ''
     }}
     validationSchema={authLoginSchema}
     onSubmit={onSubmit}
