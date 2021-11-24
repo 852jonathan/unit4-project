@@ -18,7 +18,7 @@ const style = {
   p: 4,
 };
 
-export default function CompsModalsRegister() {
+export default function CompsModalsRegister( { onSubmit }) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -37,7 +37,7 @@ export default function CompsModalsRegister() {
             Register
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          <FormsAuthSignup/>
+          <FormsAuthSignup onSubmit={onSubmit}/>
           </Typography>
         </Box>
       </Modal>

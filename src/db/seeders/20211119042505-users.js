@@ -5,7 +5,7 @@ const { User } = require('../models')
 module.exports = {
   up: async () => {
     await User.destroy({ truncate: true })
-    const passwordHash = await bcrypt.hash('123456', 10)
+    const passwordHash = await bcrypt.hash('123123', 10)
     await User.create({
       name: 'Tester',
       email: 'test@test.com',

@@ -1,23 +1,29 @@
 var DataTypes = require("sequelize").DataTypes;
 var _AuthenticityToken = require("./authenticity_token");
+var _Category = require("./category");
+var _OrderProduct = require("./order_product");
+var _Order = require("./order");
+var _Product = require("./product");
 var _SequelizeMetum = require("./sequelize_metum");
-var _TodoItem = require("./todo_item");
-var _Todo = require("./todo");
 var _User = require("./user");
 
 function initModels(sequelize) {
   var AuthenticityToken = _AuthenticityToken(sequelize, DataTypes);
+  var Category = _Category(sequelize, DataTypes);
+  var OrderProduct = _OrderProduct(sequelize, DataTypes);
+  var Order = _Order(sequelize, DataTypes);
+  var Product = _Product(sequelize, DataTypes);
   var SequelizeMetum = _SequelizeMetum(sequelize, DataTypes);
-  var TodoItem = _TodoItem(sequelize, DataTypes);
-  var Todo = _Todo(sequelize, DataTypes);
   var User = _User(sequelize, DataTypes);
 
 
   return {
     AuthenticityToken,
+    Category,
+    OrderProduct,
+    Order,
+    Product,
     SequelizeMetum,
-    TodoItem,
-    Todo,
     User,
   };
 }

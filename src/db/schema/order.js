@@ -1,40 +1,44 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('User', {
+  return sequelize.define('Order', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    name: {
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    ProductId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    grandTotal: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    StripeID: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    email: {
+    status: {
       type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    socialUserId: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    passwordHash: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    registrationType: {
-      type: DataTypes.ENUM("email"),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'Users',
+    tableName: 'Orders',
     schema: 'public',
     timestamps: true,
     indexes: [
       {
-        name: "Users_pkey",
+        name: "Orders_pkey",
         unique: true,
         fields: [
           { name: "id" },

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import NextLink from 'next/link'
 
 import { ThemeProvider } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
@@ -33,7 +34,6 @@ function LoginPopper() {
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
-
 
   return (
     <div>
@@ -75,13 +75,21 @@ export default function CompsLayoutsNavbar() {
             <MenuIcon />
           </IconButton>
 
-          <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
-          <Button color="inherit" sx={{ mr: 3 }}>Menu</Button>
-          <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
 
-          <Typography align="center" variant="h6" component="div" sx={{ flexGrow: 1 }} >
-            LOGO
-          </Typography>
+          <NextLink href="/aboutus" passHref>
+            <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
+          </NextLink>
+          <NextLink href="/menu" passHref>
+            <Button color="inherit" sx={{ mr: 3 }}>Menu</Button>
+          </NextLink>
+          <NextLink href="/storelocator" passHref>
+            <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Typography align="center" variant="h6" component="div" sx={{ flexGrow: 1 }}
+              >LOGO
+            </Typography>
+          </NextLink>
 
           <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large"/>}>EN / 繁</Button>
           <Button color="inherit" sx={{ mr: 3 }}>My Profile</Button>
