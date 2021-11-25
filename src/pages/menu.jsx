@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import Chip from '@mui/material/Chip'
 
 import CompsLayout from '@/components/layouts/Layout'
 import CompsCardCreateYourBurger from '@/components/layouts/menu/card/CreateYourBurger'
@@ -17,26 +19,38 @@ export default function PagesMenu() {
           MENU
         </Typography>
 
-        <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
+        <Divider sx={{ m: 2 }}>
+          <Chip label="SPECIALS" color="warning" />
+        </Divider>
+        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Specials
-        </Typography>
+        </Typography> */}
         <Box display="flex" justifyContent="center">
           <CompsCardCreateYourBurger />
         </Box>
 
-        <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          Burgers
-        </Typography>
+        <Divider sx={{ m: 2 }}>
+          <Chip label="BURGERS" color="warning" />
+        </Divider>
+        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
+          BURGERS
+        </Typography> */}
         <CompsLayoutsMenuGrid category="burgers" />
 
-        <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          Sides
-        </Typography>
+        <Divider sx={{ m: 2 }}>
+          <Chip label="SIDES" color="warning" />
+        </Divider>
+        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
+          SIDES
+        </Typography> */}
         <CompsLayoutsMenuGrid category="sides" />
 
-        <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          Drinks
-        </Typography>
+        <Divider sx={{ m: 2 }}>
+          <Chip label="DRINKS" color="warning" />
+        </Divider>
+        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
+          DRINKS
+        </Typography> */}
         <CompsLayoutsMenuGrid category="drinks" />
       </div>
     </CompsLayout>

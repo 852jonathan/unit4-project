@@ -7,9 +7,11 @@ import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import NativeSelect from '@mui/material/NativeSelect'
+import CardMedia from '@mui/material/CardMedia'
 
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { ThemeProvider } from '@mui/material'
+import burgerCreateImg from '@/assets/burgercreate.png'
 import theme from '@/styles/theme'
 
 const style = {
@@ -36,21 +38,26 @@ export default function CompsProductShow({ product }) {
       <Modal
         open={open}
         onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        aria-labelledby="productshow-title"
+        aria-describedby="productshow-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" textAlign="center" variant="h6" component="h2">
+          <Typography id="productshow-title" textAlign="center" variant="h5" component="h2" sx={{ mb: 2 }}>
             {product.productName}
           </Typography>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} columns={16}>
               <Grid item xs={8}>
-                <Box>Picture</Box>
+                <CardMedia
+                  component="img"
+                  height="250"
+                  // src={product.image}
+                  src={burgerCreateImg.src}
+                />
               </Grid>
               <Grid item xs={8}>
 
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <Typography id="productshow-description" sx={{ mt: 2 }}>
                   {product.description}
                 </Typography>
 
@@ -80,8 +87,8 @@ export default function CompsProductShow({ product }) {
                   </FormControl>
                 </Box>
 
-                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                  {product.price}
+                <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
+                  $ {product.price}
                 </Typography>
 
                 <Button

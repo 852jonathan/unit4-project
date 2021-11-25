@@ -10,13 +10,13 @@ import CompsProductShow from '@/components/modals/ProductShow'
 
 export default function CompsCardMenuItem({ product }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 345 }}>
       <CardMedia
         component="img"
         height="150"
-        src={burgerCreateImg}
+        // src={product.image}
+        src={burgerCreateImg.src}
       />
-
       <CardContent>
         <Typography textAlign="center" gutterBottom variant="h5" component="div">
           {product.productName}
@@ -25,6 +25,8 @@ export default function CompsCardMenuItem({ product }) {
           {product.description}
         </Typography>
         <Typography textAlign="center" variant="h5">
+          $
+          {' '}
           {product.price}
         </Typography>
       </CardContent>

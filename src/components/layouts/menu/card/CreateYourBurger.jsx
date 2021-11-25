@@ -14,7 +14,7 @@ export default function CompsCardCreateYourBurger() {
       <CardMedia
         component="img"
         height="150"
-        src={burgerCreateImg}
+        src={burgerCreateImg.src}
       />
 
       <CardContent>

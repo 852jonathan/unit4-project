@@ -11,7 +11,7 @@ module.exports = {
     await Product.destroy({ truncate: true })
     for (let i = 0; i < 10; i++) {
       await Product.create({
-        productName: Faker.Commerce.productName(),
+        productName: Faker.Food.ingredient(),
         description: Faker.Lorem.sentence(3),
         price: Faker.Number.between(50, 500),
         CategoryId: burgers[0].id,
@@ -20,7 +20,7 @@ module.exports = {
 
     for (let i = 0; i < 3; i++) {
       await Product.create({
-        productName: Faker.Commerce.productName(),
+        productName: Faker.Food.ingredient(),
         description: Faker.Lorem.sentence(3),
         price: Faker.Number.between(50, 500),
         CategoryId: sides[0].id,
@@ -29,7 +29,7 @@ module.exports = {
 
     for (let i = 0; i < 3; i++) {
       await Product.create({
-        productName: Faker.Commerce.productName(),
+        productName: Faker.Food.ingredient(),
         description: Faker.Lorem.sentence(3),
         price: Faker.Number.between(100, 1000),
         CategoryId: drinks[0].id,
