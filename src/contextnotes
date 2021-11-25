@@ -1,0 +1,40 @@
+const ToastContext = React.Context
+
+const ToastProvider = ({ children }) => {
+  const toast = () => {
+    // gen notification
+
+    setTimeout(() => {
+      // stop notification
+    }, 5000)
+  }
+
+  return (
+    <ToastContext.Provider value={{ toast }}>
+      {children}
+    </ToastContext.Provider>
+  )
+}
+
+const Page = () => {
+  const { toast } = useContext(ToastContext)
+
+  const handleSubmit = () => {
+    somefunc().then(() => {
+    }).catch(() => {
+      toast('message')
+    })
+  }
+
+  return (
+    <div>page</div>
+  )
+}
+
+const Layout = ({ children }) => {
+  return (
+    <ToastProvider>
+      {children}
+    </ToastProvider>
+  )
+}

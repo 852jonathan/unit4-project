@@ -8,7 +8,7 @@ const CompsStyledBadge = styled(Badge)(({ theme }) => ({
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
     fontSize: '15px'
-  },
+  }
 }))
 
 export default CompsStyledBadge

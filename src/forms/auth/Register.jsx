@@ -8,14 +8,10 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
-import GoogleIcon from '@mui/icons-material/Google'
-
-// import authEmailLogin from '@/api/controllers/auth/email/login'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
 
-import CompsModalsRegister from '@/components/modals/Register'
 import theme from '@/assets/theme'
 
 const CssTextField = styled(TextField)({
@@ -41,17 +37,8 @@ const CssTextField = styled(TextField)({
 const RenderForm = ({ errors, touched, isSubmitting }) => (
   <ThemeProvider theme={theme}>
     <Form>
-      <Typography align="center" variant="h6" sx={{ mx: 2, mt: 2 }}>LOGIN</Typography>
+      <Typography align="center" variant="h6" sx={{ mx: 2, mt: 2 }}>REGISTER AN ACCOUNT</Typography>
       <Box sx={{ m: 2 }}>
-        {/* <CssTextField
-          id="email-input"
-          label="Email"
-          name="email"
-          error={touched.email && Boolean(errors.email)}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.email}
-        /> */}
         <Field
           id="email-input"
           label="Email"
@@ -59,69 +46,77 @@ const RenderForm = ({ errors, touched, isSubmitting }) => (
           error={touched.email && Boolean(errors.email)}
           helperText={touched.email && errors.email ? errors.email : ''}
           as={CssTextField}
+          fullWidth
         />
       </Box>
 
       <Box sx={{ m: 2 }}>
-        {/* <CssTextField
-          id="password-input"
-          label="Password"
-          name="password"
-          error={touched.email && Boolean(errors.email)}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.password}
-        /> */}
         <Field
           id="password-input"
           label="Password"
           name="password"
+          type="password"
           error={touched.password && Boolean(errors.password)}
           helperText={touched.password && errors.password ? errors.password : ''}
           as={CssTextField}
+          fullWidth
         />
       </Box>
 
       <Box sx={{ m: 2 }}>
-        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
+        <Field
+          id="passwordConfirmation-input"
+          label="Password Confirmation"
+          name="passwordConfirmation"
+          type="password"
+          error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
+          helperText={touched.passwordConfirmation && errors.passwordConfirmation ? errors.passwordConfirmation : ''}
+          as={CssTextField}
+          fullWidth
+        />
+      </Box>
+
+      <Box textAlign="center" sx={{ m: 2, mt: 3 }}>
+        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Register</Button>
       </Box>
     </Form>
-
-    <Box sx={{ m: 2 }}>
-      <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
-    </Box>
-    <Box width="10vw" sx={{ m: 2 }}>
-      <GoogleIcon fontSize="large" sx={{ mx: 'auto' }} />
-    </Box>
-
-    <CompsModalsRegister />
   </ThemeProvider>
 
 )
+
 RenderForm.propTypes = {
   errors: PropTypes.shape().isRequired,
   touched: PropTypes.shape().isRequired,
   isSubmitting: PropTypes.bool.isRequired
 }
 
-const authLoginSchema = yup.object().shape({
+const authSignupSchema = yup.object().shape({
   email: yup.string('Enter your email').email('Enter a valid email').required('Email is required'),
-  password: yup.string('Enter your password').min(6, 'Minimum 6 characters').required('Password is required')
+  password: yup.string('Enter your password').min(6, 'Minimum 6 characters').required('Password is required'),
+  passwordConfirmation: yup.string().when('password', {
+    is: (val) => (!!(val && val.length > 0)),
+    then: yup.string().oneOf(
+      [yup.ref('password')],
+      'Both passwords need to be the same.'
+    )
+  })
 })
 
-const FormsAuthLogin = ({ onSubmit }) => (
+const FormsAuthSignup = ({ onSubmit }) => (
   <Formik
     initialValues={{
       email: '',
-      password: ''
+      password: '',
+      passwordConfirmation: ''
     }}
-    validationSchema={authLoginSchema}
+    validationSchema={authSignupSchema}
     onSubmit={onSubmit}
     component={RenderForm}
   />
 )
-FormsAuthLogin.propTypes = {
+
+FormsAuthSignup.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }
 
-export default FormsAuthLogin
+export default FormsAuthSignup

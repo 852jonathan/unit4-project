@@ -13,7 +13,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false,
+      unique: "Users_email_key"
     },
     socialUserId: {
       type: DataTypes.STRING(255),
@@ -21,7 +22,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     passwordHash: {
       type: DataTypes.STRING(255),
-      allowNull: true
+      allowNull: false
     },
     registrationType: {
       type: DataTypes.ENUM("email"),
@@ -33,6 +34,13 @@ module.exports = function(sequelize, DataTypes) {
     schema: 'public',
     timestamps: true,
     indexes: [
+      {
+        name: "Users_email_key",
+        unique: true,
+        fields: [
+          { name: "email" },
+        ]
+      },
       {
         name: "Users_pkey",
         unique: true,

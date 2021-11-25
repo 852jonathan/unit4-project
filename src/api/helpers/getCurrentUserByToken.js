@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { AuthenticityToken } from '@/db/models'
 
 const getCurrentUserByToken = async (req, res, next) => {
@@ -10,7 +11,11 @@ const getCurrentUserByToken = async (req, res, next) => {
     })
 
     if (authToken) {
-      res.currentUser = authToken.User
+      const currentDate = moment()
+      const expireDate = moment(authToken.createdAt).add(7, 'days')
+      if (!currentDate.isAfter(expireDate)) {
+        res.locals.currentUser = authToken.User
+      }
     }
   }
 

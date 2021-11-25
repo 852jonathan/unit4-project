@@ -11,13 +11,16 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true
       },
       socialUserId: {
         type: Sequelize.STRING
       },
       passwordHash: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       registrationType: {
         type: Sequelize.ENUM('email')

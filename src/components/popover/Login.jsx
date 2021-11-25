@@ -1,12 +1,18 @@
-import { useState } from 'react'
+import Router from 'next/router'
+
+import { useState, useContext } from 'react'
 
 import Button from '@mui/material/Button'
 import Popover from '@mui/material/Popover'
-import FormsAuthLogin from '@/forms/Login'
-// import FormsAuthLogin from '@/forms/Test'
+// import { SnackbarContext } from '@/components/snackbar/Toast'
+import FormsAuthLogin from '@/forms/auth/Login'
+
+import useUser from '@/_hooks/user'
 
 export default function CompsPopoverLogin() {
+  // const { setSnack } = useContext(SnackbarContext)
   const [anchorEl, setAnchorEl] = useState(null)
+  const { emailLogin } = useUser()
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -14,6 +20,15 @@ export default function CompsPopoverLogin() {
 
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleLoginSubmit = (values, methods) => {
+    emailLogin(values).then(() => {
+      Router.push('/aboutus')
+    }).catch(() => {
+      methods.setSubmitting(false)
+      // setSnack({ message: 'Login credentials invalid', open: true })
+    })
   }
 
   const open = Boolean(anchorEl)
@@ -37,9 +52,7 @@ export default function CompsPopoverLogin() {
         }}
       >
         <FormsAuthLogin
-          onSubmit={() => {
-            // TODO temp
-          }}
+          onSubmit={handleLoginSubmit}
         />
       </Popover>
     </div>
