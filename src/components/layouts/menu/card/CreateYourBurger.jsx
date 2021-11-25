@@ -24,12 +24,9 @@ export default function CompsCardCreateYourBurger() {
         <Typography textAlign="center" gutterBottom variant="body2" color="text.secondary">
           Create your own burger with the freshest ingredients!
         </Typography>
-        <Typography textAlign="center" variant="h5">
-          $120
-        </Typography>
       </CardContent>
       <CardActions>
-        <CompsProductShow />
+        <CompsProductShow product={{}} />
       </CardActions>
     </Card>
   )

@@ -16,28 +16,29 @@ export default function PagesMenu() {
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>
           MENU
         </Typography>
+
         <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Specials
         </Typography>
         <Box display="flex" justifyContent="center">
           <CompsCardCreateYourBurger />
         </Box>
+
         <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Burgers
         </Typography>
-        <CompsLayoutsMenuGrid />
-        <CompsLayoutsMenuGrid />
+        <CompsLayoutsMenuGrid category="burgers" />
+
         <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Sides
         </Typography>
-        <CompsLayoutsMenuGrid />
+        <CompsLayoutsMenuGrid category="sides" />
+
         <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Drinks
         </Typography>
-        <CompsLayoutsMenuGrid />
-
+        <CompsLayoutsMenuGrid category="drinks" />
       </div>
-
     </CompsLayout>
   )
 }

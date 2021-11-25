@@ -8,7 +8,7 @@ import burgerCreateImg from '@/assets/burgercreate.png'
 
 import CompsProductShow from '@/components/modals/ProductShow'
 
-export default function CompsCardMenuItem() {
+export default function CompsCardMenuItem({ product }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -19,17 +19,17 @@ export default function CompsCardMenuItem() {
 
       <CardContent>
         <Typography textAlign="center" gutterBottom variant="h5" component="div">
-          A Product
+          {product.productName}
         </Typography>
         <Typography textAlign="center" gutterBottom variant="body2" color="text.secondary">
-          Product Description A burger with the freshest ingredients!
+          {product.description}
         </Typography>
         <Typography textAlign="center" variant="h5">
-          $68
+          {product.price}
         </Typography>
       </CardContent>
       <CardActions>
-        <CompsProductShow />
+        <CompsProductShow product={product} />
       </CardActions>
     </Card>
   )
