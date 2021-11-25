@@ -15,7 +15,7 @@ import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
 
 import CompsModalsRegister from '@/components/modals/Register'
-import theme from '@/assets/theme'
+import theme from '@/styles/theme'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

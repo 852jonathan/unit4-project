@@ -2,6 +2,7 @@ import { createTheme } from '@mui/material/styles'
 import { amber, green } from '@mui/material/colors'
 
 const theme = createTheme({
+
   palette: {
     type: 'light',
     primary: {

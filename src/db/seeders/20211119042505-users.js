@@ -9,6 +9,7 @@ module.exports = {
     await User.create({
       name: 'Tester',
       email: 'test@test.com',
+      registrationType: 'email',
       passwordHash
     })
   }

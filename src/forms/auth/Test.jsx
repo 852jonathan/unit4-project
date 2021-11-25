@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField'
 import GoogleIcon from '@mui/icons-material/Google'
 
 import CompsModalsRegister from '@/components/modals/Register'
-import theme from '@/assets/theme'
+import theme from '@/styles/theme'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {

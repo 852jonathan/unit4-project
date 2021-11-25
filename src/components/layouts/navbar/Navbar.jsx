@@ -9,14 +9,13 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 
-import LocalMallIcon from '@mui/icons-material/LocalMall'
 import MenuIcon from '@mui/icons-material/Menu'
 import LanguageIcon from '@mui/icons-material/Language'
 
-import theme from '@/assets/theme'
-import CompsStyledBadge from '@/components/layouts/navbar/Badge'
+import theme from '@/styles/theme'
 import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
 import CompsPopoverLogin from '@/components/popover/Login'
+import CompsDrawerBag from '@/components/drawer/Bag'
 
 // const preventDefault = (e) => e.preventDefault()
 
@@ -73,11 +72,11 @@ export default function CompsLayoutsNavbar() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ flexGrow: 1, margin: 0 }}>
+      <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>
         <AppBar position="static">
           {/* <AppBar position="static" elevation={0} > // Remove shadow */}
           <Toolbar sx={{ display: 'flex' }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               edge="start"
               color="inherit"
@@ -85,13 +84,13 @@ export default function CompsLayoutsNavbar() {
               sx={{ mr: 2 }}
             >
               <MenuIcon />
-            </IconButton>
+            </IconButton> */}
 
             <NextLink href="/aboutus" passHref>
               <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
             </NextLink>
             <NextLink href="/menu" passHref>
-              <Button color="inherit" sx={{ mr: 3 }}>Menu</Button>
+              <Button color="inherit" sx={{ mr: 3 }}>Our Menu</Button>
             </NextLink>
             <NextLink href="/storelocator" passHref>
               <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
@@ -110,10 +109,10 @@ export default function CompsLayoutsNavbar() {
             <CompsLayoutsNavbarProfile />
 
             <CompsPopoverLogin />
-
-            <CompsStyledBadge badgeContent={5} color="secondary">
+            <CompsDrawerBag />
+            {/* <CompsStyledBadge badgeContent={5} color="secondary">
               <Button variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
-            </CompsStyledBadge>
+            </CompsStyledBadge> */}
 
           </Toolbar>
         </AppBar>

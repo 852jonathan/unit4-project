@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField'
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
 
-import theme from '@/assets/theme'
+import theme from '@/styles/theme'
 
 const CssTextField = styled(TextField)({
   '& label.Mui-focused': {
