@@ -1,23 +1,21 @@
-import React from "react";
+import React from 'react'
 
+const VIDEO_WIDTH = 1920
+const VIDEO_HEIGHT = 1080
 
-function CompsVideoPlayer(props) {
-  const url = `https://dgjerrv5x.mo.cloudinary.net/burger-background-video`;
-
+export default function CompsVideoPlayer() {
   return (
-    <>
-    <div className="iframe-container">
-      <iframe className="responsive-iframe"
-        title="Cloud Hosted Video Player"
-        src={url}
-        width="640"
-        height="480"
-        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-        allowFullScreen
+    <div className="video-background" position="relative">
+      <div className="yt-cover" />
+      <iframe
+        width={VIDEO_WIDTH}
+        height={VIDEO_HEIGHT}
+        // src="https://www.youtube.com/embed/Ys6Pv8PAy7A?autoplay=1&controls=0&mute=1&loop=1&modestbranding=1&showinfo=0&enablejsapi=1&&widgetid=3&playlist=Ys6Pv8PAy7A"
+        src="https://www.youtube.com/embed/kMjyy5v9sI8?autoplay=1&controls=0&mute=1&loop=1&modestbranding=1&showinfo=0&enablejsapi=1&&widgetid=3&playlist=kMjyy5v9sI8"
         frameBorder="0"
-      ></iframe>
-      </div>
-    </>
-  );
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      />
+
+    </div>
+  )
 }
-export default CompsVideoPlayer

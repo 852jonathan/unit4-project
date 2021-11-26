@@ -10,42 +10,42 @@ import CompsLayout from '@/components/layouts/Layout'
 const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
 
 export default function PagesStoreLocator() {
-  const [pageIsMounted, setPageIsMounted] = useState(false)
-  const [Map, setMap] = useState()
-  const { data, error } = useSWR('/api/liveMusic', fetcher)
+  // const [pageIsMounted, setPageIsMounted] = useState(false)
+  // const [Map, setMap] = useState()
+  // const { data, error } = useSWR('/api/liveMusic', fetcher)
 
-  if (error) {
-    console.error(error)
-  }
+  // if (error) {
+  //   console.error(error)
+  // }
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3NXV1dWxoMGZ3ZTJxbzhmZmVmem5zNSJ9.Zwi64V9tQ2hj0CLUn2ajJA'
+  // mapboxgl.accessToken = 'pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3NXV1dWxoMGZ3ZTJxbzhmZmVmem5zNSJ9.Zwi64V9tQ2hj0CLUn2ajJA'
 
-  useEffect(() => {
-    setPageIsMounted(true)
+  // useEffect(() => {
+  //   setPageIsMounted(true)
 
-    const map = new mapboxgl.Map({
-      container: 'my-map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-77.02, 38.887],
-      zoom: 12.5,
-      pitch: 45,
-      maxBounds: [
-        [-77.875588, 38.50705], // Southwest coordinates
-        [-76.15381, 39.548764] // Northeast coordinates
-      ]
-    })
+  //   const map = new mapboxgl.Map({
+  //     container: 'my-map',
+  //     style: 'mapbox://styles/mapbox/streets-v11',
+  //     center: [-77.02, 38.887],
+  //     zoom: 12.5,
+  //     pitch: 45,
+  //     maxBounds: [
+  //       [-77.875588, 38.50705], // Southwest coordinates
+  //       [-76.15381, 39.548764] // Northeast coordinates
+  //     ]
+  //   })
 
-    initializeMap(mapboxgl, map)
-    setMap(map)
-  }, [])
+  //   initializeMap(mapboxgl, map)
+  //   setMap(map)
+  // }, [])
 
-  useEffect(() => {
-    if (pageIsMounted && data) {
-      Map.on('load', () => {
-        addDataLayer(Map, data)
-      })
-    }
-  }, [pageIsMounted, setMap, data, Map])
+  // useEffect(() => {
+  //   if (pageIsMounted && data) {
+  //     Map.on('load', () => {
+  //       addDataLayer(Map, data)
+  //     })
+  //   }
+  // }, [pageIsMounted, setMap, data, Map])
   return (
     <CompsLayout>
       <Head>

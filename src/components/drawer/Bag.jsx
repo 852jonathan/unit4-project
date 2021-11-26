@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+import Typography from '@mui/material/Typography'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
@@ -14,25 +15,29 @@ import LocalMallIcon from '@mui/icons-material/LocalMall'
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 
 export default function CompsDrawerBag() {
-  const [state, setState] = useState({
-    right: false
-  })
+  const [openBag, setOpenBag] = useState(false)
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return
-    }
-
-    setState({ ...state, [anchor]: open })
-  }
-
-  const list = (anchor) => (
+  const list = () => (
     <Box
       sx={{ width: 250 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
+      // onClick={() => setOpenBag(false)}
     >
+      <Typography
+        align="center"
+        variant="h6"
+        component="div"
+        sx={{ flexGrow: 1, my: 3 }}
+      >BAG
+      </Typography>
+      <Typography
+        align="center"
+        variant="h6"
+        component="div"
+        sx={{ flexGrow: 1, mt: 4, mb: 2 }}
+      >YOUR PICKUP ORDER
+      </Typography>
+      <Divider />
       <List>
         {['Item 1', 'Item 2', 'Item 3', 'Item 4'].map((text, index) => (
           <ListItem button key={text}>
@@ -45,15 +50,24 @@ export default function CompsDrawerBag() {
       </List>
       <Divider />
       <List>
-        {['Yes', 'Sub Total', 'Total'].map((text, index) => (
+        {['Sub Total', 'Total'].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
+            {/* <ListItemIcon>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
+            </ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      <Box textAlign="center">
+        <Button
+          variant="contained"
+          onClick={() => alert('clicked')}
+          color="secondary"
+          sx={{ width: 200 }}
+        >CHECKOUT</Button>
+      </Box>
+
     </Box>
   )
 
@@ -61,18 +75,19 @@ export default function CompsDrawerBag() {
     <>
 
       {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
+        <>
           <CompsStyledBadge badgeContent={5} color="secondary">
-            <Button onClick={toggleDrawer(anchor, true)} variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
+            <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
           </CompsStyledBadge>
           <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
+            id="drawer-bag"
+            anchor="right"
+            open={openBag}
+            onClose={() => setOpenBag(false)}
           >
             {list(anchor)}
           </Drawer>
-        </React.Fragment>
+        </>
       ))}
     </>
   )

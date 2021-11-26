@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import NextLink from 'next/link'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
@@ -10,6 +11,7 @@ import CompsLayoutsMenuGrid from '@/components/layouts/menu/grid/MenuGrid'
 
 export default function PagesMenu() {
   return (
+
     <CompsLayout>
       <Head>
         <title>MahaBurger - Menu</title>
@@ -19,13 +21,15 @@ export default function PagesMenu() {
           MENU
         </Typography>
 
-        <Divider sx={{ m: 2 }}>
+        <Divider sx={{ m: 2, fontSize: '2rem' }}>
           <Chip label="SPECIALS" color="warning" />
+          {/* SPECIALS */}
         </Divider>
         {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
           Specials
         </Typography> */}
         <Box display="flex" justifyContent="center">
+
           <CompsCardCreateYourBurger />
         </Box>
 
