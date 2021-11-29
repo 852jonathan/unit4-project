@@ -28,8 +28,19 @@ const style = {
 
 export default function CompsProductShow({ product }) {
   const [open, setOpen] = useState(false)
+  const [productName, setProductName] = useState(false)
+  const [productPrice, setProductPrice] = useState(false)
+  const [productQty, setProductQty] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+
+  const handleAddToBag = () => {
+    setProductName(product.productName)
+    setProductPrice(product.price)
+    setProductQty(quantity.value)
+
+    localStorage.setItem()
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -92,6 +103,7 @@ export default function CompsProductShow({ product }) {
                 </Typography>
 
                 <Button
+                  onClick={handleAddToBag}
                   variant="contained"
                   color="secondary"
                   startIcon={<AddBoxIcon />}

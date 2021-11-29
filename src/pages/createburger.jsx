@@ -11,22 +11,22 @@ import FormsProductCreateBurger from '@/forms/products/createburger'
 
 import theme from '@/styles/theme'
 
-const ingredientsMapping = {
-  'Brioche Top Bun': '/assets/thick-top-bun.png',
-  'Squid Ink Top Bun': '/assets/thick-squid-top-bun.png',
-  Lettuce: '/assets/lettuce-leaf.png',
-  Tomato: '/assets/tomato.png',
-  'Back Bacon': '/assets/back-bacon.png',
-  'Red Pepper': '/assets/red-pepper.png',
-  'Rocket Leaf': '/assets/rocket-leaf.png',
-  Mushrooms: '/assets/mushrooms.png',
-  'Swiss Cheese': '/assets/swiss-cheese.png',
-  'Square Cheese': '/assets/square-cheese.png',
-  Pickles: '/assets/pickles.png',
-  'Grilled Beef Patty': '/assets/grilled-beef-patty.png',
-  'Bottom Bun': '/assets/bottom-bun.png',
-  'Squid Ink Bottom Bun': '/assets/squid-bottom-bun.png'
-}
+// const ingredientsMapping = {
+//   'Brioche Top Bun': 'thick-top-bun',
+//   'Squid Ink Top Bun': 'thick-squid-top-bun',
+//   Lettuce: 'lettuce-leaf',
+//   Tomato: 'tomato',
+//   'Back Bacon': 'back-bacon',
+//   'Red Pepper': 'red-pepper',
+//   'Rocket Leaf': 'rocket-leaf',
+//   Mushrooms: 'mushrooms',
+//   'Swiss Cheese': 'swiss-cheese',
+//   'Square Cheese': 'square-cheese',
+//   Pickles: 'pickles',
+//   'Grilled Beef Patty': 'grilled-beef-patty',
+//   'Bottom Bun': 'bottom-bun',
+//   'Squid Ink Bottom Bun': 'squid-bottom-bun'
+// }
 
 export default function PagesCreateABurger() {
   const [ingredients, setIngredients] = useState({
@@ -77,7 +77,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className="z-index-999"
-                            src={ingredientsMapping[ingredients.top]}
+                            src={`/assets/${[ingredients.top]}.png`}
                             alt="top-ingredients"
                             layout="responsive"
                             height={80}
@@ -94,7 +94,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className={`z-index-${998 - index}`}
-                            src={ingredientsMapping[ingredient]}
+                            src={`/assets/${[ingredient]}.png`}
                             alt="middle-ingredients"
                             layout="responsive"
                             height={80}
@@ -111,7 +111,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className="z-index-949"
-                            src={ingredientsMapping[ingredients.bot]}
+                            src={`/assets/${[ingredients.bot]}.png`}
                             alt="bot-ingredients"
                             layout="responsive"
                             height={80}

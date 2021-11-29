@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import produce from 'immer'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -16,8 +16,37 @@ import AddBoxIcon from '@mui/icons-material/AddBox'
 
 import theme from '@/styles/theme'
 
+const createData = (name, price, link) => ({ name, price, link })
+
+const topBunRows = [
+  createData('Brioche Top Bun', 12, 'thick-top-bun'),
+  createData('Squid Ink Top Bun', 15, 'thick-squid-top-bun')
+]
+const botBunRows = [
+  createData('Bottom Bun', 12, 'bottom-bun'),
+  createData('Squid Ink Bottom Bun', 15, 'squid-bottom-bun')
+]
+
+const ingredientRows = [
+  createData('Lettuce', 15, 'lettuce-leaf'),
+  createData('Tomato', 18, 'tomato'),
+  createData('Grilled Beef Patty', 35, 'grilled-beef-patty'),
+  createData('Back Bacon', 20, 'back-bacon'),
+  createData('Red Pepper', 15, 'red-pepper'),
+  createData('Rocket Leaf', 18, 'rocket-leaf'),
+  createData('Mushrooms', 18, 'mushrooms'),
+  createData('Swiss Cheese', 18, 'swiss-cheese'),
+  createData('Pickles', 18, 'pickles'),
+  createData('Square Cheese', 18, 'square-cheese')
+]
+
 export default function FormsProductCreateBurger({ ingredients, setIngredients }) {
-  const [checked, setChecked] = useState(0)
+  const calcTotal = () => {
+    const topPrice = topBunRows.find((row) => row.link === ingredients.top)?.price || 0
+    const botPrice = botBunRows.find((row) => row.link === ingredients.bot)?.price || 0
+
+    return topPrice + botPrice
+  }
 
   const handleTopBunChange = (e) => {
     setIngredients(produce(ingredients, (draft) => {
@@ -39,46 +68,11 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       const index = draft.middle.indexOf(ingredient)
       if (index >= 0) {
         draft.middle.splice(index, 1)
-        setChecked(checked - 1)
-        console.log('remove ingredient:', checked)
       } else {
         draft.middle.push(ingredient)
-        setChecked(checked + 1)
-        console.log('add ingredient:', checked)
       }
     }))
   }
-
-  function createData(name, price) {
-    return { name, price }
-  }
-
-  const topBunRows = [
-    createData('Brioche Top Bun', 12),
-    createData('Squid Ink Top Bun', 15)
-  ]
-  const botBunRows = [
-    createData('Bottom Bun', 12),
-    createData('Squid Ink Bottom Bun', 15)
-  ]
-
-  const ingredientRows = [
-    createData('Lettuce', 15),
-    createData('Tomato', 18),
-    createData('Grilled Beef Patty', 35),
-    createData('Back Bacon', 20),
-    createData('Red Pepper', 15),
-    createData('Rocket Leaf', 18),
-    createData('Mushrooms', 18),
-    createData('Swiss Cheese', 18),
-    createData('Pickles', 18),
-    createData('Square Cheese', 18)
-  ]
-
-  // const shouldDisableCheckbox = (value) => {
-  //   const maxAllowed = 3
-  //   return setChecked(checked.length >= maxAllowed && checked.indexOf(value) === -1)
-  // }
 
   return (
     <>
@@ -91,9 +85,10 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                 control={<Radio size="small" color="info" />}
                 name={row.name}
                 label={`${row.name} - $ ${row.price}`}
-                value={row.name}
-                checked={ingredients.top === row.name}
-                onChange={handleTopBunChange}
+                value={row.link}
+                data-price={row.price}
+                checked={ingredients.top === row.link}
+                onChange={(e) => handleTopBunChange(e, row.price)}
               />
             </RadioGroup>
           ))}
@@ -110,13 +105,14 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                   control={<Checkbox size="small" color="info" />}
                   name={row.name}
                   label={`${row.name} - $ ${row.price}`}
-                  value={row.name}
-                  checked={ingredients.middle.includes(row.name)}
+                  value={row.link}
+                  checked={ingredients.middle.includes(row.link)}
                   onChange={handleIngredientsChange}
                 />
               </FormGroup>
             ))}
           </Grid>
+
           <Grid item xs={6}>
             {ingredientRows.slice(5).map((row) => (
               <FormGroup key={row.name}>
@@ -124,10 +120,9 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                   control={<Checkbox size="small" color="info" />}
                   name={row.name}
                   label={`${row.name} - $ ${row.price}`}
-                  value={row.name}
-                  checked={ingredients.middle.includes(row.name)}
+                  value={row.link}
+                  checked={ingredients.middle.includes(row.link)}
                   onChange={handleIngredientsChange}
-
                 />
               </FormGroup>
             ))}
@@ -144,25 +139,15 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                 control={<Radio size="small" color="info" />}
                 name={row.name}
                 label={`${row.name} - $ ${row.price}`}
-                value={row.name}
-                checked={ingredients.bot === row.name}
+                value={row.link}
+                checked={ingredients.bot === row.link}
                 onChange={handleBotBunChange}
               />
             </RadioGroup>
           ))}
         </FormControl>
       </List>
-      <Typography variant="h5"> Subtotal: </Typography>
-      {topBunRows.map((row) => (
-        <Typography key={row.name}>
-          {/* {checked.ingredients.price} */}
-        </Typography>
-      ))}
-      {botBunRows.map((row) => (
-        <Typography key={row.name}>
-          value={row.price}
-        </Typography>
-      ))}
+      <Typography variant="h5" sx={{ mb: 1 }}> Subtotal: $ {`${calcTotal()}`} </Typography>
 
       <Box>
         <Button
