@@ -4,7 +4,9 @@ import axios from 'axios'
 import fetcher from '@/_services/fetcher'
 
 export default function useUser() {
-  const { data, error } = useSWR('/api/my/profile', fetcher)
+  const { data, error } = useSWR('/api/my/profile', fetcher, {
+    shouldRetryOnError: false
+  })
 
   const emailSignup = (values) => new Promise((resolve, reject) => {
     axios({

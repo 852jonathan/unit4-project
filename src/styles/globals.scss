@@ -1,19 +1,4 @@
-// @import '~bootstrap/scss/bootstrap';
-
-body {
-  margin: 0
-}
-
-#navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1200;
-}
-#drawer-bag {
-  position: sticky;
-  top: 0;
-  z-index: 1100;
-}
+//============ Global: Disable scroll bar
 
 * {
   -ms-overflow-style: none;
@@ -21,7 +6,13 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+body {
+  margin: 0
+}
 
+
+
+//============ Page: Home Page, Comp: Video Player
 :root {
   --video-width: 100vw;
   --video-height: 100vh;
@@ -38,7 +29,12 @@ body {
       --video-width: 177.78vh;
   }
 }
-.yt-cover{
+
+#video-backcover {
+  background-color: black;
+}
+
+.yt-cover {
   position: absolute;
   top: 0;
   bottom:0;
@@ -61,8 +57,36 @@ body {
   height: var(--video-height);
   transform: translate(-50%, -50%);
 }
+
 #video-overlay {
   transform: translate(80%, 100%);
   z-index: 1000;
+}
 
+//============ Comp: Navbar
+
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+}
+
+#mobile-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1090;
+}
+
+#drawer-bag {
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+
+//============ Page: Create A Burger
+// z-index utils
+@for $i from 999 through 950 {
+  .z-index-#{$i} {
+    z-index: $i;
+  }
 }

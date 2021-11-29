@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import produce from 'immer'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import FormControl from '@mui/material/FormControl'
@@ -12,67 +13,157 @@ import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import { ThemeProvider } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+
 import theme from '@/styles/theme'
 
-export default function FormsProductCreateBurger() {
-  const [topBun, setTopBun] = useState('thick-top-bun')
-  const [botBun, setBotBun] = useState('thick-bottom-bun')
+export default function FormsProductCreateBurger({ ingredients, setIngredients }) {
+  const [checked, setChecked] = useState(0)
 
   const handleTopBunChange = (e) => {
-    setTopBun(e.target.value)
-  }
-  const handleBotBunChange = (e) => {
-    setBotBun(e.target.value)
+    setIngredients(produce(ingredients, (draft) => {
+      const top = e.target.value
+      draft.top = top
+    }))
   }
 
+  const handleBotBunChange = (e) => {
+    setIngredients(produce(ingredients, (draft) => {
+      const bot = e.target.value
+      draft.bot = bot
+    }))
+  }
+
+  const handleIngredientsChange = (e) => {
+    setIngredients(produce(ingredients, (draft) => {
+      const ingredient = e.target.value
+      const index = draft.middle.indexOf(ingredient)
+      if (index >= 0) {
+        draft.middle.splice(index, 1)
+        setChecked(checked - 1)
+        console.log('remove ingredient:', checked)
+      } else {
+        draft.middle.push(ingredient)
+        setChecked(checked + 1)
+        console.log('add ingredient:', checked)
+      }
+    }))
+  }
+
+  function createData(name, price) {
+    return { name, price }
+  }
+
+  const topBunRows = [
+    createData('Brioche Top Bun', 12),
+    createData('Squid Ink Top Bun', 15)
+  ]
+  const botBunRows = [
+    createData('Bottom Bun', 12),
+    createData('Squid Ink Bottom Bun', 15)
+  ]
+
+  const ingredientRows = [
+    createData('Lettuce', 15),
+    createData('Tomato', 18),
+    createData('Grilled Beef Patty', 35),
+    createData('Back Bacon', 20),
+    createData('Red Pepper', 15),
+    createData('Rocket Leaf', 18),
+    createData('Mushrooms', 18),
+    createData('Swiss Cheese', 18),
+    createData('Pickles', 18),
+    createData('Square Cheese', 18)
+  ]
+
+  // const shouldDisableCheckbox = (value) => {
+  //   const maxAllowed = 3
+  //   return setChecked(checked.length >= maxAllowed && checked.indexOf(value) === -1)
+  // }
+
   return (
-    // <ThemeProvider theme={theme}>
-    //   <Typography textAlign="center" variant="h4" sx={{ my: 2 }}>Create a Burger</Typography>
-    //   <Box sx={{ flexGrow: 1 }}>
-    //     <Grid container spacing={2} columns={16}>
-    //       <Grid item xs={8} />
-    //       <Grid item xs={8}>
     <>
       <Typography variant="h5"> Top Bun </Typography>
       <List>
         <FormControl component="fieldset">
-          <RadioGroup
-            name="top-bun-group"
-            value={topBun}
-            onChange={handleTopBunChange}
-          >
-            <FormControlLabel value="thick-top-bun" control={<Radio size="small" color="info" />} label="Brioche Top Bun" />
-            <FormControlLabel value="squid-top-bun" control={<Radio size="small" color="info" />} label="Squid Ink Top Bun" />
-          </RadioGroup>
+          {topBunRows.map((row) => (
+            <RadioGroup key={row.name}>
+              <FormControlLabel
+                control={<Radio size="small" color="info" />}
+                name={row.name}
+                label={`${row.name} - $ ${row.price}`}
+                value={row.name}
+                checked={ingredients.top === row.name}
+                onChange={handleTopBunChange}
+              />
+            </RadioGroup>
+          ))}
         </FormControl>
       </List>
+
       <Typography variant="h5"> Ingredients </Typography>
       <List>
-        {['Lettuce', 'Tomato', 'Bacon'].map((text, price) => (
-          <FormGroup>
-            <FormControlLabel control={<Checkbox size="small" color="info" />} name={text} label={text} key={text}>
-              <FormControlLabel primary={text} />
-              <FormControlLabel primary={price} />
-            </FormControlLabel>
-          </FormGroup>
-        ))}
+        <Grid container spacing={2} columns={12}>
+          <Grid item xs={6}>
+            {ingredientRows.slice(0, 5).map((row) => (
+              <FormGroup key={row.name}>
+                <FormControlLabel
+                  control={<Checkbox size="small" color="info" />}
+                  name={row.name}
+                  label={`${row.name} - $ ${row.price}`}
+                  value={row.name}
+                  checked={ingredients.middle.includes(row.name)}
+                  onChange={handleIngredientsChange}
+                />
+              </FormGroup>
+            ))}
+          </Grid>
+          <Grid item xs={6}>
+            {ingredientRows.slice(5).map((row) => (
+              <FormGroup key={row.name}>
+                <FormControlLabel
+                  control={<Checkbox size="small" color="info" />}
+                  name={row.name}
+                  label={`${row.name} - $ ${row.price}`}
+                  value={row.name}
+                  checked={ingredients.middle.includes(row.name)}
+                  onChange={handleIngredientsChange}
+
+                />
+              </FormGroup>
+            ))}
+          </Grid>
+        </Grid>
       </List>
+
       <Typography variant="h5"> Bottom Bun </Typography>
       <List>
         <FormControl component="fieldset">
-          <RadioGroup
-            name="bot-bun-group"
-            value={botBun}
-            onChange={handleBotBunChange}
-          >
-            <FormControlLabel value="thick-bottom-bun" control={<Radio size="small" color="info" />} label="Bottom Bun" />
-            <FormControlLabel value="squid-bottom-bun" control={<Radio size="small" color="info" />} label="Squid Ink Bottom Bun" />
-          </RadioGroup>
+          {botBunRows.map((row) => (
+            <RadioGroup key={row.name}>
+              <FormControlLabel
+                control={<Radio size="small" color="info" />}
+                name={row.name}
+                label={`${row.name} - $ ${row.price}`}
+                value={row.name}
+                checked={ingredients.bot === row.name}
+                onChange={handleBotBunChange}
+              />
+            </RadioGroup>
+          ))}
         </FormControl>
       </List>
-      {/* //     </Grid> */}
-      {/* //   </Grid> */}
-      {/* // </Box> */}
+      <Typography variant="h5"> Subtotal: </Typography>
+      {topBunRows.map((row) => (
+        <Typography key={row.name}>
+          {/* {checked.ingredients.price} */}
+        </Typography>
+      ))}
+      {botBunRows.map((row) => (
+        <Typography key={row.name}>
+          value={row.price}
+        </Typography>
+      ))}
+
       <Box>
         <Button
           variant="contained"
@@ -82,6 +173,5 @@ export default function FormsProductCreateBurger() {
         </Button>
       </Box>
     </>
-  // </ThemeProvider>
   )
 }

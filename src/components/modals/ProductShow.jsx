@@ -11,7 +11,7 @@ import CardMedia from '@mui/material/CardMedia'
 
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { ThemeProvider } from '@mui/material'
-import burgerCreateImg from '@/assets/burgercreate.png'
+import burgerCreateImg from '/public/assets/burgercreate.png'
 import theme from '@/styles/theme'
 
 const style = {

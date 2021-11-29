@@ -21,6 +21,7 @@ function CompsNavbarMobile() {
   return (
     <>
       <Drawer
+        id="mobile-navbar"
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         anchor="left"
@@ -30,7 +31,7 @@ function CompsNavbarMobile() {
           <ListItem>
             <ListItemText>
               <NextLink href="/" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>Back to Home</Button>
+                <Button color="inherit" sx={{ mr: 3, mt: 5 }}>Back to Home</Button>
               </NextLink>
             </ListItemText>
           </ListItem>

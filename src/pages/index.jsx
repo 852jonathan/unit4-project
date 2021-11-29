@@ -11,6 +11,7 @@ export default function PagesHome() {
         <title>MahaBurger - Home Page - The Best Burgers in Town!</title>
       </Head>
       <div id="pages-home">
+        <div id="video-backcover" />
         <CompsVideoOverlay />
         <CompsVideoPlayer />
         <h1>Homepage</h1>

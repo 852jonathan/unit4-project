@@ -21,20 +21,19 @@ export default function CompsDrawerBag() {
     <Box
       sx={{ width: 250 }}
       role="presentation"
-      // onClick={() => setOpenBag(false)}
     >
       <Typography
         align="center"
         variant="h6"
         component="div"
-        sx={{ flexGrow: 1, my: 3 }}
+        sx={{ flexGrow: 1, mt: 1 }}
       >BAG
       </Typography>
       <Typography
         align="center"
         variant="h6"
         component="div"
-        sx={{ flexGrow: 1, mt: 4, mb: 2 }}
+        sx={{ flexGrow: 1, mt: 5, mb: 2 }}
       >YOUR PICKUP ORDER
       </Typography>
       <Divider />
@@ -52,9 +51,6 @@ export default function CompsDrawerBag() {
       <List>
         {['Sub Total', 'Total'].map((text, index) => (
           <ListItem button key={text}>
-            {/* <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon> */}
             <ListItemText primary={text} />
           </ListItem>
         ))}
