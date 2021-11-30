@@ -43,9 +43,11 @@ const ingredientRows = [
 export default function FormsProductCreateBurger({ ingredients, setIngredients }) {
   const calcTotal = () => {
     const topPrice = topBunRows.find((row) => row.link === ingredients.top)?.price || 0
+
+    // const midPrice = ingredientRows.forEach((row) => row.link === ingredients.middle)?.price || 0
     const botPrice = botBunRows.find((row) => row.link === ingredients.bot)?.price || 0
 
-    return topPrice + botPrice
+    return topPrice + midPrice + botPrice
   }
 
   const handleTopBunChange = (e) => {
