@@ -10,16 +10,22 @@ import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import MailIcon from '@mui/icons-material/Mail'
+import ClearIcon from '@mui/icons-material/Clear'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
 
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 
+import useBag from '@/_hooks/useBag'
+
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
+  const { bag, removeProduct } = useBag()
+
+  console.log(bag)
 
   const list = () => (
     <Box
-      sx={{ width: 250 }}
+      sx={{ width: 350 }}
       role="presentation"
     >
       <Typography
@@ -38,23 +44,27 @@ export default function CompsDrawerBag() {
       </Typography>
       <Divider />
       <List>
-        {['Item 1', 'Item 2', 'Item 3', 'Item 4'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+        {bag.map((item, index) => (
+          <>
+            <ListItem key={item.product.id}>
+              <Typography> {item.quantity} x</Typography>
+              <Typography sx={{ justifyContent: 'center' }}>{item.product.productName} </Typography>
+              <Typography>{item.subTotal} </Typography>
+
+              <Typography sx={{ flexGrow: 1, mt: 5, mb: 2 }}>{item.product.ingredients} </Typography>
+              <ClearIcon onClick={() => removeProduct(index)} />
+            </ListItem>
+            <Divider />
+          </>
         ))}
       </List>
-      <Divider />
-      <List>
-        {['Sub Total', 'Total'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      {/* <Divider /> */}
+      <Typography
+        variant="h6"
+        sx={{ m: 3 }}
+      >
+        Total:
+      </Typography>
       <Box textAlign="center">
         <Button
           variant="contained"
@@ -63,7 +73,6 @@ export default function CompsDrawerBag() {
           sx={{ width: 200 }}
         >CHECKOUT</Button>
       </Box>
-
     </Box>
   )
 
@@ -72,7 +81,7 @@ export default function CompsDrawerBag() {
 
       {['right'].map((anchor) => (
         <>
-          <CompsStyledBadge badgeContent={5} color="secondary">
+          <CompsStyledBadge badgeContent={bag.length} color="secondary">
             <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
           </CompsStyledBadge>
           <Drawer

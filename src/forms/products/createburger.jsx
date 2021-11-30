@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import produce from 'immer'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import FormHelperText from '@mui/material/FormHelperText'
 import FormControl from '@mui/material/FormControl'
 import Checkbox from '@mui/material/Checkbox'
 import Typography from '@mui/material/Typography'
@@ -13,12 +14,10 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
-import { ThemeProvider } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 
-import * as yup from 'yup'
-
-import theme from '@/styles/theme'
+import useLocalStorage from '@/_hooks/useLocalStorage'
+import useBag from '@/_hooks/useBag'
 
 const createData = (name, price, link) => ({ name, price, link })
 
@@ -45,6 +44,15 @@ const ingredientRows = [
 ]
 
 export default function FormsProductCreateBurger({ ingredients, setIngredients }) {
+  const [topBunSelected, setTopBunSelected] = useState(false)
+  const [botBunSelected, setBotBunSelected] = useState(false)
+  const [topError, setTopError] = useState(false)
+  const [botError, setBotError] = useState(false)
+  const [topHelperText, setTopHelperText] = useState('Please choose a bun:')
+  const [botHelperText, setBotHelperText] = useState('Please choose a bun:')
+
+  const { addProduct } = useBag()
+
   const calcTotal = () => {
     const topPrice = topBunRows.find((row) => row.link === ingredients.top)?.price || 0
 
@@ -63,6 +71,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       const top = e.target.value
       draft.top = top
     }))
+    setTopBunSelected(true)
   }
 
   const handleBotBunChange = (e) => {
@@ -70,6 +79,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       const bot = e.target.value
       draft.bot = bot
     }))
+    setBotBunSelected(true)
   }
 
   const handleIngredientsChange = (e) => {
@@ -84,21 +94,56 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
     }))
   }
 
+  const handleAddToBag = (e) => {
+    e.preventDefault()
+
+    if (topBunSelected && botBunSelected === true) {
+      setTopError(false)
+      setBotError(false)
+      setTopHelperText('Bun selected')
+      setBotHelperText('Bun selected')
+
+      addProduct({
+        quantity: 1,
+        subTotal: calcTotal(),
+        product: {
+          productName: 'Custom Burger',
+          ingredients
+        }
+      })
+      console.log(ingredients)
+    } else if (topBunSelected === false) {
+      setTopHelperText('Please select a top bun.')
+      setTopError(true)
+    } else if (botBunSelected === false) {
+      setBotHelperText('Please select a bottom bun.')
+      setBotError(true)
+    } else {
+      setTopHelperText('Please select a top bun.')
+      setBotHelperText('Please select a bottom bun.')
+      setTopError(true)
+      setBotError(true)
+    }
+  }
+
   return (
     <>
       <Typography variant="h5"> Top Bun </Typography>
       <List>
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" error={topError}>
+          <FormHelperText>{topHelperText}</FormHelperText>
           {topBunRows.map((row) => (
             <RadioGroup key={row.name}>
               <FormControlLabel
-                control={<Radio size="small" color="info" />}
+                control={<Radio size="small" color="info" required />}
                 name={row.name}
                 label={`${row.name} - $ ${row.price}`}
                 value={row.link}
                 data-price={row.price}
                 checked={ingredients.top === row.link}
-                onChange={(e) => handleTopBunChange(e, row.price)}
+                // onChange={(e) => handleTopBunChange(e, row.price)}
+                onChange={handleTopBunChange}
+
               />
             </RadioGroup>
           ))}
@@ -142,11 +187,12 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
 
       <Typography variant="h5"> Bottom Bun </Typography>
       <List>
-        <FormControl component="fieldset">
+        <FormControl component="fieldset" error={botError}>
+          <FormHelperText>{botHelperText}</FormHelperText>
           {botBunRows.map((row) => (
             <RadioGroup key={row.name}>
               <FormControlLabel
-                control={<Radio size="small" color="info" />}
+                control={<Radio size="small" color="info" required />}
                 name={row.name}
                 label={`${row.name} - $ ${row.price}`}
                 value={row.link}
@@ -164,6 +210,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           variant="contained"
           color="secondary"
           startIcon={<AddBoxIcon />}
+          onClick={handleAddToBag}
         >Add to Bag
         </Button>
       </Box>
