@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+
 import produce from 'immer'
 import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -13,6 +15,8 @@ import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import { ThemeProvider } from '@mui/material'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+
+import * as yup from 'yup'
 
 import theme from '@/styles/theme'
 
@@ -44,7 +48,11 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
   const calcTotal = () => {
     const topPrice = topBunRows.find((row) => row.link === ingredients.top)?.price || 0
 
-    // const midPrice = ingredientRows.forEach((row) => row.link === ingredients.middle)?.price || 0
+    const midPrice = ingredients.middle.reduce((prev, ingredient) => {
+      const price = ingredientRows.find((row) => row.link === ingredient)?.price || 0
+      return prev + price
+    }, 0)
+
     const botPrice = botBunRows.find((row) => row.link === ingredients.bot)?.price || 0
 
     return topPrice + midPrice + botPrice
