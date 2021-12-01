@@ -35,6 +35,8 @@ export default function PagesMenu() {
     <CompsLayout>
       <Head>
         <title>MahaBurger - Menu</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
       </Head>
       <div id="pages-menu">
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>

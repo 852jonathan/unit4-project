@@ -78,7 +78,7 @@ export default function CompsCardMenuItem({ product }) {
   return (
     <>
       <ButtonBase onClick={handleOpen}>
-        <Card sx={{ minWidth: 345, maxWidth: 345, height: 350 }}>
+        <Card sx={{ minWidth: 345, maxWidth: 345, height: 300 }}>
           <CardMedia
             component="img"
             height="150"
@@ -187,9 +187,7 @@ export default function CompsCardMenuItem({ product }) {
                 </Grid>
               </Grid>
             </Box>
-
           </Box>
-
         </Modal>
       </ThemeProvider>
     </>

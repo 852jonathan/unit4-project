@@ -114,13 +114,13 @@ export default function CompsLayoutsNavbar() {
                   sx={{ flexGrow: 1 }}
                 >LOGO
                 </Typography> */}
-                <Box sx={{ flexGrow: 1, m: 0, p: 0 }}>
+                <Box width="20%" sx={{ flexGrow: 1, m: 0, p: 0 }}>
                   <Image
                     className="z-index-999"
-                    src="/assets/logopic.png"
+                    src="/assets/logo3.png"
                     alt="LOGO"
-                    height={80}
-                    width={80}
+                    height={64}
+                    width={200}
                   />
                 </Box>
 

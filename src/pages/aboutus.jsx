@@ -8,6 +8,8 @@ export default function PagesAboutUs() {
     <CompsLayout>
       <Head>
         <title>MahaBurger - About Us</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
       </Head>
       <div id="pages-aboutus">
         <h1>About Us</h1>

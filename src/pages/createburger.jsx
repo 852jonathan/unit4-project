@@ -61,6 +61,8 @@ export default function PagesCreateABurger() {
     <CompsLayout>
       <Head>
         <title>MahaBurger - Create A Burger</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+
       </Head>
 
       <div id="pages-createburger">

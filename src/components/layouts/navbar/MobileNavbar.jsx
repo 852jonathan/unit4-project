@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import NextLink from 'next/link'
+import Image from 'next/image'
 
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
@@ -65,19 +66,20 @@ function CompsNavbarMobile() {
           </ListItem>
         </List>
       </Drawer>
-      <Box sx={{ display: 'flex' }}>
-
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
           <MenuIcon sx={{ ml: 3 }} />
         </IconButton>
         <NextLink href="/" passHref>
-          <Typography
-            align="center"
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1 }}
-          >LOGO
-          </Typography>
+          <Box sx={{ flexGrow: 1, m: 0, p: 0 }}>
+            <Image
+              className="z-index-999"
+              src="/assets/logopic.png"
+              alt="LOGO"
+              height={50}
+              width={50}
+            />
+          </Box>
         </NextLink>
         <CompsDrawerBag />
 
