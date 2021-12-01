@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
+import Router from 'next/router'
 
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import Typography from '@mui/material/Typography'
 import Modal from '@mui/material/Modal'
-
-import Router from 'next/router'
+import ClearIcon from '@mui/icons-material/Clear'
 
 import useUser from '@/_hooks/user'
 import FormsAuthSignup from '@/forms/auth/Register'
@@ -48,11 +47,12 @@ export default function CompsModalsRegister() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <FormsAuthSignup
-              onSubmit={handleRegisterSubmit}
-            />
-          </Typography>
+          <Box sx={{ m: 0, p: 0, textAlign: 'end' }}>
+            <ClearIcon className="clearIcon" onClick={() => handleClose()} />
+          </Box>
+          <FormsAuthSignup
+            onSubmit={handleRegisterSubmit}
+          />
         </Box>
       </Modal>
     </div>

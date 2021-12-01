@@ -3,7 +3,10 @@ import Router from 'next/router'
 import { useState, useContext } from 'react'
 
 import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
+import ClearIcon from '@mui/icons-material/Clear'
+
 // import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
 
@@ -51,6 +54,9 @@ export default function CompsPopoverLogin() {
           horizontal: 'center'
         }}
       >
+        <Box sx={{ mr: 2, mt: 2, textAlign: 'end' }}>
+          <ClearIcon className="clearIcon" onClick={() => handleClose()} />
+        </Box>
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />

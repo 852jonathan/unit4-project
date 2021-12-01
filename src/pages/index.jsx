@@ -9,6 +9,8 @@ export default function PagesHome() {
     <CompsLayout>
       <Head>
         <title>MahaBurger - Home Page - The Best Burgers in Town!</title>
+        <link rel="icon" href="/favicon.ico" />
+
       </Head>
       <div id="pages-home">
         <div id="video-backcover">

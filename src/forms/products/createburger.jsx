@@ -14,6 +14,13 @@ import RadioGroup from '@mui/material/RadioGroup'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
+
+import Snackbar from '@mui/material/Snackbar'
+
+import MuiAlert from '@mui/material/Alert'
+
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 
 import useBag from '@/_hooks/useBag'
@@ -49,10 +56,30 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
   const [botError, setBotError] = useState(false)
   const [topHelperText, setTopHelperText] = useState('Please choose a bun:')
   const [botHelperText, setBotHelperText] = useState('Please choose a bun:')
-  const [popoverShow, setPopoverShow] = useState(false)
+  const [snackbarShow, setSnackbarShow] = useState(false)
   const [buttonDisable, setButtonDisable] = useState(false)
 
   const { addProduct } = useBag()
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setSnackbarShow(false)
+  }
+
+  const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />)
+
+  const snackbar = (
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={handleClose}
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  )
 
   const calcTotal = () => {
     const topPrice = topBunRows.find((row) => row.link === ingredients.top)?.price || 0
@@ -103,6 +130,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       setBotError(false)
       setTopHelperText('Bun selected')
       setBotHelperText('Bun selected')
+      setSnackbarShow(true)
 
       addProduct({
         quantity: 1,
@@ -207,10 +235,23 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
         </FormControl>
       </List>
       <Typography variant="h5" sx={{ mb: 1 }}> Subtotal: $ {`${calcTotal()}`} </Typography>
-
+      <Snackbar
+        open={snackbarShow}
+        autoHideDuration={5000}
+        onClose={handleClose}
+        action={snackbar}
+        severity="success"
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right'
+        }}
+      >
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          Custom Burger Added!
+        </Alert>
+      </Snackbar>
       <Box>
         <Button
-          // disabled={!currentUser || buttonDisable}
           disabled={buttonDisable}
           variant="contained"
           color="secondary"
@@ -218,9 +259,10 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           onClick={() => {
             handleAddToBag()
             setButtonDisable(true)
+            setSnackbarShow(true)
             setTimeout(() => {
               setButtonDisable(false)
-              setPopoverShow(false)
+              setSnackbarShow(false)
             }, 2000)
           }}
         >Add to Bag

@@ -37,7 +37,7 @@ const CssTextField = styled(TextField)({
 const RenderForm = ({ errors, touched, isSubmitting }) => (
   <ThemeProvider theme={theme}>
     <Form>
-      <Typography align="center" variant="h6" sx={{ mx: 2, mt: 2 }}>REGISTER AN ACCOUNT</Typography>
+      <Typography align="center" variant="h6" sx={{ mx: 2 }}>REGISTER AN ACCOUNT</Typography>
       <Box sx={{ m: 2 }}>
         <Field
           id="email-input"

@@ -12,8 +12,11 @@ import InputLabel from '@mui/material/InputLabel'
 import FormControl from '@mui/material/FormControl'
 import NativeSelect from '@mui/material/NativeSelect'
 import Button from '@mui/material/Button'
+import Snackbar from '@mui/material/Snackbar'
+import MuiAlert from '@mui/material/Alert'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-
 import { ThemeProvider } from '@mui/material'
 import theme from '@/styles/theme'
 
@@ -37,6 +40,7 @@ export default function CompsCardMenuItem({ product }) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
+  const [snackbarShow, setSnackbarShow] = useState(false)
 
   const { addProduct } = useBag()
 
@@ -50,6 +54,26 @@ export default function CompsCardMenuItem({ product }) {
     })
     handleClose()
   }
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    setSnackbarShow(false)
+  }
+
+  const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />)
+
+  const snackbar = (
+    <IconButton
+      size="small"
+      aria-label="close"
+      color="inherit"
+      onClick={handleCloseSnackbar}
+    >
+      <CloseIcon fontSize="small" />
+    </IconButton>
+  )
 
   return (
     <>
@@ -77,7 +101,20 @@ export default function CompsCardMenuItem({ product }) {
         </Card>
       </ButtonBase>
       <ThemeProvider theme={theme}>
-
+        <Snackbar
+          open={snackbarShow}
+          onClose={handleCloseSnackbar}
+          action={snackbar}
+          severity="success"
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'right'
+          }}
+        >
+          <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
+            Added to Bag!
+          </Alert>
+        </Snackbar>
         <Modal
           open={open}
           onClose={handleClose}
@@ -135,7 +172,13 @@ export default function CompsCardMenuItem({ product }) {
                   </Typography>
 
                   <Button
-                    onClick={handleAddToBag}
+                    onClick={() => {
+                      handleAddToBag()
+                      setSnackbarShow(true)
+                      setTimeout(() => {
+                        setSnackbarShow(false)
+                      }, 2000)
+                    }}
                     variant="contained"
                     color="secondary"
                     startIcon={<AddBoxIcon />}

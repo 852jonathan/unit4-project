@@ -1,15 +1,35 @@
+import { useState, useEffect } from 'react'
 import Head from 'next/head'
-import NextLink from 'next/link'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
+import Button from '@mui/material/Button'
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
 
 import CompsLayout from '@/components/layouts/Layout'
 import CompsCardCreateYourBurger from '@/components/layouts/menu/card/CreateYourBurger'
 import CompsLayoutsMenuGrid from '@/components/layouts/menu/grid/MenuGrid'
 
 export default function PagesMenu() {
+  const [showButton, setShowButton] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true)
+      } else {
+        setShowButton(false)
+      }
+    })
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    })
+  }
   return (
 
     <CompsLayout>
@@ -57,6 +77,15 @@ export default function PagesMenu() {
         </Typography> */}
         <CompsLayoutsMenuGrid category="drinks" />
       </div>
+      {showButton && (
+        <Button
+          onClick={scrollToTop}
+          className="back-to-top"
+          startIcon={<ArrowCircleUpIcon />}
+        >
+          Back to Top
+        </Button>
+      )}
     </CompsLayout>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
+import Image from 'next/image'
 
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
@@ -14,7 +15,15 @@ export default function VideoOverlay() {
     <ThemeProvider theme={theme}>
 
       <Box id="video-overlay" position="absolute" sx={{ '& > :not(style)': { m: 1 }, zIndex: 800, backdropFilter: 'blur(5px)' }}>
-        <Typography variant="h3" color="white">Burger Shop</Typography>
+        {/* <Box>
+          <Image
+            src="/assets/logo.png"
+            alt="LOGO"
+            height={100}
+            width={100}
+          />
+        </Box> */}
+        <Typography variant="h3" color="white">MahaBurger</Typography>
         <Typography variant="h4" color="white">Freshly made burgers, made to order!</Typography>
         <NextLink href="/menu" passHref>
           <Fab variant="extended" color="secondary" aria-label="add">

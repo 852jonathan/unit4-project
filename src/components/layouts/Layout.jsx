@@ -5,6 +5,7 @@ import { BagProvider } from '@/_hooks/useBag'
 
 export default function CompsLayout({ children }) {
   return (
+
     <BagProvider>
       <div id="comps-layout">
         <CompsLayoutsNavbar />
@@ -12,5 +13,6 @@ export default function CompsLayout({ children }) {
         <CompsFooter />
       </div>
     </BagProvider>
+
   )
 }

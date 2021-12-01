@@ -1,5 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
+import Image from 'next/image'
 
 import { ThemeProvider, useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -106,13 +107,23 @@ export default function CompsLayoutsNavbar() {
                 <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
               </NextLink>
               <NextLink href="/" passHref>
-                <Typography
+                {/* <Typography
                   align="center"
                   variant="h6"
                   component="div"
                   sx={{ flexGrow: 1 }}
                 >LOGO
-                </Typography>
+                </Typography> */}
+                <Box sx={{ flexGrow: 1, m: 0, p: 0 }}>
+                  <Image
+                    className="z-index-999"
+                    src="/assets/logopic.png"
+                    alt="LOGO"
+                    height={80}
+                    width={80}
+                  />
+                </Box>
+
               </NextLink>
 
               <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>

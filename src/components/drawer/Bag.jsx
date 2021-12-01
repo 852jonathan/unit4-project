@@ -36,6 +36,7 @@ const ingredientsMapping = {
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
   const [disableCheckout, setDisableCheckout] = useState(true)
+
   const { bag, removeProduct } = useBag()
 
   console.log('bag', bag)
@@ -96,8 +97,8 @@ export default function CompsDrawerBag() {
             }
             return (
               <>
-                <List sx={{ mb: 0 }}>
-                  <ListItem key={item.product.id} sx={{ py: 0 }}>
+                <List key={item.product.id} sx={{ mb: 0 }}>
+                  <ListItem sx={{ py: 0 }}>
                     <ListItemText sx={{ display: 'flex' }}>{item.quantity}x</ListItemText>
                     <ListItem>
                       <ListItemText sx={{ p: 0 }} disableGutters primary={item.product.productName} />
@@ -130,9 +131,15 @@ export default function CompsDrawerBag() {
       <Box textAlign="center">
         <Button
           variant="contained"
-          onClick={redirectToCheckout}
+          onClick={() => {
+            setTimeout(() => {
+              setDisableCheckout(true)
+            }, 2000)
+            redirectToCheckout()
+          }}
           color="secondary"
           sx={{ width: 200, mb: 3 }}
+          // disabled={!currentUser || disableCheckout}
           disabled={disableCheckout}
         >CHECKOUT</Button>
       </Box>
@@ -145,7 +152,7 @@ export default function CompsDrawerBag() {
       {['right'].map((anchor) => (
         <>
           {/* <CompsStyledBadge badgeContent={bag.map((item, index) => {}} color="secondary"> */}
-          <CompsStyledBadge badgeContent={totalQty} color="secondary">
+          <CompsStyledBadge key={anchor} badgeContent={totalQty} color="secondary">
             <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>Bag</Button>
           </CompsStyledBadge>
           <Drawer
