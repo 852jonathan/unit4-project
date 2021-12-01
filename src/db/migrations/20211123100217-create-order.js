@@ -10,12 +10,6 @@ module.exports = {
       UserId: {
         type: Sequelize.INTEGER
       },
-      ProductId: {
-        type: Sequelize.INTEGER
-      },
-      quantity: {
-        type: Sequelize.INTEGER
-      },
       grandTotal: {
         type: Sequelize.INTEGER
       },

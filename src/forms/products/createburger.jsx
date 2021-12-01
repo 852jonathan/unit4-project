@@ -49,6 +49,8 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
   const [botError, setBotError] = useState(false)
   const [topHelperText, setTopHelperText] = useState('Please choose a bun:')
   const [botHelperText, setBotHelperText] = useState('Please choose a bun:')
+  const [popoverShow, setPopoverShow] = useState(false)
+  const [buttonDisable, setButtonDisable] = useState(false)
 
   const { addProduct } = useBag()
 
@@ -93,8 +95,8 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
     }))
   }
 
-  const handleAddToBag = (e) => {
-    e.preventDefault()
+  const handleAddToBag = () => {
+    // e.preventDefault()
 
     if (topBunSelected && botBunSelected === true) {
       setTopError(false)
@@ -107,7 +109,8 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
         subTotal: calcTotal(),
         product: {
           productName: 'Custom Burger',
-          ingredients
+          ingredients,
+          price: calcTotal()
         },
         feature: true
       })
@@ -207,10 +210,19 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
 
       <Box>
         <Button
+          // disabled={!currentUser || buttonDisable}
+          disabled={buttonDisable}
           variant="contained"
           color="secondary"
           startIcon={<AddBoxIcon />}
-          onClick={handleAddToBag}
+          onClick={() => {
+            handleAddToBag()
+            setButtonDisable(true)
+            setTimeout(() => {
+              setButtonDisable(false)
+              setPopoverShow(false)
+            }, 2000)
+          }}
         >Add to Bag
         </Button>
       </Box>

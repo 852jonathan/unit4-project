@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.1.1",
     "@mui/material": "^5.1.1",
+    "@stripe/stripe-js": "^1.21.1",
     "axios": "^0.24.0",
     "babel-plugin-superjson-next": "^0.4.2",
     "bcrypt": "^5.0.1",
@@ -22,6 +23,7 @@
     "formik": "^2.2.9",
     "immer": "^9.0.6",
     "mapbox-gl": "^2.6.1",
+    "micro": "^9.3.4",
     "moment": "^2.29.1",
     "next": "12.0.4",
     "next-connect": "^0.11.0",
@@ -36,6 +38,7 @@
     "sequelize": "^6.9.0",
     "sequelize-auto": "^0.8.5",
     "sequelize-cli": "^6.3.0",
+    "stripe": "^8.191.0",
     "superjson": "^1.8.0",
     "swr": "^1.0.1",
     "yup": "^0.32.11"

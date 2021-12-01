@@ -10,9 +10,11 @@ import ListItemText from '@mui/material/ListItemText'
 import ClearIcon from '@mui/icons-material/Clear'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
 
+import axios from 'axios'
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 
 import useBag from '@/_hooks/useBag'
+import getStripe from '@/_services/getstripe'
 
 const ingredientsMapping = {
   'thick-top-bun': 'Brioche Top Bun',
@@ -33,12 +35,28 @@ const ingredientsMapping = {
 
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
+  const [disableCheckout, setDisableCheckout] = useState(true)
   const { bag, removeProduct } = useBag()
 
   console.log('bag', bag)
 
   const totalSum = bag.reduce((prev, item) => prev + item.subTotal, 0)
   const totalQty = bag.reduce((prev, item) => prev + item.quantity, 0)
+
+  useEffect(() => {
+    if (bag.length > 0) {
+      setDisableCheckout(false)
+    } else {
+      setDisableCheckout(true)
+    }
+  }, [bag.length])
+
+  const redirectToCheckout = async () => {
+    const resp = await axios.post('/api/checkout_sessions', { bag })
+
+    const stripe = await getStripe()
+    await stripe.redirectToCheckout({ sessionId: resp.data.id })
+  }
 
   const list = () => (
     <Box
@@ -84,7 +102,7 @@ export default function CompsDrawerBag() {
                     <ListItem>
                       <ListItemText sx={{ p: 0 }} disableGutters primary={item.product.productName} />
                     </ListItem>
-                    <ListItemText disableGutters>${item.subTotal} </ListItemText>
+                    <ListItemText disableGutters>{'$'}{item.subTotal} </ListItemText>
                     <ClearIcon className="clearIcon" sx={{ ml: 3 }} onClick={() => removeProduct(index)} />
                   </ListItem>
                 </List>
@@ -106,16 +124,16 @@ export default function CompsDrawerBag() {
         sx={{ mr: 5, my: 2 }}
         textAlign="right"
       >
-        Total: ${totalSum}
-
+        Total: {'$'}{totalSum}
       </Typography>
 
       <Box textAlign="center">
         <Button
           variant="contained"
-          onClick={() => alert('clicked')}
+          onClick={redirectToCheckout}
           color="secondary"
           sx={{ width: 200, mb: 3 }}
+          disabled={disableCheckout}
         >CHECKOUT</Button>
       </Box>
     </Box>

@@ -1,6 +1,5 @@
-const Sequelize = require('sequelize')
-
-module.exports = function (sequelize, DataTypes) {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('Category', {
     id: {
       autoIncrement: true,
@@ -19,12 +18,12 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: true,
     indexes: [
       {
-        name: 'Categories_pkey',
+        name: "Categories_pkey",
         unique: true,
         fields: [
-          { name: 'id' }
+          { name: "id" },
         ]
-      }
+      },
     ]
-  })
-}
+  });
+};

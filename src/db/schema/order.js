@@ -11,14 +11,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    ProductId: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
     grandTotal: {
       type: DataTypes.INTEGER,
       allowNull: true
