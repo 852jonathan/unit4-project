@@ -1,15 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
-import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
-import InboxIcon from '@mui/icons-material/MoveToInbox'
-import MailIcon from '@mui/icons-material/Mail'
+import ListItemText from '@mui/material/ListItemText'
 import ClearIcon from '@mui/icons-material/Clear'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
 
@@ -17,11 +14,31 @@ import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 
 import useBag from '@/_hooks/useBag'
 
+const ingredientsMapping = {
+  'thick-top-bun': 'Brioche Top Bun',
+  'thick-squid-top-bun': 'Squid Ink Top Bun',
+  'lettuce-leaf': 'Lettuce',
+  tomato: 'Tomato',
+  'back-bacon': 'Back Bacon',
+  'red-pepper': 'Red Pepper',
+  'rocket-leaf': 'Rocket Leaf',
+  mushrooms: 'Mushrooms',
+  'swiss-cheese': 'Swiss Cheese',
+  'square-cheese': 'Square Cheese',
+  pickles: 'Pickles',
+  'grilled-beef-patty': 'Grilled Beef Patty',
+  'bottom-bun': 'Bottom Bun',
+  'squid-bottom-bun': 'Squid Ink Bottom Bun'
+}
+
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
   const { bag, removeProduct } = useBag()
 
-  console.log(bag)
+  console.log('bag', bag)
+
+  const totalSum = bag.reduce((prev, item) => prev + item.subTotal, 0)
+  const totalQty = bag.reduce((prev, item) => prev + item.quantity, 0)
 
   const list = () => (
     <Box
@@ -42,35 +59,63 @@ export default function CompsDrawerBag() {
         sx={{ flexGrow: 1, mt: 5, mb: 2 }}
       >YOUR PICKUP ORDER
       </Typography>
-      <Divider />
+      <Divider sx={{ p: 0 }} />
       <List>
-        {bag.map((item, index) => (
-          <>
-            <ListItem key={item.product.id}>
-              <Typography> {item.quantity} x</Typography>
-              <Typography sx={{ justifyContent: 'center' }}>{item.product.productName} </Typography>
-              <Typography>{item.subTotal} </Typography>
+        {
+          bag.map((item, index) => {
+            let allIngredients = []
 
-              <Typography sx={{ flexGrow: 1, mt: 5, mb: 2 }}>{item.product.ingredients} </Typography>
-              <ClearIcon onClick={() => removeProduct(index)} />
-            </ListItem>
-            <Divider />
-          </>
-        ))}
+            if (item?.product?.ingredients?.top) {
+              allIngredients = [...allIngredients, item.product.ingredients.top]
+            }
+
+            if (item?.product?.ingredients?.middle?.length > 0) {
+              allIngredients = [...allIngredients, ...item.product.ingredients.middle]
+            }
+
+            if (item?.product?.ingredients?.bot) {
+              allIngredients = [...allIngredients, item.product.ingredients.bot]
+            }
+            return (
+              <>
+                <List sx={{ mb: 0 }}>
+                  <ListItem key={item.product.id} sx={{ py: 0 }}>
+                    <ListItemText sx={{ display: 'flex' }}>{item.quantity}x</ListItemText>
+                    <ListItem>
+                      <ListItemText sx={{ p: 0 }} disableGutters primary={item.product.productName} />
+                    </ListItem>
+                    <ListItemText disableGutters>${item.subTotal} </ListItemText>
+                    <ClearIcon className="clearIcon" sx={{ ml: 3 }} onClick={() => removeProduct(index)} />
+                  </ListItem>
+                </List>
+                <ListItemText
+                  disableGutters
+                  sx={{ p: 0, ml: 3 }}
+                  secondary={allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}
+                />
+                <Divider sx={{ p: 0 }} />
+              </>
+            )
+          })
+        }
       </List>
       {/* <Divider /> */}
+
       <Typography
         variant="h6"
-        sx={{ m: 3 }}
+        sx={{ mr: 5, my: 2 }}
+        textAlign="right"
       >
-        Total:
+        Total: ${totalSum}
+
       </Typography>
+
       <Box textAlign="center">
         <Button
           variant="contained"
           onClick={() => alert('clicked')}
           color="secondary"
-          sx={{ width: 200 }}
+          sx={{ width: 200, mb: 3 }}
         >CHECKOUT</Button>
       </Box>
     </Box>
@@ -81,8 +126,9 @@ export default function CompsDrawerBag() {
 
       {['right'].map((anchor) => (
         <>
-          <CompsStyledBadge badgeContent={bag.length} color="secondary">
-            <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
+          {/* <CompsStyledBadge badgeContent={bag.map((item, index) => {}} color="secondary"> */}
+          <CompsStyledBadge badgeContent={totalQty} color="secondary">
+            <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>Bag</Button>
           </CompsStyledBadge>
           <Drawer
             id="drawer-bag"

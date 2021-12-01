@@ -16,7 +16,6 @@ import Grid from '@mui/material/Grid'
 import List from '@mui/material/List'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 
-import useLocalStorage from '@/_hooks/useLocalStorage'
 import useBag from '@/_hooks/useBag'
 
 const createData = (name, price, link) => ({ name, price, link })
@@ -109,9 +108,10 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
         product: {
           productName: 'Custom Burger',
           ingredients
-        }
+        },
+        feature: true
       })
-      console.log(ingredients)
+      console.log('ingredients:', ingredients)
     } else if (topBunSelected === false) {
       setTopHelperText('Please select a top bun.')
       setTopError(true)

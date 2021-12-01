@@ -45,7 +45,8 @@ export default function CompsCardMenuItem({ product }) {
       ProductId: product.id,
       quantity: Number(window.quantity.value),
       subTotal: product.price * Number(window.quantity.value),
-      product
+      product,
+      feature: false
     })
     handleClose()
   }
@@ -89,7 +90,7 @@ export default function CompsCardMenuItem({ product }) {
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2} columns={16}>
-                <Grid item xs={8}>
+                <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
                   <CardMedia
                     component="img"
                     height="250"
@@ -97,7 +98,7 @@ export default function CompsCardMenuItem({ product }) {
                     src={burgerCreateImg.src}
                   />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
 
                   <Typography id="productshow-description" sx={{ mt: 2 }}>
                     {product.description}

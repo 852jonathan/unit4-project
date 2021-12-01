@@ -10,8 +10,6 @@ body {
   margin: 0
 }
 
-
-
 //============ Page: Home Page, Comp: Video Player
 :root {
   --video-width: 100vw;
@@ -89,4 +87,10 @@ body {
   .z-index-#{$i} {
     z-index: $i;
   }
+}
+
+//============ Comp: Bag, Change Bag clear icon to pointer
+.clearIcon {
+  cursor: pointer;
+  color: rgb(206, 94, 60)
 }

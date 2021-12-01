@@ -59,9 +59,7 @@ function CompsNavbarMobile() {
           <ListItem>
             <CompsLayoutsNavbarProfile />
           </ListItem>
-          <ListItem>
-            <CompsDrawerBag />
-          </ListItem>
+          {/* <ListItem /> */}
           <ListItem>
             <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
           </ListItem>
@@ -81,6 +79,8 @@ function CompsNavbarMobile() {
           >LOGO
           </Typography>
         </NextLink>
+        <CompsDrawerBag />
+
       </Box>
     </>
   )
