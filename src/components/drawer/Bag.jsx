@@ -9,8 +9,9 @@ import Typography from '@mui/material/Typography'
 import ListItemText from '@mui/material/ListItemText'
 import ClearIcon from '@mui/icons-material/Clear'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
-
 import axios from 'axios'
+import useUser from '@/_hooks/user'
+
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 
 import useBag from '@/_hooks/useBag'
@@ -37,6 +38,7 @@ export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
   const [disableCheckout, setDisableCheckout] = useState(true)
 
+  const { user } = useUser()
   const { bag, removeProduct } = useBag()
 
   console.log('bag', bag)
@@ -139,8 +141,7 @@ export default function CompsDrawerBag() {
           }}
           color="secondary"
           sx={{ width: 200, mb: 3 }}
-          // disabled={!currentUser || disableCheckout}
-          disabled={disableCheckout}
+          disabled={disableCheckout || !user}
         >CHECKOUT</Button>
       </Box>
     </Box>

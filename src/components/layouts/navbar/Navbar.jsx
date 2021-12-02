@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import LanguageIcon from '@mui/icons-material/Language'
+import useUser from '@/_hooks/user'
 
 import theme from '@/styles/theme'
 import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
@@ -74,6 +75,8 @@ export default function CompsLayoutsNavbar() {
   //   )
   // }
 
+  const { user } = useUser()
+
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
@@ -82,21 +85,10 @@ export default function CompsLayoutsNavbar() {
 
       <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>
         <AppBar position="static">
-          {/* <AppBar position="static" elevation={0} > // Remove shadow */}
           {isMobile ? (
             <CompsNavbarMobile />
           ) : (
             <Toolbar sx={{ display: 'flex' }}>
-              {/* <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton> */}
-
               <NextLink href="/aboutus" passHref>
                 <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
               </NextLink>
@@ -107,13 +99,6 @@ export default function CompsLayoutsNavbar() {
                 <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
               </NextLink>
               <NextLink href="/" passHref>
-                {/* <Typography
-                  align="center"
-                  variant="h6"
-                  component="div"
-                  sx={{ flexGrow: 1 }}
-                >LOGO
-                </Typography> */}
                 <Box width="20%" sx={{ flexGrow: 1, m: 0, p: 0 }}>
                   <Image
                     className="z-index-999"
@@ -125,15 +110,13 @@ export default function CompsLayoutsNavbar() {
                 </Box>
 
               </NextLink>
-
               <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
-              <CompsLayoutsNavbarProfile />
+                { if (!!user)
+                <CompsLayoutsNavbarProfile />
+                }
 
               <CompsPopoverLogin />
               <CompsDrawerBag />
-              {/* <CompsStyledBadge badgeContent={5} color="secondary">
-              <Button variant="contained" color="secondary" startIcon={<LocalMallIcon />}>Bag</Button>
-            </CompsStyledBadge> */}
 
             </Toolbar>
           )}

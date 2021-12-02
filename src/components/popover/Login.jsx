@@ -27,7 +27,7 @@ export default function CompsPopoverLogin() {
 
   const handleLoginSubmit = (values, methods) => {
     emailLogin(values).then(() => {
-      Router.push('/aboutus')
+      Router.push('/menu')
     }).catch(() => {
       methods.setSubmitting(false)
       // setSnack({ message: 'Login credentials invalid', open: true })

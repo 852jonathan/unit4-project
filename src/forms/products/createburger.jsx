@@ -57,6 +57,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
   const [topHelperText, setTopHelperText] = useState('Please choose a bun:')
   const [botHelperText, setBotHelperText] = useState('Please choose a bun:')
   const [snackbarShow, setSnackbarShow] = useState(false)
+  const [snackbarErrorShow, setSnackbarErrorShow] = useState(false)
   const [buttonDisable, setButtonDisable] = useState(false)
 
   const { addProduct } = useBag()
@@ -66,6 +67,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       return
     }
     setSnackbarShow(false)
+    setSnackbarErrorShow(false)
   }
 
   const Alert = React.forwardRef((props, ref) => <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />)
@@ -123,8 +125,6 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
   }
 
   const handleAddToBag = () => {
-    // e.preventDefault()
-
     if (topBunSelected && botBunSelected === true) {
       setTopError(false)
       setBotError(false)
@@ -146,9 +146,11 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
     } else if (topBunSelected === false) {
       setTopHelperText('Please select a top bun.')
       setTopError(true)
+      setSnackbarErrorShow(true)
     } else if (botBunSelected === false) {
       setBotHelperText('Please select a bottom bun.')
       setBotError(true)
+      setSnackbarErrorShow(true)
     } else {
       setTopHelperText('Please select a top bun.')
       setBotHelperText('Please select a bottom bun.')
@@ -172,7 +174,6 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                 value={row.link}
                 data-price={row.price}
                 checked={ingredients.top === row.link}
-                // onChange={(e) => handleTopBunChange(e, row.price)}
                 onChange={handleTopBunChange}
 
               />
@@ -234,7 +235,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           ))}
         </FormControl>
       </List>
-      <Typography variant="h5" sx={{ mb: 1 }}> Subtotal: $ {`${calcTotal()}`} </Typography>
+      <Typography variant="h5" sx={{ mb: 1 }}> Subtotal: {'$'}{`${calcTotal()}`} </Typography>
       <Snackbar
         open={snackbarShow}
         autoHideDuration={5000}
@@ -246,10 +247,27 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           horizontal: 'right'
         }}
       >
+
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           Custom Burger Added!
         </Alert>
       </Snackbar>
+      <Snackbar
+        open={snackbarErrorShow}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        action={snackbar}
+        severity="error"
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right'
+        }}
+      >
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Please select both top and bottom buns!
+        </Alert>
+      </Snackbar>
+
       <Box>
         <Button
           disabled={buttonDisable}
@@ -259,10 +277,10 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           onClick={() => {
             handleAddToBag()
             setButtonDisable(true)
-            setSnackbarShow(true)
             setTimeout(() => {
               setButtonDisable(false)
               setSnackbarShow(false)
+              setSnackbarErrorShow(false)
             }, 2000)
           }}
         >Add to Bag
