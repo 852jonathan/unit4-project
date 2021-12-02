@@ -1,65 +1,133 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import useSWR from 'swr'
-import mapboxgl from 'mapbox-gl'
-import { addDataLayer } from '@/components/map/addDataLayer'
-import { initializeMap } from '@/components/map/initializeMap'
-import fetcher from '@/_services/fetcher'
+import Image from 'next/image'
+import Box from '@mui/material/Box'
+import Accordion from '@mui/material/Accordion'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import AccordionDetails from '@mui/material/AccordionDetails'
+import Typography from '@mui/material/Typography'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import React, { useState } from 'react'
+import ReactMapGL, { Marker as MapMarker, Popup as MapPopup } from 'react-map-gl'
+import produce from 'immer'
 
-import CompsLayout from '@/components/layouts/Layout' // eslint-disable-line import/no-webpack-loader-syntax
-
-// const mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
+import CompsLayout from '@/components/layouts/Layout'
 
 export default function PagesStoreLocator() {
-  const [pageIsMounted, setPageIsMounted] = useState(false)
-  const [Map, setMap] = useState()
-  const { data, error } = useSWR('/api/liveMusic', fetcher)
+  const [stores, setStores] = useState([
+    {
+      id: 1,
+      name: 'MahaBurger - Main Store',
+      address: '8/F, Cheung Hing Industrial Building, Kennedy Town',
+      telephone: '2123 4567',
+      latitude: 22.280806027643074,
+      longitude: 114.12911830826918,
+      offsetLeft: -10,
+      offsetTop: -50,
+      showPopup: false
+    }, {
+      id: 2,
+      name: 'MahaBurger - 2nd Store',
+      address: 'G/F, 31 Rock Hill St, Kennedy Town',
+      telephone: '2987 6543',
+      latitude: 22.28211,
+      longitude: 114.1285920,
+      offsetLeft: 0,
+      offsetTop: -50,
+      showPopup: false
+    }
+  ])
 
-  if (error) {
-    console.error(error)
+  const [viewport, setViewport] = useState({
+    width: 500,
+    height: 500,
+    latitude: 22.281494,
+    longitude: 114.128955,
+    zoom: 17
+  })
+
+  const toggleMarkerPopup = (index, showPopup) => {
+    setStores(produce(stores, (draft) => {
+      draft[index].showPopup = showPopup
+    }))
   }
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw'
+  const showMapAccordion = stores.map((store, index) => (
+    <Accordion expanded={store.showPopup} onClick={() => toggleMarkerPopup(index, !store.showPopup)}>
+      <AccordionSummary
+        expandIcon={<ExpandMoreIcon />}
+      >
+        <Typography>{store.name}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography>
+          Address: {store.address}
+        </Typography>
+        <Typography>
+          Telephone: {store.telephone}
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+  ))
 
-  useEffect(() => {
-    setPageIsMounted(true)
+  const markers = stores.map((store, index) => (
+    <>
+      <MapMarker
+        key={store.name}
+        latitude={store.latitude}
+        longitude={store.longitude}
+        offsetLeft={store.offsetLeft}
+        offsetTop={store.offsetTop}
+        onClick={() => toggleMarkerPopup(index, true)}
+      >
+        <Image src="/assets/burgermarker.png" alt="store-map" width="50px" height="50px" />
+      </MapMarker>
 
-    const map = new mapboxgl.Map({
-      container: 'my-map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-77.02, 38.887],
-      zoom: 12.5,
-      pitch: 45,
-      maxBounds: [
-        [-77.875588, 38.50705], // Southwest coordinates
-        [-76.15381, 39.548764] // Northeast coordinates
-      ]
-    })
-
-    initializeMap(mapboxgl, map)
-    setMap(map)
-  }, [])
-
-  useEffect(() => {
-    if (pageIsMounted && data) {
-      Map.on('load', () => {
-        addDataLayer(Map, data)
-      })
-    }
-  }, [pageIsMounted, setMap, data, Map])
+      {
+        store.showPopup && (
+        <MapPopup
+          latitude={store.latitude}
+          longitude={store.longitude}
+          offsetLeft={store.offsetLeft + 30}
+          offsetTop={store.offsetTop}
+          closeButton
+          closeOnClick={false}
+          onClose={() => toggleMarkerPopup(index, false)}
+          anchor="bottom"
+          maxWidth="100px"
+        >
+          <Box>{store.name}</Box>
+          <Box>{store.address}</Box>
+        </MapPopup>
+        )
+      }
+    </>
+  ))
 
   return (
     <CompsLayout>
       <Head>
         <title>MahaBurger - Store Locator</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-        <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+        <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
       </Head>
       <div id="pages-storelocator">
         <h1>Store Locator</h1>
-        <main>
-          <div id="my-map" style={{ height: 500, width: 500 }} />
-        </main>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ width: 500 }}>
+            {showMapAccordion}
+          </Box>
+
+          <Box sx={{ width: 500, mx: 'auto' }}>
+            <ReactMapGL
+              {...viewport}
+              mapStyle="mapbox://styles/mapbox/streets-v9"
+              mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
+              onViewportChange={(nextViewport) => setViewport(nextViewport)}
+            >
+              {markers}
+            </ReactMapGL>
+          </Box>
+        </Box>
       </div>
     </CompsLayout>
   )
