@@ -34,7 +34,7 @@ export default function PagesMenu() {
 
     <CompsLayout>
       <Head>
-        <title>MahaBurger - Menu</title>
+        <title>MAHABURGER - Menu</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 
       </Head>

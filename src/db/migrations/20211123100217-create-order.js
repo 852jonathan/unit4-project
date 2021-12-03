@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       grandTotal: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       StripeID: {
         type: Sequelize.STRING

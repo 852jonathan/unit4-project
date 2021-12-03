@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import Router from 'next/router'
+import NextLink from 'next/link'
 
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
+import Typography from '@mui/material/Typography'
 
 import useUser from '@/_hooks/user'
 
@@ -66,7 +68,11 @@ export default function CompsLayoutsNavbarProfile() {
       >
 
         <MenuItem>
-          My Order History
+          <NextLink href="/my/orders">
+            <Typography>
+              My Order History
+            </Typography>
+          </NextLink>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>

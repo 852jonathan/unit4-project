@@ -7,7 +7,9 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Button from '@mui/material/Button'
+import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
+import Divider from '@mui/material/Divider'
 import Box from '@mui/material/Box'
 
 import LanguageIcon from '@mui/icons-material/Language'
@@ -34,14 +36,16 @@ function CompsNavbarMobile() {
 
           <ListItem>
             <ListItemText>
+              NAVIGATION
+            </ListItemText>
+          </ListItem>
+          <ListItem>
+            <ListItemText>
               <NextLink href="/" passHref>
-                <Button color="inherit" sx={{ mr: 3, mt: 5 }}>Back to Home</Button>
+                <Button color="inherit" sx={{ mr: 3, mt: 2 }}>Back to Home</Button>
               </NextLink>
             </ListItemText>
           </ListItem>
-          {
-              !user && <ListItem><CompsPopoverLogin /> </ListItem>
-            }
           <ListItem>
             <ListItemText>
               <NextLink href="/aboutus" passHref>
@@ -63,32 +67,36 @@ function CompsNavbarMobile() {
               </NextLink>
             </ListItemText>
           </ListItem>
+          <Divider />
           <ListItem>
             <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
           </ListItem>
           {
                 user && <ListItem><CompsLayoutsNavbarProfile /></ListItem>
               }
+          {
+              !user && <ListItem><CompsPopoverLogin /> </ListItem>
+            }
         </List>
       </Drawer>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
           <MenuIcon sx={{ ml: 3 }} />
         </IconButton>
         <NextLink href="/" passHref>
-          <Box sx={{ flexGrow: 1, m: 0, p: 0 }}>
+          <Box sx={{ flexGrow: 1, m: 0, p: 0, textAlign: 'center' }}>
             <Image
               className="z-index-999"
               src="/assets/logopic.png"
               alt="LOGO"
-              height={50}
-              width={50}
+              height={64}
+              width={64}
             />
           </Box>
         </NextLink>
-        <CompsDrawerBag />
 
-      </Box>
+        <CompsDrawerBag />
+      </Toolbar>
     </>
   )
 }

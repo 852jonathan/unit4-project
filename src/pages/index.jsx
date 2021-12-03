@@ -8,7 +8,7 @@ export default function PagesHome() {
   return (
     <CompsLayout>
       <Head>
-        <title>MahaBurger - Home Page - The Best Burgers in Town!</title>
+        <title>MAHABURGER - Home Page - The Best Burgers in Town!</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-home">
@@ -16,7 +16,6 @@ export default function PagesHome() {
           <CompsVideoOverlay />
           <CompsVideoPlayer />
         </div>
-        <h1>Homepage</h1>
       </div>
     </CompsLayout>
   )

@@ -125,7 +125,7 @@ export default function CompsDrawerBag() {
       <Typography
         variant="h6"
         sx={{ mr: 5, my: 2 }}
-        textAlign="right"
+        align="right"
       >
         Total: {'$'}{totalSum}
       </Typography>
@@ -143,6 +143,9 @@ export default function CompsDrawerBag() {
           sx={{ width: 200, mb: 3 }}
           disabled={disableCheckout || !user}
         >CHECKOUT</Button>
+        {
+          !user && <Typography variant="subtitle2" color="red">Please Register/Login to Checkout</Typography>
+        }
       </Box>
     </Box>
   )

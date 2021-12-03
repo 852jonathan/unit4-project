@@ -7,9 +7,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      OrderId: {
-        type: Sequelize.INTEGER
-      },
       ProductId: {
         type: Sequelize.INTEGER
       },
@@ -17,7 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       subTotal: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,

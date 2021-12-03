@@ -94,15 +94,15 @@ module.exports = {
         image: Faker.LoremFlickr.image(`${Faker.Number.between(450, 550)}x${Faker.Number.between(450, 550)}`, ['frenchfries']) })
 
       await Product.create({
-        productName: 'Coke',
-        description: 'Coke: A classic soda',
+        productName: 'Red Cola',
+        description: 'Red Cola: A classic soda',
         price: 18,
         CategoryId: drinks[0].id,
         image: Faker.LoremFlickr.image(`${Faker.Number.between(450, 550)}x${Faker.Number.between(450, 550)}`, ['softdrink']) })
 
       await Product.create({
-        productName: 'Sprite',
-        description: 'Sprite: A classic soda',
+        productName: 'Green Can Soda',
+        description: 'Green Can Soda: A green can classic',
         price: 18,
         CategoryId: drinks[0].id,
         image: Faker.LoremFlickr.image(`${Faker.Number.between(450, 550)}x${Faker.Number.between(450, 550)}`, ['softdrink']) })

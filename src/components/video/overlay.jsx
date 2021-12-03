@@ -22,8 +22,8 @@ export default function VideoOverlay() {
             width={100}
           />
         </Box> */}
-        <Typography variant="h3" color="white">MahaBurger</Typography>
-        <Typography variant="h4" color="white">Freshly made burgers, made to order!</Typography>
+        <Typography variant="h3" color="white">MAHABURGER</Typography>
+        <Typography variant="h4" color="white">Fresh burgers, made to order!</Typography>
         <NextLink href="/menu" passHref>
           <Fab variant="extended" color="secondary" aria-label="add">
             <RestaurantMenuIcon sx={{ mr: 1 }} />

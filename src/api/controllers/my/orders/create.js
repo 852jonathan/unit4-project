@@ -5,20 +5,20 @@ const { Order } = require('@/db/models')
 const { authenticateCurrentUserByToken } = require('@/api/helpers/authenticateUser')
 
 const permittedParams = [
-  'grandTotal',
-  'UserId'
+  'OrderId',
+  'ProductId',
+  'quantity',
+  'subTotal'
 ]
 
 const apiCreateNewOrderProduct = async function (req, res) {
   const { currentUser } = res
   const { body: userParams } = req
 
-  // const cart = await currentUser.getCart()
-  // alternative writing of above line
-  const cart = await Cart.findAll({ where: { UserId: currentUser.id } })
+  const order = await Order.findAll({ where: { UserId: currentUser.id } })
 
-  // duplicating cart data into a new OrderProduct
-  const orderProductData = cart.map(({ ProductId, quantity }) => ({ ProductId, quantity }))
+  // duplicating order data into a new OrderProduct
+  const orderProductData = order.map(({ ProductId, quantity }) => ({ ProductId, quantity }))
 
   const order = await Order.create({
     ...userParams,

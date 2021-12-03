@@ -91,7 +91,7 @@ body {
 
 .back-to-top {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   font-size: 10px;
   background: rgb(228, 159, 68);
@@ -99,6 +99,7 @@ body {
   cursor: pointer;
   border-radius: 10px;
   border: none;
+  z-index: 1200;
 }
 .back-to-top:hover {
   background: orange;

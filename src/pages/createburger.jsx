@@ -60,14 +60,14 @@ export default function PagesCreateABurger() {
   return (
     <CompsLayout>
       <Head>
-        <title>MahaBurger - Create A Burger</title>
+        <title>MAHABURGER - Create A Burger</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 
       </Head>
 
       <div id="pages-createburger">
         <ThemeProvider theme={theme}>
-          <Typography textAlign="center" variant="h4" sx={{ my: 2 }}>Create A Burger</Typography>
+          <Typography align="center" variant="h4" sx={{ my: 2 }}>Create A Burger</Typography>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} columns={16}>
               <Grid item xs={8}>

@@ -19,10 +19,10 @@ export default function CompsCardCreateYourBurger() {
           />
 
           <CardContent>
-            <Typography textAlign="center" gutterBottom variant="h5" component="div">
+            <Typography align="center" gutterBottom variant="h5" component="div">
               Create your Own Burger!
             </Typography>
-            <Typography textAlign="center" gutterBottom variant="body2" color="text.secondary">
+            <Typography align="center" gutterBottom variant="body2" color="text.secondary">
               Create your own burger with the freshest ingredients!
             </Typography>
           </CardContent>

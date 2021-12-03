@@ -55,7 +55,7 @@
 //         aria-describedby="productshow-description"
 //       >
 //         <Box sx={style}>
-//           <Typography id="productshow-title" textAlign="center" variant="h5" component="h2" sx={{ mb: 2 }}>
+//           <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
 //             {product.productName}
 //           </Typography>
 //           <Box sx={{ flexGrow: 1 }}>

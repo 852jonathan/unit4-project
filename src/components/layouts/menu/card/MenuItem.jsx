@@ -86,13 +86,13 @@ export default function CompsCardMenuItem({ product }) {
             src={burgerCreateImg.src}
           />
           <CardContent>
-            <Typography textAlign="center" gutterBottom variant="h5" component="div">
+            <Typography align="center" gutterBottom variant="h5" component="div">
               {product.productName}
             </Typography>
-            <Typography textAlign="center" gutterBottom variant="body2" color="text.secondary">
+            <Typography align="center" gutterBottom variant="body2" color="text.secondary">
               {product.description}
             </Typography>
-            <Typography textAlign="center" variant="h5">
+            <Typography align="center" variant="h5">
               $
               {' '}
               {product.price}
@@ -122,7 +122,7 @@ export default function CompsCardMenuItem({ product }) {
           aria-describedby="productshow-description"
         >
           <Box sx={style}>
-            <Typography id="productshow-title" textAlign="center" variant="h5" component="h2" sx={{ mb: 2 }}>
+            <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
               {product.productName}
             </Typography>
             <Box sx={{ flexGrow: 1 }}>

@@ -1,6 +1,11 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+
+import {useTheme } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -22,7 +27,7 @@ export default function PagesStoreLocator() {
   const [stores, setStores] = useState([
     {
       id: 1,
-      name: 'MahaBurger - Main Store',
+      name: 'MAHABURGER - Main Shop',
       address: '8/F, Cheung Hing Industrial Building, Kennedy Town',
       telephone: '2123 4567',
       latitude: 22.280806027643074,
@@ -32,7 +37,7 @@ export default function PagesStoreLocator() {
       showPopup: false
     }, {
       id: 2,
-      name: 'MahaBurger - 2nd Kennedy Town Store',
+      name: 'MAHABURGER - Kennedy Town 2nd Shop',
       address: 'G/F, 31 Rock Hill St, Kennedy Town',
       telephone: '2987 6543',
       latitude: 22.28211,
@@ -42,7 +47,7 @@ export default function PagesStoreLocator() {
       showPopup: false
     }, {
       id: 3,
-      name: 'MahaBurger - Causeway Bay Store',
+      name: 'MAHABURGER - Causeway Bay Shop',
       address: 'G/F, 36 Jardine\'s Bazaar, Causeway Bay',
       telephone: '2427 6423',
       latitude: 22.27939,
@@ -142,33 +147,47 @@ export default function PagesStoreLocator() {
     </>
   ))
 
+  const mobileTheme = useTheme()
+
+  const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
+
   return (
     <CompsLayout>
       <Head>
-        <title>MahaBurger - Store Locator</title>
+        <title>MAHABURGER - Store Locator</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
       </Head>
-      <div id="pages-storelocator">
-        <Typography textAlign="center" variant="h4" sx={{ m: 3 }}>STORE LOCATOR </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ width: 500, mr: 1 }}>
-            {showMapAccordion}
-          </Box>
+      <Box id="pages-storelocator" sx={{ mb: 3 }}>
+        <Typography align="center" variant="h4" sx={{ m: 3 }}>STORE LOCATOR </Typography>
+        <Grid container sx={{ justifyContent: 'center' }}>
+        {isMobile ? (
+          <Box sx={{ display: 'flex' }}> ) : (
+          <Box>
+          )}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ width: '100%', mr: 1 }}>
+                {showMapAccordion}
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
 
-          <Box sx={{ width: 500 }}>
-            <ReactMapGL
-              {...viewport}
-              mapStyle="mapbox://styles/mapbox/streets-v9"
-              mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
-              onViewportChange={(nextViewport) => setViewport(nextViewport)}
-            >
-              <NavigationControl style={navControlStyle} />
-              {markers}
-            </ReactMapGL>
+              <Box sx={{ width: '100%' }}>
+                <ReactMapGL
+                  {...viewport}
+                  mapStyle="mapbox://styles/mapbox/streets-v9"
+                  mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
+                  onViewportChange={(nextViewport) => setViewport(nextViewport)}
+                >
+                  <NavigationControl style={navControlStyle} />
+                  {markers}
+                </ReactMapGL>
+              </Box>
+            </Grid>
           </Box>
-        </Box>
-      </div>
+        </Grid>
+      </Box>
+
     </CompsLayout>
   )
 }
