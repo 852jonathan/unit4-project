@@ -79,7 +79,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className="z-index-999"
-                            src={`/assets/${[ingredients.top]}.png`}
+                            src={`/assets/ingredients/${[ingredients.top]}.png`}
                             alt="top-ingredients"
                             layout="responsive"
                             height={80}
@@ -96,7 +96,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className={`z-index-${998 - index}`}
-                            src={`/assets/${[ingredient]}.png`}
+                            src={`/assets/ingredients/${[ingredient]}.png`}
                             alt="middle-ingredients"
                             layout="responsive"
                             height={80}
@@ -113,7 +113,7 @@ export default function PagesCreateABurger() {
                           <Image
                             onLoadingComplete={handleImagePosition}
                             className="z-index-949"
-                            src={`/assets/${[ingredients.bot]}.png`}
+                            src={`/assets/ingredients/${[ingredients.bot]}.png`}
                             alt="bot-ingredients"
                             layout="responsive"
                             height={80}

@@ -28,8 +28,8 @@ import useBag from '@/_hooks/useBag'
 const createData = (name, price, link) => ({ name, price, link })
 
 const topBunRows = [
-  createData('Brioche Top Bun', 12, 'thick-top-bun'),
-  createData('Squid Ink Top Bun', 15, 'thick-squid-top-bun')
+  createData('Brioche Top Bun', 12, 'thin-top-bun'),
+  createData('Squid Ink Top Bun', 15, 'thin-squid-top-bun')
 ]
 const botBunRows = [
   createData('Bottom Bun', 12, 'bottom-bun'),

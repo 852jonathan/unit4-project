@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import ButtonBase from '@mui/material/ButtonBase'
 import NextLink from 'next/link'
-import burgerCreateImg from '/public/assets/burgercreate.png'
+import burgerCreateImg from '/public/assets/burgercreate.jpg'
 
 export default function CompsCardCreateYourBurger() {
   return (

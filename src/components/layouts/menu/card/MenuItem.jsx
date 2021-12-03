@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Card from '@mui/material/Card'
-import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
@@ -21,8 +20,6 @@ import { ThemeProvider } from '@mui/material'
 import theme from '@/styles/theme'
 
 import useBag from '@/_hooks/useBag'
-
-import burgerCreateImg from '/public/assets/burgercreate.png'
 
 const style = {
   position: 'absolute',
@@ -82,8 +79,8 @@ export default function CompsCardMenuItem({ product }) {
           <CardMedia
             component="img"
             height="150"
-        // src={product.image}
-            src={burgerCreateImg.src}
+            src={product.image}
+            // src={burgerCreateImg.src}
           />
           <CardContent>
             <Typography align="center" gutterBottom variant="h5" component="div">
@@ -130,9 +127,8 @@ export default function CompsCardMenuItem({ product }) {
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
                   <CardMedia
                     component="img"
-                    height="250"
-                    // src={product.image}
-                    src={burgerCreateImg.src}
+                    width="100%"
+                    src={product.image}
                   />
                 </Grid>
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>

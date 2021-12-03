@@ -138,9 +138,6 @@ export default function CompsDrawerBag() {
           loadingPosition="start"
           onClick={() => {
             setLoading(true)
-            setTimeout(() => {
-              setDisableCheckout(true)
-            }, 2000)
             redirectToCheckout()
           }}
           color="secondary"
