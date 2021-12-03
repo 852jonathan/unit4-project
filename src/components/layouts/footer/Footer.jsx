@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import MenuItem from '@mui/material/MenuItem'
+import IconButton from '@mui/material/IconButton'
 import Icon from '@mui/material/Icon'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import FacebookIcon from '@mui/icons-material/Facebook'
@@ -31,7 +32,7 @@ export default function CompsFooter() {
               <MenuItem sx={{ justifyContent: 'center' }}>
                 <NextLink href="/aboutus">
                   <Typography>
-                    About Us
+                    ABOUT US
                   </Typography>
                 </NextLink>
               </MenuItem>
@@ -39,14 +40,14 @@ export default function CompsFooter() {
 
                 <NextLink href="/menu">
                   <Typography>
-                    Our Menu
+                    OUR MENU
                   </Typography>
                 </NextLink>
               </MenuItem>
               <MenuItem sx={{ justifyContent: 'center' }}>
                 <NextLink href="/storelocator">
                   <Typography>
-                    Store Locator
+                    STORE LOCATOR
                   </Typography>
                 </NextLink>
               </MenuItem>
@@ -58,15 +59,15 @@ export default function CompsFooter() {
             <Typography align="center" sx={{ my: 1 }}>SOCIAL MEDIA</Typography>
             <Divider />
             <Box sx={{ my: 2, display: 'flex', justifyContent: 'center' }}>
-              <Icon fontSize="large">
+              <IconButton>
                 <InstagramIcon fontSize="large" />
-              </Icon>
-              <Icon fontSize="large">
+              </IconButton>
+              <IconButton>
                 <FacebookIcon fontSize="large" />
-              </Icon>
-              <Icon fontSize="large">
+              </IconButton>
+              <IconButton>
                 <TwitterIcon fontSize="large" />
-              </Icon>
+              </IconButton>
             </Box>
 
           </Grid>
@@ -81,6 +82,7 @@ export default function CompsFooter() {
                 alt="LOGO"
                 height={64}
                 width={200}
+                priority
               />
             </Box>
             <Typography variant="subtitle2" sx={{ display: 'flex', justifyContent: 'center' }}>

@@ -25,7 +25,7 @@ const checkoutSessionShow = async (req, res) => {
       await order.update({ status: 'Paid' })
     }
 
-    console.log('checkoutSession', checkoutSession)
+    console.log('checkoutSession>>>>>>>>>', checkoutSession)
 
     res.status(200).json(checkoutSession)
   } catch (err) {

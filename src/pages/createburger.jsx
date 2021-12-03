@@ -68,7 +68,7 @@ export default function PagesCreateABurger() {
       <div id="pages-createburger">
         <ThemeProvider theme={theme}>
           <Typography align="center" variant="h4" sx={{ my: 2 }}>Create A Burger</Typography>
-          <Box sx={{ flexGrow: 1 }}>
+          <Box sx={{ flexGrow: 1, mb: 3 }}>
             <Grid container spacing={2} columns={16}>
               <Grid item xs={8}>
                 <Box className="ingredients-list" sx={{ mx: 'auto', width: '40%', position: 'relative' }}>

@@ -1,12 +1,19 @@
 import nc from 'next-connect'
 import Stripe from 'stripe'
 
-import { Order } from '@/db/models'
+import { Order, Product } from '@/db/models'
 import session from '@/api/helpers/session'
 import getCurrentUserByToken from '@/api/helpers/getCurrentUserByToken'
 import authenticateUser from '@/api/helpers/authenticateUser'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+
+const permittedParams = [
+  'UserId',
+  'grandTotal',
+  'StripeID',
+  'status'
+]
 
 const checkoutSessionCreate = async (req, res) => {
   try {
@@ -31,15 +38,48 @@ const checkoutSessionCreate = async (req, res) => {
       cancel_url: `${req.headers.origin}/menu`
     })
 
+    const orderProductData = []
+    for (let i = 0; i < bag.length; i += 1) {
+      const item = bag[i]
+
+      let { ProductId } = item
+
+      if (!ProductId) {
+        const product = await Product.create({
+          ...item.product,
+          description: item.product.productName,
+          ingredients: JSON.stringify(item.product.ingredients),
+          CategoryId: 1,
+          image: '/assets/burgercreate.png'
+        })
+
+        ProductId = product.id
+      }
+
+      orderProductData.push({
+        OrderId: Order.id,
+        ProductId,
+        quantity: item.quantity,
+        subTotal: item.subTotal
+      })
+    }
+
     await Order.create({
       UserId: currentUser.id,
-      grandTotal: stripeSession.amount_total / 100, // TODO might need to change to float
+      grandTotal: stripeSession.amount_total / 100,
       StripeID: stripeSession.id,
-      status: 'Pending Payment'
+      status: 'Pending Payment',
+      OrderProducts: orderProductData
+    }, {
+      fields: permittedParams,
+      include: {
+        association: Order.OrderProducts
+      }
     })
 
     res.json(stripeSession)
   } catch (err) {
+    console.log(err)
     res.status(err.statusCode || 500).json(err.message)
   }
 }

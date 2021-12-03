@@ -45,38 +45,22 @@ export default function PagesMenu() {
 
         <Divider sx={{ m: 2, fontSize: '2rem' }}>
           <Chip label="SPECIALS" color="warning" />
-          {/* SPECIALS */}
         </Divider>
-        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          Specials
-        </Typography> */}
         <Box display="flex" justifyContent="center">
-
           <CompsCardCreateYourBurger />
         </Box>
-
         <Divider sx={{ m: 2 }}>
           <Chip label="BURGERS" color="warning" />
         </Divider>
-        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          BURGERS
-        </Typography> */}
         <CompsLayoutsMenuGrid category="burgers" />
-
         <Divider sx={{ m: 2 }}>
           <Chip label="SIDES" color="warning" />
         </Divider>
-        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          SIDES
-        </Typography> */}
         <CompsLayoutsMenuGrid category="sides" />
-
         <Divider sx={{ m: 2 }}>
           <Chip label="DRINKS" color="warning" />
         </Divider>
-        {/* <Typography variant="h5" component="div" align="center" sx={{ m: 2 }}>
-          DRINKS
-        </Typography> */}
+
         <CompsLayoutsMenuGrid category="drinks" />
       </div>
       {showButton && (

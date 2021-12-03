@@ -1,12 +1,15 @@
-const Sequelize = require('sequelize')
-
-module.exports = function (sequelize, DataTypes) {
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
   return sequelize.define('OrderProduct', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
+    },
+    OrderId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
     },
     ProductId: {
       type: DataTypes.INTEGER,
@@ -27,12 +30,12 @@ module.exports = function (sequelize, DataTypes) {
     timestamps: true,
     indexes: [
       {
-        name: 'OrderProducts_pkey',
+        name: "OrderProducts_pkey",
         unique: true,
         fields: [
-          { name: 'id' }
+          { name: "id" },
         ]
-      }
+      },
     ]
-  })
-}
+  });
+};

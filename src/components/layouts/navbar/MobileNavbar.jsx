@@ -79,12 +79,12 @@ function CompsNavbarMobile() {
             }
         </List>
       </Drawer>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '64px' }}>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
           <MenuIcon sx={{ ml: 3 }} />
         </IconButton>
         <NextLink href="/" passHref>
-          <Box sx={{ flexGrow: 1, m: 0, p: 0, textAlign: 'center' }}>
+          <Box id="logopic" sx={{ flexGrow: 1, my: 'auto', p: 0, textAlign: 'center' }}>
             <Image
               className="z-index-999"
               src="/assets/logopic.png"

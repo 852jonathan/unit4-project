@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
@@ -37,6 +38,7 @@ const ingredientsMapping = {
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
   const [disableCheckout, setDisableCheckout] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   const { user } = useUser()
   const { bag, removeProduct } = useBag()
@@ -103,14 +105,13 @@ export default function CompsDrawerBag() {
                   <ListItem sx={{ py: 0 }}>
                     <ListItemText sx={{ display: 'flex' }}>{item.quantity}x</ListItemText>
                     <ListItem>
-                      <ListItemText sx={{ p: 0 }} disableGutters primary={item.product.productName} />
+                      <ListItemText sx={{ p: 0 }} primary={item.product.productName} />
                     </ListItem>
-                    <ListItemText disableGutters>{'$'}{item.subTotal} </ListItemText>
+                    <ListItemText>{'$'}{item.subTotal} </ListItemText>
                     <ClearIcon className="clearIcon" sx={{ ml: 3 }} onClick={() => removeProduct(index)} />
                   </ListItem>
                 </List>
                 <ListItemText
-                  disableGutters
                   sx={{ p: 0, ml: 3 }}
                   secondary={allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}
                 />
@@ -131,9 +132,12 @@ export default function CompsDrawerBag() {
       </Typography>
 
       <Box textAlign="center">
-        <Button
+        <LoadingButton
           variant="contained"
+          loading={loading}
+          loadingPosition="start"
           onClick={() => {
+            setLoading(true)
             setTimeout(() => {
               setDisableCheckout(true)
             }, 2000)
@@ -142,7 +146,7 @@ export default function CompsDrawerBag() {
           color="secondary"
           sx={{ width: 200, mb: 3 }}
           disabled={disableCheckout || !user}
-        >CHECKOUT</Button>
+        >CHECKOUT</LoadingButton>
         {
           !user && <Typography variant="subtitle2" color="red">Please Register/Login to Checkout</Typography>
         }
@@ -152,22 +156,17 @@ export default function CompsDrawerBag() {
 
   return (
     <>
-      {['right'].map((anchor) => (
-        <>
-          {/* <CompsStyledBadge badgeContent={bag.map((item, index) => {}} color="secondary"> */}
-          <CompsStyledBadge key={anchor} badgeContent={totalQty} color="secondary">
-            <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>Bag</Button>
-          </CompsStyledBadge>
-          <Drawer
-            id="drawer-bag"
-            anchor="right"
-            open={openBag}
-            onClose={() => setOpenBag(false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </>
-      ))}
+      <CompsStyledBadge badgeContent={totalQty} color="secondary">
+        <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>Bag</Button>
+      </CompsStyledBadge>
+      <Drawer
+        id="drawer-bag"
+        anchor="right"
+        open={openBag}
+        onClose={() => setOpenBag(false)}
+      >
+        {list('right')}
+      </Drawer>
     </>
   )
 }

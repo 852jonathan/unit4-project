@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
-import {useTheme } from '@mui/material'
+import { useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import Accordion from '@mui/material/Accordion'
@@ -161,10 +161,11 @@ export default function PagesStoreLocator() {
       <Box id="pages-storelocator" sx={{ mb: 3 }}>
         <Typography align="center" variant="h4" sx={{ m: 3 }}>STORE LOCATOR </Typography>
         <Grid container sx={{ justifyContent: 'center' }}>
-        {isMobile ? (
-          <Box sx={{ display: 'flex' }}> ) : (
-          <Box>
-          )}
+          {/* {
+            isMobile && <Box sx={{ display: 'flex' }}> || <Box>
+          } */}
+          <Box sx={{ display: 'flex' }}>
+
             <Grid item xs={12} md={6}>
               <Box sx={{ width: '100%', mr: 1 }}>
                 {showMapAccordion}
@@ -175,7 +176,7 @@ export default function PagesStoreLocator() {
               <Box sx={{ width: '100%' }}>
                 <ReactMapGL
                   {...viewport}
-                  mapStyle="mapbox://styles/mapbox/streets-v9"
+                  mapStyle="mapbox://styles/mapbox/outdoors-v11"
                   mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
                   onViewportChange={(nextViewport) => setViewport(nextViewport)}
                 >

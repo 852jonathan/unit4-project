@@ -32,7 +32,7 @@ export default function CompsLayoutsNavbar() {
           {isMobile ? (
             <CompsNavbarMobile />
           ) : (
-            <Toolbar sx={{ display: 'flex' }}>
+            <Toolbar sx={{ display: 'flex', height: '64px' }}>
               <NextLink href="/aboutus" passHref>
                 <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
               </NextLink>
@@ -42,17 +42,18 @@ export default function CompsLayoutsNavbar() {
               <NextLink href="/storelocator" passHref>
                 <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
               </NextLink>
-              <NextLink href="/" passHref>
-                <Box width="20%" textAlign="center" sx={{ flexGrow: 1, m: 0, p: 0 }}>
+              <Box width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
+                <NextLink href="/" passHref>
                   <Image
                     className="z-index-999"
                     src="/assets/logo3.png"
                     alt="LOGO"
                     height={64}
                     width={200}
+                    priority
                   />
-                </Box>
-              </NextLink>
+                </NextLink>
+              </Box>
 
               <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
               {
