@@ -14,7 +14,7 @@ const getCurrentUserByToken = async (req, res, next) => {
       const currentDate = moment()
       const expireDate = moment(authToken.createdAt).add(7, 'days')
       if (!currentDate.isAfter(expireDate)) {
-        res.locals.currentUser = authToken.User
+        res.currentUser = authToken.User
       }
     }
   }

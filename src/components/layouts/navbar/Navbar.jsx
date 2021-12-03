@@ -8,11 +8,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import IconButton from '@mui/material/IconButton'
-
-import MenuIcon from '@mui/icons-material/Menu'
 import LanguageIcon from '@mui/icons-material/Language'
 import useUser from '@/_hooks/user'
 
@@ -99,7 +95,7 @@ export default function CompsLayoutsNavbar() {
                 <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
               </NextLink>
               <NextLink href="/" passHref>
-                <Box width="20%" sx={{ flexGrow: 1, m: 0, p: 0 }}>
+                <Box width="20%" textAlign="center" sx={{ flexGrow: 1, m: 0, p: 0 }}>
                   <Image
                     className="z-index-999"
                     src="/assets/logo3.png"
@@ -108,14 +104,16 @@ export default function CompsLayoutsNavbar() {
                     width={200}
                   />
                 </Box>
-
               </NextLink>
-              <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
-                { if (!!user)
-                <CompsLayoutsNavbarProfile />
-                }
 
-              <CompsPopoverLogin />
+              <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
+
+              {
+                user && <CompsLayoutsNavbarProfile />
+              }
+              {
+                !user && <CompsPopoverLogin />
+              }
               <CompsDrawerBag />
 
             </Toolbar>

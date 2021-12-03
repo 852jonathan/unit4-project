@@ -4,7 +4,7 @@ import axios from 'axios'
 import fetcher from '@/_services/fetcher'
 
 export default function useUser() {
-  const { data, error } = useSWR('/api/my/profile', fetcher, {
+  const { data, error, mutate } = useSWR('/api/my/profile', fetcher, {
     shouldRetryOnError: false
   })
 
@@ -16,6 +16,7 @@ export default function useUser() {
       withCredentials: true
     }).then(() => {
       resolve()
+      mutate()
     }).catch((err) => {
       reject(err)
     })
@@ -29,6 +30,7 @@ export default function useUser() {
       withCredentials: true
     }).then(() => {
       resolve()
+      mutate()
     }).catch((err) => {
       reject(err)
     })
@@ -41,6 +43,7 @@ export default function useUser() {
       withCredentials: true
     }).then(() => {
       resolve()
+      mutate(null)
     }).catch((err) => {
       reject(err)
     })

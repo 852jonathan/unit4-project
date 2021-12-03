@@ -20,6 +20,9 @@ export default function CompsFooter() {
       <Grid container spacing={3}>
         <Grid item xs>
           <Item textAlign="center">NAVIGATION</Item>
+          <Item textAlign="center">About Us</Item>
+          <Item textAlign="center">About Us</Item>
+          <Item textAlign="center">About Us</Item>
         </Grid>
         <Grid item xs={6}>
           <Item textAlign="center">MIDDLE</Item>

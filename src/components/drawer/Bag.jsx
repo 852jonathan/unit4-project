@@ -149,7 +149,6 @@ export default function CompsDrawerBag() {
 
   return (
     <>
-
       {['right'].map((anchor) => (
         <>
           {/* <CompsStyledBadge badgeContent={bag.map((item, index) => {}} color="secondary"> */}

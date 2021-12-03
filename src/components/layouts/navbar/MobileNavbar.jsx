@@ -8,17 +8,20 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 
 import LanguageIcon from '@mui/icons-material/Language'
 import MenuIcon from '@mui/icons-material/Menu'
+import CompsPopoverLogin from '@/components/popover/Login'
+import useUser from '@/_hooks/user'
 
 import CompsDrawerBag from '@/components/drawer/Bag'
 import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
 
 function CompsNavbarMobile() {
   const [openDrawer, setOpenDrawer] = useState(false)
+  const { user } = useUser()
+
   return (
     <>
       <Drawer
@@ -36,6 +39,9 @@ function CompsNavbarMobile() {
               </NextLink>
             </ListItemText>
           </ListItem>
+          {
+              !user && <ListItem><CompsPopoverLogin /> </ListItem>
+            }
           <ListItem>
             <ListItemText>
               <NextLink href="/aboutus" passHref>
@@ -58,12 +64,11 @@ function CompsNavbarMobile() {
             </ListItemText>
           </ListItem>
           <ListItem>
-            <CompsLayoutsNavbarProfile />
-          </ListItem>
-          {/* <ListItem /> */}
-          <ListItem>
             <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
           </ListItem>
+          {
+                user && <ListItem><CompsLayoutsNavbarProfile /></ListItem>
+              }
         </List>
       </Drawer>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

@@ -27,6 +27,7 @@ export default function CompsPopoverLogin() {
 
   const handleLoginSubmit = (values, methods) => {
     emailLogin(values).then(() => {
+      handleClose()
       Router.push('/menu')
     }).catch(() => {
       methods.setSubmitting(false)
