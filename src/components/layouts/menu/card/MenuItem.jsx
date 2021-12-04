@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import ButtonBase from '@mui/material/ButtonBase'
 import Modal from '@mui/material/Modal'
@@ -75,12 +75,19 @@ export default function CompsCardMenuItem({ product }) {
   return (
     <>
       <ButtonBase onClick={handleOpen}>
-        <Card sx={{ minWidth: 345, maxWidth: 345, height: 300 }}>
-          <CardMedia
+        <Card sx={{ minWidth: 345, maxWidth: 345, height: 250, border: 2, pt: 2, borderColor: '#ffc107' }}>
+          {/* <CardMedia
             component="img"
             height="150"
             src={product.image}
             // src={burgerCreateImg.src}
+          /> */}
+          <Image
+            alt="menu"
+            height="110"
+            width="100%"
+            src={product.image}
+
           />
           <CardContent>
             <Typography align="center" gutterBottom variant="h5" component="div">
@@ -124,11 +131,12 @@ export default function CompsCardMenuItem({ product }) {
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2} columns={16}>
-                <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
-                  <CardMedia
-                    component="img"
-                    width="100%"
+                <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
+                  <Image
+                    height={250}
+                    width={200}
                     src={product.image}
+                    alt="burger-selected"
                   />
                 </Grid>
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>

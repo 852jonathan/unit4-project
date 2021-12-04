@@ -19,8 +19,8 @@ import useBag from '@/_hooks/useBag'
 import getStripe from '@/_services/getstripe'
 
 const ingredientsMapping = {
-  'thick-top-bun': 'Brioche Top Bun',
-  'thick-squid-top-bun': 'Squid Ink Top Bun',
+  'thin-top-bun': 'Brioche Top Bun',
+  'thin-squid-top-bun': 'Squid Ink Top Bun',
   'lettuce-leaf': 'Lettuce',
   tomato: 'Tomato',
   'back-bacon': 'Back Bacon',
@@ -135,7 +135,6 @@ export default function CompsDrawerBag() {
         <LoadingButton
           variant="contained"
           loading={loading}
-          loadingPosition="start"
           onClick={() => {
             setLoading(true)
             redirectToCheckout()

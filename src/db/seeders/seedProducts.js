@@ -11,14 +11,14 @@ module.exports = {
     await Product.destroy({ truncate: true })
       await Product.create({
         productName: 'Classic Cheeseburger',
-        description: 'Classic beef cheeseburger with cheese & lettuce',
+        description: 'Classic beef cheeseburger with cheese, lettuce & tomatoes',
         price: 55,
         CategoryId: burgers[0].id,
         image: '/assets/menu/classic-cheeseburger.JPG'})
 
       await Product.create({
-        productName: 'Double Cheeseburger',
-        description: 'Double beef cheeseburger with cheese, lettuce & tomatoes',
+        productName: 'Double Cheeseburger with Mushrooms',
+        description: 'Double beef cheeseburger with cheese, lettuce, tomatoes & mushrooms',
         price: 70,
         CategoryId: burgers[0].id,
         image: '/assets/menu/double-cheeseburger.JPG' })
@@ -46,7 +46,7 @@ module.exports = {
 
       await Product.create({
         productName: 'Gourmet Cheeseburger',
-        description: 'A flavorful combination!',
+        description: 'A flavorful combination with swiss cheese and double onions!',
         price: 128,
         CategoryId: burgers[0].id,
         image: '/assets/menu/gourmet-cheeseburger.JPG'})

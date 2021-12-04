@@ -183,8 +183,10 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       </List>
 
       <Typography variant="h5"> Ingredients </Typography>
+      <FormHelperText sx={{ ml: '14px' }}>Choose your ingredients below:</FormHelperText>
       <List>
         <Grid container spacing={2} columns={12}>
+
           <Grid item xs={6}>
             {ingredientRows.slice(0, 5).map((row) => (
               <FormGroup key={row.name}>

@@ -17,7 +17,7 @@ export default function CompsLayoutsMenuGrid({ category }) {
             <CompsLayoutsMenuCardMenuItem />
           </Grid>
         ))} */}
-        {!products.feature && products.map((product) => (
+        {(!products.feature) && products.map((product) => (
           <Grid display="flex" justifyContent="center" item xs={2} sm={4} md={4} key={product.id}>
             <CompsLayoutsMenuCardMenuItem product={product} />
           </Grid>

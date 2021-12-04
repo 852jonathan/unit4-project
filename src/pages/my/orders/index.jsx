@@ -14,7 +14,7 @@ function PagesMyOrdersHistory() {
       <div id="pages-my-orders-history">
         <h1>Orders History</h1>
 
-        {/* <main>
+        <main>
           {
             orders.map((order) => (
               <div key={order.id}>
@@ -25,7 +25,7 @@ function PagesMyOrdersHistory() {
               </div>
             ))
           }
-        </main> */}
+        </main>
       </div>
     </CompsLayout>
   )

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Typography from '@mui/material/Typography'
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -20,7 +21,7 @@ const Success = () => {
       window.setTimeout(() => {
         localStorage.clear()
         router.push('/')
-      }, 3000)
+      }, 5000)
     }
   }, [data])
 
@@ -32,11 +33,14 @@ const Success = () => {
 
     <CompsLayout>
       <Head>
-        <title>MAHABURGER - Home Page - The Best Burgers in Town!</title>
+        <title>MAHABURGER - Thank you for ordering!</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-success">
-        <div>Thank you for ordering! You will be redirected in 3 seconds</div>
+        <Typography variant="h4" align="center" sx={{ my: 3 }}>Thank you for ordering!</Typography>
+        <Typography variant="h5" align="center">Your order will be ready in 20-30 minutes.</Typography>
+        <Typography variant="h5" align="center">Please come to the shop to pickup.</Typography>
+        <Typography variant="h6" align="center" sx={{ my: 3 }}>You will be redirected back to the Homepage in 5 seconds.</Typography>
       </div>
     </CompsLayout>
   )

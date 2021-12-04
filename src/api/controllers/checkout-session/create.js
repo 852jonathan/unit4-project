@@ -80,7 +80,6 @@ const checkoutSessionCreate = async (req, res) => {
 
     res.json(stripeSession)
   } catch (err) {
-    console.log(err)
     res.status(err.statusCode || 500).json(err.message)
   }
 }

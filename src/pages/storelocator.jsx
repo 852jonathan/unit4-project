@@ -28,7 +28,7 @@ export default function PagesStoreLocator() {
     {
       id: 1,
       name: 'MAHABURGER - Main Shop',
-      address: '8/F, Cheung Hing Industrial Building, Kennedy Town',
+      address: 'G/F, Cheung Hing Industrial Building, Kennedy Town',
       telephone: '2123 4567',
       latitude: 22.280806027643074,
       longitude: 114.12911830826918,
@@ -49,7 +49,7 @@ export default function PagesStoreLocator() {
       id: 3,
       name: 'MAHABURGER - Causeway Bay Shop',
       address: 'G/F, 36 Jardine\'s Bazaar, Causeway Bay',
-      telephone: '2427 6423',
+      telephone: '2369 1010',
       latitude: 22.27939,
       longitude: 114.1855059,
       offsetLeft: 0,
