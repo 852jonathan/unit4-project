@@ -9,7 +9,7 @@ passport.use(new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: `${process.env.WEB_URI}/api/auth/callback/google`
+    callbackURL: 'https://mahaburger-fswdi.herokuapp.com/api/auth/callback/google'
   },
   ((accessToken, refreshToken, profile, done) => {
     User.findOrCreate({ googleId: profile.id }, (err, user) => done(err, user))

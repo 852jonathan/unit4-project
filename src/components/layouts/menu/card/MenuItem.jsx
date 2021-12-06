@@ -19,6 +19,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { ThemeProvider } from '@mui/material'
 import theme from '@/styles/theme'
+import CompsLoading from '@/components/Loading'
 
 import useBag from '@/_hooks/useBag'
 
@@ -34,7 +35,7 @@ const style = {
   p: 2
 }
 
-export default function CompsCardMenuItem({ product }) {
+export default function CompsCardMenuItem({ product, isLoading }) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -131,12 +132,14 @@ export default function CompsCardMenuItem({ product }) {
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2} columns={16}>
                 <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
-                  <Image
-                    height={250}
-                    width={200}
-                    src={product.image}
-                    alt="burger-selected"
-                  />
+                  {isLoading ? (<CompsLoading />) : (
+                    <Image
+                      height={250}
+                      width={200}
+                      src={product.image}
+                      alt="burger-selected"
+                    />
+                  )}
                 </Grid>
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
 
