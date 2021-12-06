@@ -85,7 +85,7 @@ export default function CompsCardMenuItem({ product }) {
 
           />
           <CardContent>
-            <Typography align="center" gutterBottom variant="h5" component="span">
+            <Typography align="center" gutterBottom variant="h5" component="div">
               {product.productName}
             </Typography>
             <Typography align="center" gutterBottom variant="body2" color="text.secondary">
