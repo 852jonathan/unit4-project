@@ -1,6 +1,6 @@
 import Router from 'next/router'
 
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'

@@ -82,6 +82,14 @@ body {
 }
 
 
+//============ Comp: Login Popover
+
+.fa-facebook {
+  color: #1778F2;
+  font-size: 30px;
+}
+
+
 //============ Page: Create A Burger
 // z-index utils
 @for $i from 999 through 950 {
@@ -100,7 +108,7 @@ body {
   cursor: pointer;
   border-radius: 10px;
   border: none;
-  z-index: 1200;
+  z-index: 1090;
 }
 .back-to-top:hover {
   background: orange;

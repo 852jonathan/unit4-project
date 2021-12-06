@@ -27,7 +27,6 @@ export default function CompsLayoutsNavbar() {
   return (
 
     <ThemeProvider theme={theme}>
-
       <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>
         <AppBar position="static">
           {isMobile ? (

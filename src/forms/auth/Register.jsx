@@ -47,6 +47,7 @@ const RenderForm = ({ errors, touched, isSubmitting }) => (
           helperText={touched.email && errors.email ? errors.email : ''}
           as={CssTextField}
           fullWidth
+          required
         />
       </Box>
 
@@ -60,6 +61,7 @@ const RenderForm = ({ errors, touched, isSubmitting }) => (
           helperText={touched.password && errors.password ? errors.password : ''}
           as={CssTextField}
           fullWidth
+          required
         />
       </Box>
 
@@ -73,6 +75,7 @@ const RenderForm = ({ errors, touched, isSubmitting }) => (
           helperText={touched.passwordConfirmation && errors.passwordConfirmation ? errors.passwordConfirmation : ''}
           as={CssTextField}
           fullWidth
+          required
         />
       </Box>
 

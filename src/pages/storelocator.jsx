@@ -59,7 +59,7 @@ export default function PagesStoreLocator() {
   ])
 
   const [viewport, setViewport] = useState({
-    width: 500,
+    width: 700,
     height: 500,
     latitude: 22.281494,
     longitude: 114.128955,
@@ -171,7 +171,7 @@ export default function PagesStoreLocator() {
                 {showMapAccordion}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={8}>
 
               <Box sx={{ width: '100%' }}>
                 <ReactMapGL
