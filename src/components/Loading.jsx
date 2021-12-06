@@ -1,17 +1,16 @@
 import React from 'react'
 
-import Stack from '@mui/material/Stack'
+import Box from '@mui/material/Box'
 import CircularProgress from '@mui/material/CircularProgress'
 
 import Layout from '@/components/layouts/Layout'
 
-
 export default function CompsLoading() {
   return (
     <Layout>
-      <Stack id="comps-loading" sx={{ color: 'grey.500' }} spacing={2} direction="row">
-        <CircularProgress color="success" />
-      </Stack>
+      <Box sx={{ display: 'flex' }}>
+        <CircularProgress />
+      </Box>
     </Layout>
   )
 }

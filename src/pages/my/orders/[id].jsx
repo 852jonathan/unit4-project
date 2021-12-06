@@ -5,6 +5,7 @@ import useOrder from '@/_hooks/order'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
 import { Order, OrderProduct } from '@/db/models'
 
+import CompsLoading from '@/components/Loading'
 import CompsLayout from '@/components/layouts/Layout'
 
 const ingredientsMapping = {
@@ -28,7 +29,7 @@ function PagesMyOrdersShow() {
   const { query: { id } } = useRouter()
   const { order, isError, isLoading, errorMessage } = useOrder(id)
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <CompsLoading />
   if (isError) return <div>{errorMessage}</div>
 
   return (

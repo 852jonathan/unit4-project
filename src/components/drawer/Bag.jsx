@@ -71,14 +71,14 @@ export default function CompsDrawerBag() {
       <Typography
         align="center"
         variant="h6"
-        component="div"
+        component="span"
         sx={{ flexGrow: 1, mt: 1 }}
       >BAG
       </Typography>
       <Typography
         align="center"
         variant="h6"
-        component="div"
+        component="span"
         sx={{ flexGrow: 1, mt: 5, mb: 2 }}
       >YOUR PICKUP ORDER
       </Typography>

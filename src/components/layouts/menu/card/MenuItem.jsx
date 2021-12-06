@@ -53,7 +53,7 @@ export default function CompsCardMenuItem({ product }) {
     handleClose()
   }
 
-  const handleCloseSnackbar = (event, reason) => {
+  const handleCloseSnackbar = (reason) => {
     if (reason === 'clickaway') {
       return
     }
@@ -77,12 +77,6 @@ export default function CompsCardMenuItem({ product }) {
     <>
       <ButtonBase onClick={handleOpen}>
         <Card sx={{ minWidth: 345, maxWidth: 345, height: 250, border: 2, pt: 2, borderColor: '#ffc107' }}>
-          {/* <CardMedia
-            component="img"
-            height="150"
-            src={product.image}
-            // src={burgerCreateImg.src}
-          /> */}
           <Image
             alt="menu"
             height="110"
@@ -91,7 +85,7 @@ export default function CompsCardMenuItem({ product }) {
 
           />
           <CardContent>
-            <Typography align="center" gutterBottom variant="h5" component="div">
+            <Typography align="center" gutterBottom variant="h5" component="span">
               {product.productName}
             </Typography>
             <Typography align="center" gutterBottom variant="body2" color="text.secondary">

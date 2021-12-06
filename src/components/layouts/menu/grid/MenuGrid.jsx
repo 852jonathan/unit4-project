@@ -3,11 +3,12 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import CompsLayoutsMenuCardMenuItem from '@/components/layouts/menu/card/MenuItem'
 import useProducts from '@/_hooks/products'
+import CompsLoading from '@/components/Loading'
 
 export default function CompsLayoutsMenuGrid({ category }) {
   const { products, isLoading } = useProducts(category)
 
-  if (isLoading) return null
+  if (isLoading) return <CompsLoading />
 
   return (
     <Box sx={{ flexGrow: 1, justifyContent: 'center', mb: 3 }}>

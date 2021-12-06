@@ -39,7 +39,7 @@ export default function PagesMenu() {
 
       </Head>
       <div id="pages-menu">
-        <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>
+        <Typography variant="h4" component="span" align="center" sx={{ m: 2 }}>
           MENU
         </Typography>
 

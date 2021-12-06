@@ -2,13 +2,15 @@ import Head from 'next/head'
 import NextLink from 'next/link'
 import useOrders from '@/_hooks/orders'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
+import CompsLoading from '@/components/Loading'
 
 import CompsLayout from '@/components/layouts/Layout'
 
 function PagesMyOrdersHistory() {
   const { orders, isError, isLoading, errorMessage } = useOrders()
 
-  if (isLoading) return <div>Loading...</div>
+  if (isLoading) return <CompsLoading />
+
   if (isError) return <div>{errorMessage}</div>
 
   return (
