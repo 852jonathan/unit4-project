@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 
-import { useTheme } from '@mui/material'
-import useMediaQuery from '@mui/material/useMediaQuery'
+// import { useTheme } from '@mui/material'
+// import useMediaQuery from '@mui/material/useMediaQuery'
 
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -147,9 +147,9 @@ export default function PagesStoreLocator() {
     </>
   ))
 
-  const mobileTheme = useTheme()
+  // const mobileTheme = useTheme()
 
-  const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
+  // const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
   return (
     <CompsLayout>

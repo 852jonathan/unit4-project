@@ -43,7 +43,7 @@ export default function CompsDrawerBag() {
   const { user } = useUser()
   const { bag, removeProduct } = useBag()
 
-  console.log('bag', bag)
+  // console.log('bag', bag)
 
   const totalSum = bag.reduce((prev, item) => prev + item.subTotal, 0)
   const totalQty = bag.reduce((prev, item) => prev + item.quantity, 0)

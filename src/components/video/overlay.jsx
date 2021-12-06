@@ -1,6 +1,5 @@
 import React from 'react'
 import NextLink from 'next/link'
-import Image from 'next/image'
 
 import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
