@@ -15,13 +15,19 @@ export default function PagesMenu() {
   const [showButton, setShowButton] = useState(false)
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    const handler = () => {
       if (window.pageYOffset > 300) {
         setShowButton(true)
       } else {
         setShowButton(false)
       }
-    })
+    }
+
+    window.addEventListener('scroll', handler)
+
+    return () => {
+      window.removeEventListener('scroll', handler)
+    }
   }, [])
 
   const scrollToTop = () => {
