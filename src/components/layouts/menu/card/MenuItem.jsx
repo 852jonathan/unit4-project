@@ -15,6 +15,7 @@ import Snackbar from '@mui/material/Snackbar'
 import MuiAlert from '@mui/material/Alert'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import ClearIcon from '@mui/icons-material/Clear'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { ThemeProvider } from '@mui/material'
 import theme from '@/styles/theme'
@@ -30,7 +31,7 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4
+  p: 2
 }
 
 export default function CompsCardMenuItem({ product }) {
@@ -125,7 +126,11 @@ export default function CompsCardMenuItem({ product }) {
           aria-labelledby="productshow-title"
           aria-describedby="productshow-description"
         >
+
           <Box sx={style}>
+            <Box sx={{ m: 0, p: 0, textAlign: 'end' }}>
+              <ClearIcon className="clearIcon" onClick={() => handleClose()} />
+            </Box>
             <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
               {product.productName}
             </Typography>

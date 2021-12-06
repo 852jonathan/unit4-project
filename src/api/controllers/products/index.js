@@ -5,6 +5,9 @@ const ProductsIndex = async (req, res) => {
   const { query: { category } } = req
 
   const products = await Product.findAll({
+    where: {
+      feature: true
+    },
     include: {
       association: Product.Category,
       where: category ? { catName: category } : {}

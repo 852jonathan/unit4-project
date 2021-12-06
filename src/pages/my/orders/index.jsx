@@ -1,10 +1,16 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
-
-import CompsLayout from '@/components/layouts/Layout'
+import useOrders from '@/_hooks/orders'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
 
+import CompsLayout from '@/components/layouts/Layout'
+
 function PagesMyOrdersHistory() {
+  const { orders, isError, isLoading, errorMessage } = useOrders()
+
+  if (isLoading) return <div>Loading...</div>
+  if (isError) return <div>{errorMessage}</div>
+
   return (
     <CompsLayout>
       <Head>
@@ -18,9 +24,18 @@ function PagesMyOrdersHistory() {
           {
             orders.map((order) => (
               <div key={order.id}>
-                <NextLink href={`/my/orders/${order.id}`}>
-                  Date: {order.createdAt.slice(0, 10)}
-                  Status: {order.status}
+                <NextLink passHref href={`/my/orders/${order.id}`}>
+                  <div>
+                    <p>
+                      Order: {'#'}{order.id}
+                    </p>
+                    <span>
+                      Date: {order.createdAt.slice(0, 10)}
+                      <p>
+                        Status: {order.status}
+                      </p>
+                    </span>
+                  </div>
                 </NextLink>
               </div>
             ))

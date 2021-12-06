@@ -140,7 +140,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           ingredients,
           price: calcTotal()
         },
-        feature: true
+        feature: false
       })
       console.log('ingredients:', ingredients)
     } else if (topBunSelected === false) {

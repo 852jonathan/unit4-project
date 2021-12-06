@@ -67,7 +67,7 @@ module.exports = {
 
       await Product.create({
         productName: 'Mushroom Burger',
-        description: 'A Delicious Combination Of Mushroom And Onions',
+        description: 'A Delicious Combination Of Mushroom And Rocket Leaf',
         price: 60,
         CategoryId: burgers[0].id,
         image: '/assets/menu/mushroom-burger.JPG' })

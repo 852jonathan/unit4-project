@@ -51,7 +51,7 @@ const checkoutSessionCreate = async (req, res) => {
           ingredients: JSON.stringify(item.product.ingredients),
           CategoryId: 1,
           image: '/assets/burgercreate.png',
-          feature: true
+          feature: false
         })
 
         ProductId = product.id
