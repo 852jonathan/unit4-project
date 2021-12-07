@@ -1,31 +1,14 @@
-import nc from 'next-connect'
+import nextConnect from 'next-connect'
 
-import session from '@/api/helpers/session'
-import passportFacebook from '@/api/helpers/passport-facebook'
+import passport from '@/api/helpers/passport'
 
-const authEmailLogin = async (req, res, next) => {
+const apiAuthFacebookLogin = (req, res, next) => {
+  const { query: { returnTo } } = req
+  const state = Buffer.from(JSON.stringify({ returnTo: returnTo || '/' })).toString('base64')
 
-passportFacebook.get('/auth/facebook', passportFacebook.authenticate('facebook'))
-
-// Facebook will redirect the user to this URL after approval.  Finish the
-// authentication process by attempting to obtain an access token.  If
-// access was granted, the user will be logged in.  Otherwise,
-// authentication has failed.
-passportFacebook.get(
-  '/auth/facebook/callback',
-  passportFacebook.authenticate('facebook', {
-    successRedirect: '/menu',
-    failureRedirect: '/' })
-)
-req.session.set('token', token)
-await req.session.save()
-
-return res.status(200).json({ user })
-}(req, res, next)
+  return passport.authenticate('facebook', { scope: [], state })(req, res, next)
 }
 
-export default nc()
-  .use(session)
-  .use(passportFacebook.initialize())
-  .use(passportFacebook.session())
-  .use(authEmailLogin)
+export default nextConnect()
+  .use(passport.initialize())
+  .use(apiAuthFacebookLogin)

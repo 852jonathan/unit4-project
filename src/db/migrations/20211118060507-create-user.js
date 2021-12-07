@@ -23,7 +23,7 @@ module.exports = {
         allowNull: false
       },
       registrationType: {
-        type: Sequelize.ENUM('email')
+        type: Sequelize.ENUM('email', 'facebook')
       },
       createdAt: {
         allowNull: false,

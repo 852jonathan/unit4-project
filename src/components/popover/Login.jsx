@@ -1,4 +1,4 @@
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import React, { useState } from 'react'
 
@@ -6,16 +6,21 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
 import ClearIcon from '@mui/icons-material/Clear'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 
 // import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
 
 import useUser from '@/_hooks/user'
 
+import CompsModalsRegister from '@/components/modals/Register'
+
 export default function CompsPopoverLogin() {
   // const { setSnack } = useContext(SnackbarContext)
   const [anchorEl, setAnchorEl] = useState(null)
-  const { emailLogin } = useUser()
+  const { emailLogin, facebookLogin } = useUser()
+  const { pathname } = useRouter()
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -61,6 +66,10 @@ export default function CompsPopoverLogin() {
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
+        <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
+          <FontAwesomeIcon icon={faFacebook} onClick={facebookLogin} />
+        </a>
+        <CompsModalsRegister />
       </Popover>
     </div>
   )
