@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { SWRConfig } from 'swr'
+// import { SWRConfig } from 'swr'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import Divider from '@mui/material/Divider'
 import useOrder from '@/_hooks/order'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
 import { Order, OrderProduct } from '@/db/models'
@@ -39,9 +43,9 @@ function PagesMyOrdersShow() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-my-orders-history">
-        <h1>Order {'#'}{order.id}</h1>
+        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>Order {'#'}{order.id}</Typography>
 
-        <main>
+        <Box sx={{ ml: 3, mb: 3 }}>
           {
             order.OrderProducts.map((item) => {
               let allIngredients = []
@@ -61,38 +65,39 @@ function PagesMyOrdersShow() {
 
               return (
                 <div key={item.id}>
-                  <p> </p>
-                  <div>
+                  <Typography sx={{ my: 3 }}>
                     Product: {item.Product.productName}
-                    <p>
-                      Ingredients: {allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}
-                    </p>
+
+                    {(allIngredients.length > 0) && (<p> Ingredients: {allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}</p>)}
                     <p>
                       Quantity: {item.quantity}
                     </p>
                     Subtotal: {'$'}{item.subTotal}
-                  </div>
+                  </Typography>
+                  <Divider />
                 </div>
 
               )
             })
           }
-          Grand Total: {'$'}{order.grandTotal}
+          <Typography variant="h5" sx={{ borderTop: 2 }}>
+            Total: {'$'}{order.grandTotal}
+          </Typography>
 
-        </main>
+        </Box>
 
       </div>
     </CompsLayout>
   )
 }
 
-export function SWRShow({ fallback }) {
-  return (
-    <SWRConfig value={{ fallback }}>
-      <PagesMyOrdersShow />
-    </SWRConfig>
-  )
-}
+// export function SWRShow({ fallback }) {
+//   return (
+//     <SWRConfig value={{ fallback }}>
+//       <PagesMyOrdersShow />
+//     </SWRConfig>
+//   )
+// }
 
 export async function getStaticPaths() {
   return {
@@ -101,7 +106,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params, locale }) {
   const order = await Order.findByPk(Number(params.id), {
     include: {
       association: Order.OrderProducts,
@@ -121,9 +126,10 @@ export async function getStaticProps({ params }) {
     props: {
       fallback: {
         [`/api/my/orders/${params.id}`]: { order: order.toJSON() }
-      }
+      },
+      ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
     }
   }
 }
 
-export default withPrivateRoute(SWRShow)
+export default withPrivateRoute(PagesMyOrdersShow)

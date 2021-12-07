@@ -1,13 +1,12 @@
 import Router, { useRouter } from 'next/router'
-
 import React, { useState } from 'react'
-
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
 import ClearIcon from '@mui/icons-material/Clear'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+import { useTranslation } from 'next-i18next'
 
 // import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
@@ -19,8 +18,9 @@ import CompsModalsRegister from '@/components/modals/Register'
 export default function CompsPopoverLogin() {
   // const { setSnack } = useContext(SnackbarContext)
   const [anchorEl, setAnchorEl] = useState(null)
-  const { emailLogin, facebookLogin } = useUser()
+  const { emailLogin } = useUser()
   const { pathname } = useRouter()
+  const { t } = useTranslation('common')
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -45,7 +45,7 @@ export default function CompsPopoverLogin() {
 
   return (
     <div>
-      <Button onClick={handleClick} color="inherit" sx={{ mr: 3 }}>Register/Login</Button>
+      <Button onClick={handleClick} color="inherit" sx={{ mr: 3 }}>{t('registerLogin')}</Button>
       <Popover
         id={id}
         open={open}
@@ -66,7 +66,7 @@ export default function CompsPopoverLogin() {
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
-        <Box sx={{ textAlign: 'center' }}>
+        <Box sx={{ mx: 'auto', width: '40px', height: '40px' }}>
           <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
             <FontAwesomeIcon icon={faFacebook} />
           </a>

@@ -1,11 +1,17 @@
 import Head from 'next/head'
 import NextLink from 'next/link'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import useOrders from '@/_hooks/orders'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
 import CompsLoading from '@/components/Loading'
 
 import CompsLayout from '@/components/layouts/Layout'
 
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+  }
+})
 function PagesMyOrdersHistory() {
   const { orders, isError, isLoading, errorMessage } = useOrders()
 

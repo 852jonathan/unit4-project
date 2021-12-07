@@ -2,6 +2,7 @@ import React from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { ThemeProvider } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -15,6 +16,8 @@ import TwitterIcon from '@mui/icons-material/Twitter'
 import theme from '@/styles/theme'
 
 export default function CompsFooter() {
+  const { t } = useTranslation('common')
+
   return (
     <ThemeProvider theme={theme}>
 
@@ -25,13 +28,13 @@ export default function CompsFooter() {
         <Divider />
         <Grid container spacing={3}>
           <Grid item xs>
-            <Typography align="center" sx={{ my: 1 }}>NAVIGATION</Typography>
+            <Typography align="center" sx={{ my: 1 }}>{t('navigation')}</Typography>
             <Divider />
             <Typography>
               <MenuItem sx={{ justifyContent: 'center' }}>
                 <NextLink href="/aboutus">
                   <Typography>
-                    ABOUT US
+                    {t('aboutUs')}
                   </Typography>
                 </NextLink>
               </MenuItem>
@@ -39,14 +42,14 @@ export default function CompsFooter() {
 
                 <NextLink href="/menu">
                   <Typography>
-                    OUR MENU
+                    {t('menu')}
                   </Typography>
                 </NextLink>
               </MenuItem>
               <MenuItem sx={{ justifyContent: 'center' }}>
                 <NextLink href="/storelocator">
                   <Typography>
-                    STORE LOCATOR
+                    {t('storeLocator')}
                   </Typography>
                 </NextLink>
               </MenuItem>
@@ -55,7 +58,7 @@ export default function CompsFooter() {
           </Grid>
 
           <Grid item xs>
-            <Typography align="center" sx={{ my: 1 }}>SOCIAL MEDIA</Typography>
+            <Typography align="center" sx={{ my: 1 }}>{t('socialMedia')}</Typography>
             <Divider />
             <Box sx={{ my: 2, display: 'flex', justifyContent: 'center' }}>
               <IconButton>
@@ -85,15 +88,15 @@ export default function CompsFooter() {
               />
             </Box>
             <Typography variant="subtitle2" sx={{ display: 'flex', justifyContent: 'center' }}>
-              2021 MAHABURGER. ALL RIGHTS RESERVED.
+              2021 MAHABURGER. {t('allRightsReserved')}
             </Typography>
 
             <Typography variant="subtitle2" paragraph sx={{ display: 'flex', justifyContent: 'center', m: 0 }}>
-              SOME INFORMATION ON THIS SITE
+              {t('someInfo1')}
             </Typography>
 
             <Typography variant="subtitle2" paragraph sx={{ display: 'flex', justifyContent: 'center' }}>
-              MAY VARY SLIGHTLY BY LOCATION.
+              {t('someInfo2')}
             </Typography>
 
           </Grid>

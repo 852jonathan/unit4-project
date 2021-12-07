@@ -31,7 +31,11 @@ export default function CompsModalsRegister() {
   const handleRegisterSubmit = (values, methods) => {
     emailSignup(values).then(() => {
       handleClose()
-      Router.push('/menu')
+      if (window.location.pathname === '/menu') {
+        Router.reload(window.location.pathname)
+      } else {
+        Router.push('/menu')
+      }
     }).catch(() => {
       methods.setSubmitting(false)
       // setSnack({ message: 'Register invalid', open: true })

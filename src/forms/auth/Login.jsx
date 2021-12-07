@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
+import { useTranslation } from 'next-i18next'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
@@ -33,50 +34,52 @@ const CssTextField = styled(TextField)({
     }
   }
 })
+const RenderForm = ({ errors, touched, isSubmitting }) => {
+  const { t } = useTranslation('common')(
+    <ThemeProvider theme={theme}>
+      <Form>
+        <Typography align="center" variant="h6" sx={{ mx: 2 }}>{t('login')}</Typography>
+        <Box sx={{ m: 2 }}>
+          <Field
+            id="email-input"
+            label="Email"
+            name="email"
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email ? errors.email : ''}
+            as={CssTextField}
+            fullWidth
+            required
+          />
+        </Box>
 
-const RenderForm = ({ errors, touched, isSubmitting }) => (
-  <ThemeProvider theme={theme}>
-    <Form>
-      <Typography align="center" variant="h6" sx={{ mx: 2 }}>LOGIN</Typography>
+        <Box sx={{ m: 2 }}>
+          <Field
+            id="password"
+            label="Password"
+            name="password"
+            type="password"
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password ? errors.password : ''}
+            as={CssTextField}
+            fullWidth
+            required
+          />
+        </Box>
+
+        <Box textAlign="center" sx={{ m: 2 }}>
+          <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
+        </Box>
+      </Form>
+      <Divider />
+
       <Box sx={{ m: 2 }}>
-        <Field
-          id="email-input"
-          label="Email"
-          name="email"
-          error={touched.email && Boolean(errors.email)}
-          helperText={touched.email && errors.email ? errors.email : ''}
-          as={CssTextField}
-          fullWidth
-          required
-        />
+        <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
       </Box>
+    </ThemeProvider>
 
-      <Box sx={{ m: 2 }}>
-        <Field
-          id="password"
-          label="Password"
-          name="password"
-          type="password"
-          error={touched.password && Boolean(errors.password)}
-          helperText={touched.password && errors.password ? errors.password : ''}
-          as={CssTextField}
-          fullWidth
-          required
-        />
-      </Box>
+  )
+}
 
-      <Box textAlign="center" sx={{ m: 2 }}>
-        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
-      </Box>
-    </Form>
-    <Divider />
-
-    <Box sx={{ m: 2 }}>
-      <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
-    </Box>
-  </ThemeProvider>
-
-)
 RenderForm.propTypes = {
   errors: PropTypes.shape().isRequired,
   touched: PropTypes.shape().isRequired,
@@ -88,17 +91,19 @@ const authLoginSchema = yup.object().shape({
   password: yup.string('Enter your password').min(6, 'Minimum 6 characters').required('Password is required')
 })
 
-const FormsAuthLogin = ({ onSubmit }) => (
-  <Formik
-    initialValues={{
-      email: '',
-      password: ''
-    }}
-    validationSchema={authLoginSchema}
-    onSubmit={onSubmit}
-    component={RenderForm}
-  />
-)
+const FormsAuthLogin = ({ onSubmit }) => {
+  (
+    <Formik
+      initialValues={{
+        email: '',
+        password: ''
+      }}
+      validationSchema={authLoginSchema}
+      onSubmit={onSubmit}
+      component={RenderForm}
+    />
+  )
+}
 FormsAuthLogin.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }

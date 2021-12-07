@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText'
 import ClearIcon from '@mui/icons-material/Clear'
 import LocalMallIcon from '@mui/icons-material/LocalMall'
 import axios from 'axios'
+import { useTranslation } from 'next-i18next'
 import useUser from '@/_hooks/user'
 
 import CompsStyledBadge from '@/components/layouts/navbar/Badge'
@@ -18,33 +19,34 @@ import CompsStyledBadge from '@/components/layouts/navbar/Badge'
 import useBag from '@/_hooks/useBag'
 import getStripe from '@/_services/getstripe'
 
-const ingredientsMapping = {
-  'thin-top-bun': 'Brioche Top Bun',
-  'thin-squid-top-bun': 'Squid Ink Top Bun',
-  'lettuce-leaf': 'Lettuce',
-  tomato: 'Tomato',
-  'back-bacon': 'Back Bacon',
-  'red-pepper': 'Red Pepper',
-  'rocket-leaf': 'Rocket Leaf',
-  mushrooms: 'Mushrooms',
-  'swiss-cheese': 'Swiss Cheese',
-  'square-cheese': 'Square Cheese',
-  pickles: 'Pickles',
-  'grilled-beef-patty': 'Grilled Beef Patty',
-  'bottom-bun': 'Bottom Bun',
-  'squid-bottom-bun': 'Squid Ink Bottom Bun'
-}
-
 export default function CompsDrawerBag() {
   const [openBag, setOpenBag] = useState(false)
   const [disableCheckout, setDisableCheckout] = useState(true)
   const [loading, setLoading] = useState(false)
+  const { t } = useTranslation(['common', 'menubag'])
 
   const { user } = useUser()
   const { bag, removeProduct } = useBag()
 
   const totalSum = bag.reduce((prev, item) => prev + item.subTotal, 0)
   const totalQty = bag.reduce((prev, item) => prev + item.quantity, 0)
+
+  const ingredientsMapping = {
+    'thin-top-bun': t('thin-top-bun', { ns: 'menubag' }),
+    'thin-squid-top-bun': t('thin-squid-top-bun', { ns: 'menubag' }),
+    'lettuce-leaf': t('lettuce-leaf', { ns: 'menubag' }),
+    tomato: t('tomato', { ns: 'menubag' }),
+    'back-bacon': t('back-bacon', { ns: 'menubag' }),
+    'red-pepper': t('red-pepper', { ns: 'menubag' }),
+    'rocket-leaf': t('rocket-leaf', { ns: 'menubag' }),
+    mushrooms: t('mushrooms', { ns: 'menubag' }),
+    'swiss-cheese': t('swiss-cheese', { ns: 'menubag' }),
+    'square-cheese': t('square-cheese', { ns: 'menubag' }),
+    pickles: t('pickles', { ns: 'menubag' }),
+    'grilled-beef-patty': t('grilled-beef-patty', { ns: 'menubag' }),
+    'bottom-bun': t('bottom-bun', { ns: 'menubag' }),
+    'squid-bottom-bun': t('squid-bottom-bun', { ns: 'menubag' })
+  }
 
   useEffect(() => {
     if (bag.length > 0) {
@@ -71,14 +73,14 @@ export default function CompsDrawerBag() {
         variant="h6"
         component="div"
         sx={{ flexGrow: 1, mt: 1 }}
-      >BAG
+      >{t('bag')}
       </Typography>
       <Typography
         align="center"
         variant="h6"
         component="div"
         sx={{ flexGrow: 1, mt: 5, mb: 2 }}
-      >YOUR PICKUP ORDER
+      >{t('pickupOrder', { ns: 'menubag' })}
       </Typography>
       <Divider sx={{ p: 0 }} />
       <List>
@@ -126,7 +128,7 @@ export default function CompsDrawerBag() {
         sx={{ mr: 5, my: 2 }}
         align="right"
       >
-        Total: {'$'}{totalSum}
+        {t('total', { ns: 'menubag' })} {'$'}{totalSum}
       </Typography>
 
       <Box textAlign="center">
@@ -140,9 +142,9 @@ export default function CompsDrawerBag() {
           color="secondary"
           sx={{ width: 200, mb: 3 }}
           disabled={disableCheckout || !user}
-        >CHECKOUT</LoadingButton>
+        >{t('checkout', { ns: 'menubag' })}</LoadingButton>
         {
-          !user && <Typography variant="subtitle2" color="red">Please Register/Login to Checkout</Typography>
+          !user && <Typography variant="subtitle2" color="red">{t('regLoginToCheckout', { ns: 'menubag' })}</Typography>
         }
       </Box>
     </Box>
@@ -151,7 +153,7 @@ export default function CompsDrawerBag() {
   return (
     <>
       <CompsStyledBadge badgeContent={totalQty} color="secondary">
-        <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>Bag</Button>
+        <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>{t('bag')}</Button>
       </CompsStyledBadge>
       <Drawer
         id="drawer-bag"

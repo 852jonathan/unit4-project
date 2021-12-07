@@ -1,7 +1,8 @@
 import React from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 import { ThemeProvider, useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -20,10 +21,10 @@ import CompsDrawerBag from '@/components/drawer/Bag'
 import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
 export default function CompsLayoutsNavbar() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   const { user } = useUser()
-
+  const router = useRouter()
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
@@ -37,14 +38,14 @@ export default function CompsLayoutsNavbar() {
           ) : (
             <Toolbar sx={{ display: 'flex', height: '64px' }}>
               <NextLink href="/aboutus" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.aboutUs')}</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('aboutUs')}</Button>
               </NextLink>
               <NextLink href="/menu" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.menu')}
+                <Button color="inherit" sx={{ mr: 3 }}>{t('menu')}
                 </Button>
               </NextLink>
               <NextLink href="/storelocator" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.storeLocator')}</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('storeLocator')}</Button>
               </NextLink>
               <Box width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
                 <NextLink href="/" passHref>
@@ -58,8 +59,14 @@ export default function CompsLayoutsNavbar() {
                   />
                 </NextLink>
               </Box>
+              <NextLink
+                href="/"
+                locale={router.locale === 'en' ? 'zh' : 'en'}
+                passHref
+              >
+                <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
+              </NextLink>
 
-              <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
               {
                 user && <CompsLayoutsNavbarProfile />
               }

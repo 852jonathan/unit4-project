@@ -6,13 +6,22 @@ import Divider from '@mui/material/Divider'
 import Chip from '@mui/material/Chip'
 import Button from '@mui/material/Button'
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp'
+import { useTranslation } from 'next-i18next'
 
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import CompsLayout from '@/components/layouts/Layout'
 import CompsCardCreateYourBurger from '@/components/layouts/menu/card/CreateYourBurger'
 import CompsLayoutsMenuGrid from '@/components/layouts/menu/grid/MenuGrid'
 
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+  }
+})
+
 export default function PagesMenu() {
   const [showButton, setShowButton] = useState(false)
+  const { t } = useTranslation('menubag')
 
   useEffect(() => {
     const handler = () => {
@@ -40,31 +49,31 @@ export default function PagesMenu() {
 
     <CompsLayout>
       <Head>
-        <title>MAHABURGER - Menu</title>
+        <title>MAHABURGER - {t('menu2')}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 
       </Head>
       <div id="pages-menu">
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>
-          MENU
+          {t('menu2')}
         </Typography>
 
         <Divider sx={{ m: 2, fontSize: '2rem' }}>
-          <Chip label="SPECIALS" color="warning" />
+          <Chip label={t('specials')} color="warning" />
         </Divider>
         <Box display="flex" justifyContent="center">
           <CompsCardCreateYourBurger />
         </Box>
         <Divider sx={{ m: 2 }}>
-          <Chip label="BURGERS" color="warning" />
+          <Chip label={t('burgers')} color="warning" />
         </Divider>
         <CompsLayoutsMenuGrid category="burgers" />
         <Divider sx={{ m: 2 }}>
-          <Chip label="SIDES" color="warning" />
+          <Chip label={t('sides')} color="warning" />
         </Divider>
         <CompsLayoutsMenuGrid category="sides" />
         <Divider sx={{ m: 2 }}>
-          <Chip label="DRINKS" color="warning" />
+          <Chip label={t('drinks')} color="warning" />
         </Divider>
 
         <CompsLayoutsMenuGrid category="drinks" />
@@ -75,7 +84,7 @@ export default function PagesMenu() {
           className="back-to-top"
           startIcon={<ArrowCircleUpIcon />}
         >
-          Back to Top
+          {t('backToTop')}
         </Button>
       )}
     </CompsLayout>

@@ -5,6 +5,8 @@ import { ThemeProvider } from '@mui/material'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 import CompsLayout from '@/components/layouts/Layout'
 import FormsProductCreateBurger from '@/forms/products/createburger'
@@ -27,8 +29,14 @@ import theme from '@/styles/theme'
 //   'Bottom Bun': 'bottom-bun',
 //   'Squid Ink Bottom Bun': 'squid-bottom-bun'
 // }
-
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+  }
+})
 export default function PagesCreateABurger() {
+  const { t } = useTranslation('menubag')
+
   const [ingredients, setIngredients] = useState({
     top: '',
     middle: [],
@@ -60,14 +68,14 @@ export default function PagesCreateABurger() {
   return (
     <CompsLayout>
       <Head>
-        <title>MAHABURGER - Create A Burger</title>
+        <title>MAHABURGER - {t('createOwnBurger')}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
 
       </Head>
 
       <div id="pages-createburger">
         <ThemeProvider theme={theme}>
-          <Typography align="center" variant="h4" sx={{ my: 2 }}>Create A Burger</Typography>
+          <Typography align="center" variant="h4" sx={{ my: 2 }}>{t('createOwnBurger')}</Typography>
           <Box sx={{ flexGrow: 1, mb: 3 }}>
             <Grid container spacing={2} columns={16}>
               <Grid item xs={8}>

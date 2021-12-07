@@ -7,12 +7,14 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
+import { useTranslation } from 'next-i18next'
 
 import useUser from '@/_hooks/user'
 
 export default function CompsLayoutsNavbarProfile() {
   const [anchorEl, setAnchorEl] = useState(null)
   const { authLogout } = useUser()
+  const { t } = useTranslation('common')
 
   const open = Boolean(anchorEl)
   const handleClick = (e) => {
@@ -31,7 +33,7 @@ export default function CompsLayoutsNavbarProfile() {
 
   return (
     <div>
-      <Button onClick={handleClick} color="inherit" sx={{ mr: 3 }}>My Profile</Button>
+      <Button onClick={handleClick} color="inherit" sx={{ mr: 3 }}>{t('profile')}</Button>
       <Menu
         anchorEl={anchorEl}
         open={open}
@@ -69,13 +71,13 @@ export default function CompsLayoutsNavbarProfile() {
         <MenuItem>
           <NextLink href="/my/orders">
             <Typography>
-              My Order History
+              {t('myOrderHistory')}
             </Typography>
           </NextLink>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
-          Logout
+          {t('logout')}
         </MenuItem>
       </Menu>
     </div>

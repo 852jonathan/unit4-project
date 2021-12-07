@@ -14,6 +14,7 @@ import Box from '@mui/material/Box'
 
 import LanguageIcon from '@mui/icons-material/Language'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useTranslation } from 'next-i18next'
 import CompsPopoverLogin from '@/components/popover/Login'
 import useUser from '@/_hooks/user'
 
@@ -23,6 +24,7 @@ import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
 function CompsNavbarMobile() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const { user } = useUser()
+  const { t } = useTranslation('common')
 
   return (
     <>
@@ -36,34 +38,34 @@ function CompsNavbarMobile() {
 
           <ListItem>
             <ListItemText>
-              NAVIGATION
+              {t('navigation')}
             </ListItemText>
           </ListItem>
           <ListItem>
             <ListItemText>
               <NextLink href="/" passHref>
-                <Button color="inherit" sx={{ mr: 3, mt: 2 }}>Back to Home</Button>
+                <Button color="inherit" sx={{ mr: 3, mt: 2 }}>{t('backToHome')}</Button>
               </NextLink>
             </ListItemText>
           </ListItem>
           <ListItem>
             <ListItemText>
               <NextLink href="/aboutus" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('aboutUs')}</Button>
               </NextLink>
             </ListItemText>
           </ListItem>
           <ListItem>
             <ListItemText>
               <NextLink href="/menu" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>Our Menu</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('menu')}</Button>
               </NextLink>
             </ListItemText>
           </ListItem>
           <ListItem>
             <ListItemText>
               <NextLink href="/storelocator" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('storeLocator')}</Button>
               </NextLink>
             </ListItemText>
           </ListItem>

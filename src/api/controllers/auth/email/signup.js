@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt'
 import crypto from 'crypto'
 
 import { User } from '@/db/models'
+import Email from '@/components/email'
 import session from '@/api/helpers/session'
 import passport from '@/api/helpers/passport'
 
@@ -17,7 +18,8 @@ const authEmailSignup = async (req, res) => {
 
   const token = crypto.randomBytes(64).toString('hex')
   await user.createAuthenticityToken({ token })
-
+  console.log('user', user)
+  console.log('req', req)
   req.session.set('token', token)
   await req.session.save()
 

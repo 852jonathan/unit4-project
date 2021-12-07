@@ -25,8 +25,10 @@ passport.use(new FacebookStrategy.Strategy({
 }, async (accessToken, refreshToken, profile, done) => {
   const [user] = await User.findOrCreate({
     where: {
+      name: profile.name.givenName || null,
       socialUserId: profile.id,
-      registrationType: 'facebook'
+      registrationType: 'facebook',
+      email: profile.email || null
     },
     defaults: {
       name: profile.displayName

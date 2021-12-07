@@ -5,8 +5,11 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import ButtonBase from '@mui/material/ButtonBase'
 import NextLink from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 export default function CompsCardCreateYourBurger() {
+  const { t } = useTranslation('menubag')
+
   return (
     <NextLink href="/createburger" passHref>
       <ButtonBase>
@@ -20,10 +23,10 @@ export default function CompsCardCreateYourBurger() {
           />
           <CardContent>
             <Typography align="center" gutterBottom variant="h5" component="span">
-              Create Your Own Burger!
+              {t('createOwnBurger')}
             </Typography>
             <Typography align="center" gutterBottom variant="body2" color="text.secondary">
-              Create your own burger with the ingredients of your choice!
+              {t('createDesc')}
             </Typography>
           </CardContent>
         </Card>

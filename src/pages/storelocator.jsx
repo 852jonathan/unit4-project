@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid'
 
 // import { useTheme } from '@mui/material'
 // import useMediaQuery from '@mui/material/useMediaQuery'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -15,7 +16,7 @@ import React, { useState } from 'react'
 import ReactMapGL, { Marker as MapMarker, Popup as MapPopup, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import produce from 'immer'
 import { easeCubic } from 'd3-ease'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import CompsLayout from '@/components/layouts/Layout'
 
@@ -24,14 +25,20 @@ const navControlStyle = {
   top: 10
 }
 
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+  }
+})
+
 export default function PagesStoreLocator() {
-  const { t } = useTranslation()
+  const { t } = useTranslation('storelocator')
 
   const [stores, setStores] = useState([
     {
       id: 1,
-      name: '{t(\'storelocator.mainshop\')}',
-      address: 'G/F, Cheung Hing Industrial Building, Kennedy Town',
+      name: t('mainshop'),
+      address: t('mainshopAddress'),
       telephone: '2123 4567',
       latitude: 22.280806027643074,
       longitude: 114.12911830826918,
@@ -40,8 +47,8 @@ export default function PagesStoreLocator() {
       showPopup: false
     }, {
       id: 2,
-      name: 'MAHABURGER - Kennedy Town 2nd Shop',
-      address: 'G/F, 31 Rock Hill St, Kennedy Town',
+      name: t('secondShop'),
+      address: t('secondShopAddress'),
       telephone: '2987 6543',
       latitude: 22.28211,
       longitude: 114.1285920,
@@ -50,8 +57,8 @@ export default function PagesStoreLocator() {
       showPopup: false
     }, {
       id: 3,
-      name: 'MAHABURGER - Causeway Bay Shop',
-      address: 'G/F, 36 Jardine\'s Bazaar, Causeway Bay',
+      name: t('causewayBayShop'),
+      address: t('causewayBayAddress'),
       telephone: '2369 1010',
       latitude: 22.27939,
       longitude: 114.1855059,
@@ -105,10 +112,10 @@ export default function PagesStoreLocator() {
       </AccordionSummary>
       <AccordionDetails>
         <Typography variant="subtitle1">
-          Address: {store.address}
+          {t('address')} {store.address}
         </Typography>
         <Typography variant="subtitle1">
-          Telephone: {store.telephone}
+          {t('telephone')} {store.telephone}
         </Typography>
       </AccordionDetails>
     </Accordion>
@@ -158,12 +165,12 @@ export default function PagesStoreLocator() {
   return (
     <CompsLayout>
       <Head>
-        <title>MAHABURGER - Store Locator</title>
+        <title>MAHABURGER - {t('storeLocator')}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
       </Head>
       <Box id="pages-storelocator" sx={{ mb: 3 }}>
-        <Typography align="center" variant="h4" sx={{ m: 3 }}>STORE LOCATOR </Typography>
+        <Typography align="center" variant="h4" sx={{ m: 3 }}>{t('storeLocator')} </Typography>
         <Grid container sx={{ justifyContent: 'center' }}>
           {/* {
             isMobile && <Box sx={{ display: 'flex' }}> || <Box>
