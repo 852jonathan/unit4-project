@@ -52,6 +52,7 @@ const FacebookLogin = () => {
   return (
     <FacebookProvider appId="627812355021936">
       <LoginButton
+        id="fbLoginButton"
         scope="email"
         onCompleted={handleResponse}
         onError={handleError}
@@ -105,9 +106,10 @@ const RenderForm = ({ errors, touched, isSubmitting }) => (
     </Box>
     <Box textAlign="center" sx={{ m: 0 }}>
       {/* <NextLink passHref href="/menu"> */}
-      <FacebookLogin />
+      <FontAwesomeIcon icon={faFacebook} />
 
       {/* </NextLink> */}
+      <FacebookLogin />
 
     </Box>
 

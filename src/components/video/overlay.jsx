@@ -6,9 +6,11 @@ import Fab from '@mui/material/Fab'
 import Typography from '@mui/material/Typography'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
 import { ThemeProvider } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 import theme from '@/styles/theme'
 
 export default function VideoOverlay() {
+  const { t } = useTranslation()
   return (
     <ThemeProvider theme={theme}>
 
@@ -22,11 +24,11 @@ export default function VideoOverlay() {
           />
         </Box> */}
         <Typography variant="h3" color="white">MAHABURGER</Typography>
-        <Typography variant="h4" color="white">Fresh burgers, made to order!</Typography>
+        <Typography variant="h4" color="white">{t('homepage.videoOverlay')}</Typography>
         <NextLink href="/menu" passHref>
           <Fab variant="extended" color="secondary" aria-label="add">
             <RestaurantMenuIcon sx={{ mr: 1 }} />
-            Explore our Menu
+            {t('homepage.videoOverlayButton')}
           </Fab>
         </NextLink>
       </Box>

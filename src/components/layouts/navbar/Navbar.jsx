@@ -1,6 +1,7 @@
 import React from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
+import { useTranslation } from 'react-i18next'
 
 import { ThemeProvider, useTheme } from '@mui/material'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -19,6 +20,8 @@ import CompsDrawerBag from '@/components/drawer/Bag'
 import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
 export default function CompsLayoutsNavbar() {
+  const { t } = useTranslation()
+
   const { user } = useUser()
 
   const mobileTheme = useTheme()
@@ -34,13 +37,14 @@ export default function CompsLayoutsNavbar() {
           ) : (
             <Toolbar sx={{ display: 'flex', height: '64px' }}>
               <NextLink href="/aboutus" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>About Us</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.aboutUs')}</Button>
               </NextLink>
               <NextLink href="/menu" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>Our Menu</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.menu')}
+                </Button>
               </NextLink>
               <NextLink href="/storelocator" passHref>
-                <Button color="inherit" sx={{ mr: 3 }}>Store Locator</Button>
+                <Button color="inherit" sx={{ mr: 3 }}>{t('navbar.storeLocator')}</Button>
               </NextLink>
               <Box width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
                 <NextLink href="/" passHref>

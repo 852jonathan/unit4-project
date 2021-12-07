@@ -15,6 +15,7 @@ import React, { useState } from 'react'
 import ReactMapGL, { Marker as MapMarker, Popup as MapPopup, NavigationControl, FlyToInterpolator } from 'react-map-gl'
 import produce from 'immer'
 import { easeCubic } from 'd3-ease'
+import { useTranslation } from 'react-i18next'
 
 import CompsLayout from '@/components/layouts/Layout'
 
@@ -24,10 +25,12 @@ const navControlStyle = {
 }
 
 export default function PagesStoreLocator() {
+  const { t } = useTranslation()
+
   const [stores, setStores] = useState([
     {
       id: 1,
-      name: 'MAHABURGER - Main Shop',
+      name: '{t(\'storelocator.mainshop\')}',
       address: 'G/F, Cheung Hing Industrial Building, Kennedy Town',
       telephone: '2123 4567',
       latitude: 22.280806027643074,
@@ -93,6 +96,7 @@ export default function PagesStoreLocator() {
         goToStore(store.latitude, store.longitude)
         toggleMarkerPopup(index, !store.showPopup)
       }}
+      sx={{ mr: 1 }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
