@@ -12,7 +12,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
         unique: true
       },
       socialUserId: {
@@ -20,7 +20,7 @@ module.exports = {
       },
       passwordHash: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
       },
       registrationType: {
         type: Sequelize.ENUM('email', 'facebook')

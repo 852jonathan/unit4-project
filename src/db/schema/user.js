@@ -1,5 +1,6 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+const Sequelize = require('sequelize')
+
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('User', {
     id: {
       autoIncrement: true,
@@ -13,8 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING(255),
-      allowNull: false,
-      unique: "Users_email_key"
+      allowNull: true,
+      unique: 'Users_email_key'
     },
     socialUserId: {
       type: DataTypes.STRING(255),
@@ -22,10 +23,10 @@ module.exports = function(sequelize, DataTypes) {
     },
     passwordHash: {
       type: DataTypes.STRING(255),
-      allowNull: false
+      allowNull: true
     },
     registrationType: {
-      type: DataTypes.ENUM("email"),
+      type: DataTypes.ENUM('email', 'facebook'),
       allowNull: true
     }
   }, {
@@ -35,19 +36,19 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: true,
     indexes: [
       {
-        name: "Users_email_key",
+        name: 'Users_email_key',
         unique: true,
         fields: [
-          { name: "email" },
+          { name: 'email' }
         ]
       },
       {
-        name: "Users_pkey",
+        name: 'Users_pkey',
         unique: true,
         fields: [
-          { name: "id" },
+          { name: 'id' }
         ]
-      },
+      }
     ]
-  });
-};
+  })
+}

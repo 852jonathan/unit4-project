@@ -66,9 +66,12 @@ export default function CompsPopoverLogin() {
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
-        <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
-          <FontAwesomeIcon icon={faFacebook} onClick={facebookLogin} />
-        </a>
+        <Box sx={{ textAlign: 'center' }}>
+          <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
+            <FontAwesomeIcon icon={faFacebook} />
+          </a>
+        </Box>
+
         <CompsModalsRegister />
       </Popover>
     </div>
