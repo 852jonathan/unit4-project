@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
+// import React, { useState } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -29,14 +30,13 @@ import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
 export default function CompsLayoutsNavbar() {
   const { t } = useTranslation('common')
-  const [locale, setLocale] = useState('en')
+  // const [locale, setLocale] = useState('en')
 
   const { user } = useUser()
   const router = useRouter()
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
-  console.log('router', router)
   return (
     <ThemeProvider theme={theme}>
       <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>

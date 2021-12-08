@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
+// import React, { useState, useContext } from 'react'
 import Router, { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
@@ -8,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { useTranslation } from 'next-i18next'
 
-import { SnackbarContext } from '@/components/snackbar/Toast'
+// import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
 
 import useUser from '@/_hooks/user'

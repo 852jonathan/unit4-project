@@ -74,7 +74,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [snackbarShow, setSnackbarShow] = useState(false)
-  const router = useRouter()
+  // const router = useRouter()
   const { t } = useTranslation('menubag')
 
   // const [locale, setLocale] = useState(router.locale)
