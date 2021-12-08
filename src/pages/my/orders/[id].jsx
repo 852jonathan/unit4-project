@@ -5,6 +5,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import Divider from '@mui/material/Divider'
+import { useTranslation } from 'next-i18next'
 import useOrder from '@/_hooks/order'
 import withPrivateRoute from '@/_hocs/withPrivateRoute'
 import { Order, OrderProduct } from '@/db/models'
@@ -12,26 +13,27 @@ import { Order, OrderProduct } from '@/db/models'
 import CompsLoading from '@/components/Loading'
 import CompsLayout from '@/components/layouts/Layout'
 
-const ingredientsMapping = {
-  'thin-top-bun': 'Brioche Top Bun',
-  'thin-squid-top-bun': 'Squid Ink Top Bun',
-  'lettuce-leaf': 'Lettuce',
-  tomato: 'Tomato',
-  'back-bacon': 'Back Bacon',
-  'red-pepper': 'Red Pepper',
-  'rocket-leaf': 'Rocket Leaf',
-  mushrooms: 'Mushrooms',
-  'swiss-cheese': 'Swiss Cheese',
-  'square-cheese': 'Square Cheese',
-  pickles: 'Pickles',
-  'grilled-beef-patty': 'Grilled Beef Patty',
-  'bottom-bun': 'Bottom Bun',
-  'squid-bottom-bun': 'Squid Ink Bottom Bun'
-}
-
 function PagesMyOrdersShow() {
   const { query: { id } } = useRouter()
   const { order, isError, isLoading, errorMessage } = useOrder(id)
+  const { t } = useTranslation('menubag')
+
+  const ingredientsMapping = {
+    'thin-top-bun': t('thin-top-bun'),
+    'thin-squid-top-bun': t('thin-squid-top-bun'),
+    'lettuce-leaf': t('lettuce-leaf'),
+    tomato: t('tomato'),
+    'back-bacon': t('back-bacon'),
+    'red-pepper': t('red-pepper'),
+    'rocket-leaf': t('rocket-leaf'),
+    mushrooms: t('mushrooms'),
+    'swiss-cheese': t('swiss-cheese'),
+    'square-cheese': t('square-cheese'),
+    pickles: t('pickles'),
+    'grilled-beef-patty': t('grilled-beef-patty'),
+    'bottom-bun': t('bottom-bun'),
+    'squid-bottom-bun': t('squid-bottom-bun')
+  }
 
   if (isLoading) return <CompsLoading />
   if (isError) return <div>{errorMessage}</div>
@@ -127,7 +129,7 @@ export async function getStaticProps({ params, locale }) {
       fallback: {
         [`/api/my/orders/${params.id}`]: { order: order.toJSON() }
       },
-      ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+      ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
     }
   }
 }

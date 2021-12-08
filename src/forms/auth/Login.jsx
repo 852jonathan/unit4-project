@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
-import { useTranslation } from 'next-i18next'
+// import { useTranslation } from 'next-i18next'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
@@ -34,11 +34,12 @@ const CssTextField = styled(TextField)({
     }
   }
 })
-const RenderForm = ({ errors, touched, isSubmitting }) => {
-  const { t } = useTranslation('common')(
+const RenderForm = ({ errors, touched, isSubmitting }) =>
+  // const { t } = useTranslation('common')
+  (
     <ThemeProvider theme={theme}>
       <Form>
-        <Typography align="center" variant="h6" sx={{ mx: 2 }}>{t('login')}</Typography>
+        <Typography align="center" variant="h6" sx={{ mx: 2 }}>LOGIN</Typography>
         <Box sx={{ m: 2 }}>
           <Field
             id="email-input"
@@ -78,7 +79,6 @@ const RenderForm = ({ errors, touched, isSubmitting }) => {
     </ThemeProvider>
 
   )
-}
 
 RenderForm.propTypes = {
   errors: PropTypes.shape().isRequired,
@@ -91,19 +91,18 @@ const authLoginSchema = yup.object().shape({
   password: yup.string('Enter your password').min(6, 'Minimum 6 characters').required('Password is required')
 })
 
-const FormsAuthLogin = ({ onSubmit }) => {
-  (
-    <Formik
-      initialValues={{
-        email: '',
-        password: ''
-      }}
-      validationSchema={authLoginSchema}
-      onSubmit={onSubmit}
-      component={RenderForm}
-    />
-  )
-}
+const FormsAuthLogin = ({ onSubmit }) => (
+  <Formik
+    initialValues={{
+      email: '',
+      password: ''
+    }}
+    validationSchema={authLoginSchema}
+    onSubmit={onSubmit}
+    component={RenderForm}
+  />
+)
+
 FormsAuthLogin.propTypes = {
   onSubmit: PropTypes.func.isRequired
 }

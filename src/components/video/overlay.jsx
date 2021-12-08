@@ -10,7 +10,7 @@ import { useTranslation } from 'next-i18next'
 import theme from '@/styles/theme'
 
 export default function VideoOverlay() {
-  const { t } = useTranslation('homepage')
+  const { t } = useTranslation('homepageorders')
   return (
     <ThemeProvider theme={theme}>
 

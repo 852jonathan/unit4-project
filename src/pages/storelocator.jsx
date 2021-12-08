@@ -27,7 +27,7 @@ const navControlStyle = {
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
   }
 })
 
@@ -69,8 +69,8 @@ export default function PagesStoreLocator() {
   ])
 
   const [viewport, setViewport] = useState({
-    width: 700,
-    height: 500,
+    width: '95%',
+    height: '80vh',
     latitude: 22.281494,
     longitude: 114.128955,
     zoom: 17
@@ -103,7 +103,7 @@ export default function PagesStoreLocator() {
         goToStore(store.latitude, store.longitude)
         toggleMarkerPopup(index, !store.showPopup)
       }}
-      sx={{ mr: 1 }}
+      sx={{ mx: 'auto' }}
     >
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
@@ -171,32 +171,26 @@ export default function PagesStoreLocator() {
       </Head>
       <Box id="pages-storelocator" sx={{ mb: 3 }}>
         <Typography align="center" variant="h4" sx={{ m: 3 }}>{t('storeLocator')} </Typography>
-        <Grid container sx={{ justifyContent: 'center' }}>
-          {/* {
-            isMobile && <Box sx={{ display: 'flex' }}> || <Box>
-          } */}
-          <Box sx={{ display: 'flex' }}>
-
-            <Grid item xs={12} md={6}>
-              <Box sx={{ width: '100%', mr: 1 }}>
-                {showMapAccordion}
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={8}>
-
-              <Box sx={{ width: '100%' }}>
-                <ReactMapGL
-                  {...viewport}
-                  mapStyle="mapbox://styles/mapbox/outdoors-v11"
-                  mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
-                  onViewportChange={(nextViewport) => setViewport(nextViewport)}
-                >
-                  <NavigationControl style={navControlStyle} />
-                  {markers}
-                </ReactMapGL>
-              </Box>
-            </Grid>
-          </Box>
+        <Grid container spacing={2}>
+          <Grid item xs={11} sm={11} md={6} lg={4} order={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
+            <Box sx={{ width: '100%', mx: 1 }}>
+              {showMapAccordion}
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={12} md={6} lg={8} order={{ xs: 2, sm: 2, md: 2, lg: 2 }}>
+            <Box sx={{ ml: 2, p: 0 }}>
+              <ReactMapGL
+                {...viewport}
+                mapStyle="mapbox://styles/mapbox/outdoors-v11"
+                mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
+                onViewportChange={(nextViewport) => setViewport(nextViewport)}
+              >
+                <NavigationControl style={navControlStyle} />
+                {markers}
+              </ReactMapGL>
+            </Box>
+          </Grid>
+          {/* </Box> */}
         </Grid>
       </Box>
 

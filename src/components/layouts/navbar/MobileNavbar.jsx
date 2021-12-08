@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import Drawer from '@mui/material/Drawer'
 import List from '@mui/material/List'
@@ -25,6 +26,7 @@ function CompsNavbarMobile() {
   const [openDrawer, setOpenDrawer] = useState(false)
   const { user } = useUser()
   const { t } = useTranslation('common')
+  const router = useRouter()
 
   return (
     <>
@@ -48,6 +50,9 @@ function CompsNavbarMobile() {
               </NextLink>
             </ListItemText>
           </ListItem>
+          {
+              !user && <ListItem><CompsPopoverLogin /> </ListItem>
+            }
           <ListItem>
             <ListItemText>
               <NextLink href="/aboutus" passHref>
@@ -71,14 +76,20 @@ function CompsNavbarMobile() {
           </ListItem>
           <Divider />
           <ListItem>
-            <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
+            <NextLink
+              href="/"
+                // href={handleChangeLang}
+              locale={router.locale === 'en' ? 'zh' : 'en'}
+                // window.location = window.location.href.replace('/en/', '/zh/')
+              passHref
+            >
+              <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
+            </NextLink>
           </ListItem>
+
           {
                 user && <ListItem><CompsLayoutsNavbarProfile /></ListItem>
               }
-          {
-              !user && <ListItem><CompsPopoverLogin /> </ListItem>
-            }
         </List>
       </Drawer>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '64px' }}>

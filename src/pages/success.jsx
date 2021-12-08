@@ -10,7 +10,7 @@ import fetcher from '@/_services/fetcher'
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
   }
 })
 const Success = () => {

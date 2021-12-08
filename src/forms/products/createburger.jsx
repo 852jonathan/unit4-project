@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 
 import produce from 'immer'
 import FormGroup from '@mui/material/FormGroup'
@@ -187,7 +187,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
       <List>
         <Grid container spacing={2} columns={12}>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             {ingredientRows.slice(0, 5).map((row) => (
               <FormGroup key={row.name}>
                 <FormControlLabel
@@ -202,7 +202,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
             ))}
           </Grid>
 
-          <Grid item xs={6}>
+          <Grid item xs={12} md={6}>
             {ingredientRows.slice(5).map((row) => (
               <FormGroup key={row.name}>
                 <FormControlLabel

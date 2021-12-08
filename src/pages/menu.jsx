@@ -15,7 +15,7 @@ import CompsLayoutsMenuGrid from '@/components/layouts/menu/grid/MenuGrid'
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
   }
 })
 
@@ -65,7 +65,11 @@ export default function PagesMenu() {
           <CompsCardCreateYourBurger />
         </Box>
         <Divider sx={{ m: 2 }}>
-          <Chip label={t('burgers')} color="warning" />
+          <Box align="center">
+
+            <Chip label={t('burgers')} color="warning" />
+          </Box>
+
         </Divider>
         <CompsLayoutsMenuGrid category="burgers" />
         <Divider sx={{ m: 2 }}>

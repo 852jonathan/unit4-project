@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -20,16 +20,24 @@ import CompsPopoverLogin from '@/components/popover/Login'
 import CompsDrawerBag from '@/components/drawer/Bag'
 import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
+// const handleChangeLang = () => {
+// TODO code to change language without going back to '/' page
+//   return (
+
+//   )
+// }
+
 export default function CompsLayoutsNavbar() {
   const { t } = useTranslation('common')
+  const [locale, setLocale] = useState('en')
 
   const { user } = useUser()
   const router = useRouter()
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
+  console.log(router)
   return (
-
     <ThemeProvider theme={theme}>
       <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>
         <AppBar position="static">
@@ -61,7 +69,9 @@ export default function CompsLayoutsNavbar() {
               </Box>
               <NextLink
                 href="/"
+                // href={handleChangeLang}
                 locale={router.locale === 'en' ? 'zh' : 'en'}
+                // window.location = window.location.href.replace('/en/', '/zh/')
                 passHref
               >
                 <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>

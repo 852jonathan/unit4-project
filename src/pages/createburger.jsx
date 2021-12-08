@@ -31,7 +31,7 @@ import theme from '@/styles/theme'
 // }
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
   }
 })
 export default function PagesCreateABurger() {
@@ -78,7 +78,7 @@ export default function PagesCreateABurger() {
           <Typography align="center" variant="h4" sx={{ my: 2 }}>{t('createOwnBurger')}</Typography>
           <Box sx={{ flexGrow: 1, mb: 3 }}>
             <Grid container spacing={2} columns={16}>
-              <Grid item xs={8}>
+              <Grid item xs={8} md={8}>
                 <Box className="ingredients-list" sx={{ mx: 'auto', width: '40%', position: 'relative' }}>
                   <Box className="topBun">
                     {
@@ -133,7 +133,7 @@ export default function PagesCreateABurger() {
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={8} md={8}>
                 <FormsProductCreateBurger ingredients={ingredients} setIngredients={setIngredients} />
               </Grid>
             </Grid>

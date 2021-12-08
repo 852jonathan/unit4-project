@@ -9,7 +9,7 @@ import CompsLayout from '@/components/layouts/Layout'
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepage', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
   }
 })
 function PagesMyOrdersHistory() {

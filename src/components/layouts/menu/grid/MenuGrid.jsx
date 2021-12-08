@@ -11,15 +11,10 @@ export default function CompsLayoutsMenuGrid({ category }) {
   if (isLoading) return <CompsLoading />
 
   return (
-    <Box sx={{ flexGrow: 1, justifyContent: 'center', mb: 3 }}>
-      <Grid container spacing={{ md: 2 }} rowSpacing={2} columnSpacing={{ md: 0.5 }} columns={{ sm: 8, md: 12 }}>
-        {/* {Array.from(Array(3)).map((_, index) => (
-          <Grid display="flex" justifyContent="center" item xs={2} sm={4} md={4} key={index}>
-            <CompsLayoutsMenuCardMenuItem />
-          </Grid>
-        ))} */}
+    <Box sx={{ flexGrow: 1, mb: 3 }}>
+      <Grid container spacing={{ md: 2 }} rowSpacing={2} columnSpacing={{ md: 0.5 }} columns={{ xs: 2, sm: 8, md: 12 }}>
         {products.map((product) => (
-          <Grid display="flex" justifyContent="center" item xs={2} sm={4} md={4} key={product.id}>
+          <Grid sx={{}} display="flex" justifyContent="center" item xs={2} sm={4} md={4} key={product.id}>
             <CompsLayoutsMenuCardMenuItem product={product} isLoading={isLoading} />
           </Grid>
         ))}
