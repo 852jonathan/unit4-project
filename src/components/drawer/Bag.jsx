@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
@@ -24,6 +25,7 @@ export default function CompsDrawerBag() {
   const [disableCheckout, setDisableCheckout] = useState(true)
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation(['common', 'menubag'])
+  const router = useRouter()
 
   const { user } = useUser()
   const { bag, removeProduct } = useBag()
@@ -103,9 +105,10 @@ export default function CompsDrawerBag() {
               <>
                 <List key={item.product.id} sx={{ mb: 0 }}>
                   <ListItem sx={{ py: 0 }}>
-                    <ListItemText sx={{ display: 'flex' }}>{item.quantity}x</ListItemText>
+                    <ListItemText sx={{ display: 'flex' }}>{item.quantity}</ListItemText>
                     <ListItem>
-                      <ListItemText sx={{ p: 0 }} primary={item.product.productName} />
+                      {router.locale === 'en' ? (<ListItemText sx={{ p: 0 }} primary={item.product.productName} />) : (<ListItemText sx={{ p: 0 }} primary={item.product.productNameChi} />)}
+
                     </ListItem>
                     <ListItemText>{'$'}{item.subTotal} </ListItemText>
                     <ClearIcon className="clearIcon" sx={{ ml: 3 }} onClick={() => removeProduct(index)} />
@@ -121,7 +124,6 @@ export default function CompsDrawerBag() {
           })
         }
       </List>
-      {/* <Divider /> */}
 
       <Typography
         variant="h6"

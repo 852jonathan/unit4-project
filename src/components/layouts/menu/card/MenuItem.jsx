@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
@@ -68,16 +68,16 @@ const style = {
   boxShadow: 24,
   p: 2
 }
-
 export default function CompsCardMenuItem({ product, isLoading }) {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [snackbarShow, setSnackbarShow] = useState(false)
-  // const router = useRouter()
+  const router = useRouter()
   const { t } = useTranslation('menubag')
 
   // const [locale, setLocale] = useState(router.locale)
+  console.log(router)
 
   const { addProduct } = useBag()
 
@@ -125,17 +125,12 @@ export default function CompsCardMenuItem({ product, isLoading }) {
           />
           <CardContent>
             <Typography align="center" gutterBottom variant="h5" component="div">
-              {/* {
-              if (router === 'en') {
-                {product.productName}
-              } else {
-                {product.description}
-              } */}
-              {product.productName}
+              {router.locale === 'en' ? product.productName : product.productNameChi}
 
             </Typography>
             <Typography align="center" gutterBottom variant="body2" color="text.secondary">
-              {product.description}
+              {router.locale === 'en' ? product.description : product.descriptionChi}
+
             </Typography>
             <Typography align="center" variant="h5">
               $
@@ -172,11 +167,11 @@ export default function CompsCardMenuItem({ product, isLoading }) {
               <ClearIcon className="clearIcon" onClick={() => handleClose()} />
             </Box>
             <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
-              {product.productName}
+              {router.locale === 'en' ? product.productName : product.productNameChi}
+
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2} columns={16}>
-                {/* <Grid align="center" item xs={12} sm={12} md={6} lg={4} sx={{ mx: 'auto' }}> */}
                 <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
                   {isLoading ? (<CompsLoading />) : (
                     <Image
@@ -187,11 +182,10 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                     />
                   )}
                 </Grid>
-                {/* <Grid item xs={12} sm={12} md={6} lg={4} sx={{ mx: 'auto' }}> */}
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
 
                   <Typography id="productshow-description" sx={{ mt: 2 }}>
-                    {product.description}
+                    {router.locale === 'en' ? product.description : product.descriptionChi}
                   </Typography>
 
                   <Box sx={{ maxWidth: 100, my: 2 }}>

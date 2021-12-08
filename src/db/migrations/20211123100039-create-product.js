@@ -10,7 +10,13 @@ module.exports = {
       productName: {
         type: Sequelize.STRING
       },
+      productNameChi: {
+        type: Sequelize.STRING
+      },
       description: {
+        type: Sequelize.STRING
+      },
+      descriptionChi: {
         type: Sequelize.STRING
       },
       price: {

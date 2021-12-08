@@ -25,6 +25,7 @@ function PagesMyOrdersHistory() {
   if (isLoading) return <CompsLoading />
 
   if (isError) return <div>{errorMessage}</div>
+  console.log(orders)
 
   return (
     <CompsLayout>
@@ -37,28 +38,42 @@ function PagesMyOrdersHistory() {
 
         <main>
           {
-            orders.map((order, index) => (
-              <div key={order.id}>
-                <NextLink passHref href={`/my/orders/${order.id}`}>
-                  <div>
-                    <MenuItem divider>
-                      <Typography variant="h6" sx={{ ml: 3, my: 1 }}>
-                        {orders.length - index}{')'} {t('OrderID')} {'#'}{order.id}
-                      </Typography>
-                      <Typography sx={{ ml: 3 }}>
-                        {t('date')} {order.createdAt.slice(0, 10)}
-                      </Typography>
-                      <Typography sx={{ ml: 3 }}>
-                        {t('status')} {order.status}
-                      </Typography>
-                      <Divider />
-                    </MenuItem>
+            orders.length > 0 ? (
 
-                  </div>
+              orders.map((order, index) => (
+                <div key={order.id}>
+                  <NextLink passHref href={`/my/orders/${order.id}`}>
+                    <div>
+                      <MenuItem divider>
+                        <Typography variant="h6" sx={{ ml: 3, my: 1 }}>
+                          {orders.length - index}{')'} {t('OrderID')} {'#'}{order.id}
+                        </Typography>
+                        <Typography sx={{ ml: 3 }}>
+                          {t('date')} {order.createdAt.slice(0, 10)}
+                        </Typography>
+                        <Typography sx={{ ml: 3 }}>
+                          {t('status')} {order.status}
+                        </Typography>
+                        <Divider />
+                      </MenuItem>
+
+                    </div>
+                  </NextLink>
+                </div>
+              ))
+            ) : (
+              <>
+                <Typography variant="h4" align="center" sx={{ my: 3 }}>{t('noOrdersYet')}</Typography>
+                <NextLink passHref href="/menu">
+                  <MenuItem sx={{ justifyContent: 'center' }}>
+                    <Typography variant="h5" align="center" sx={{ my: 2 }}>{t('goToMenu')}</Typography>
+                  </MenuItem>
+
                 </NextLink>
-              </div>
-            ))
+              </>
+            )
           }
+
         </main>
       </div>
     </CompsLayout>

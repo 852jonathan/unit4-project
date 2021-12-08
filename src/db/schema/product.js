@@ -11,7 +11,15 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    productNameChi: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
     description: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    descriptionChi: {
       type: DataTypes.STRING(255),
       allowNull: true
     },

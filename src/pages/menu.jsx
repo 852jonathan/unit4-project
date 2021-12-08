@@ -31,9 +31,7 @@ export default function PagesMenu() {
         setShowButton(false)
       }
     }
-
     window.addEventListener('scroll', handler)
-
     return () => {
       window.removeEventListener('scroll', handler)
     }
@@ -51,7 +49,6 @@ export default function PagesMenu() {
       <Head>
         <title>MAHABURGER - {t('menu2')}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-
       </Head>
       <div id="pages-menu">
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>

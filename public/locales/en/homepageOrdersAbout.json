@@ -17,6 +17,8 @@
   "total":"Total:",
   "ordersHistory":"Orders History",
   "date":"Date:",
-  "status":"Status:"
+  "status":"Status:",
+  "noOrdersYet":"No Orders Yet",
+  "goToMenu":"Click here to go to the Menu and Order first!"
 
 }

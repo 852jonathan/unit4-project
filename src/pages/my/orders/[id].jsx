@@ -17,6 +17,7 @@ function PagesMyOrdersShow() {
   const { query: { id } } = useRouter()
   const { order, isError, isLoading, errorMessage } = useOrder(id)
   const { t } = useTranslation(['menubag', 'homepageOrdersAbout'])
+  const router = useRouter()
 
   const ingredientsMapping = {
     'thin-top-bun': t('thin-top-bun'),
@@ -68,7 +69,8 @@ function PagesMyOrdersShow() {
               return (
                 <div key={item.id}>
                   <Typography sx={{ my: 3 }}>
-                    {t('Product', { ns: 'homepageOrdersAbout' })} {item.Product.productName}
+                    {t('Product', { ns: 'homepageOrdersAbout' })}{' '}
+                    {router.locale === 'en' ? item.Product.productName : item.Product.productNameChi}
 
                     {(allIngredients.length > 0) && (<p> {t('ingredients', { ns: 'homepageOrdersAbout' })} {allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}</p>)}
                     <p>
