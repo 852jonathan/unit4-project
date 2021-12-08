@@ -1,5 +1,5 @@
+import React, { useState, useContext } from 'react'
 import Router, { useRouter } from 'next/router'
-import React, { useState } from 'react'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { useTranslation } from 'next-i18next'
 
-// import { SnackbarContext } from '@/components/snackbar/Toast'
+import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
 
 import useUser from '@/_hooks/user'
@@ -16,7 +16,7 @@ import useUser from '@/_hooks/user'
 import CompsModalsRegister from '@/components/modals/Register'
 
 export default function CompsPopoverLogin() {
-  // const { setSnack } = useContext(SnackbarContext)
+  // const { setToast } = useContext(SnackbarContext)
   const [anchorEl, setAnchorEl] = useState(null)
   const { emailLogin } = useUser()
   const { pathname } = useRouter()
@@ -36,7 +36,7 @@ export default function CompsPopoverLogin() {
       Router.push('/menu')
     }).catch(() => {
       methods.setSubmitting(false)
-      // setSnack({ message: 'Login credentials invalid', open: true })
+      // setToast({ message: 'Login credentials invalid', open: true })
     })
   }
 

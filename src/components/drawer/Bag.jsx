@@ -152,7 +152,7 @@ export default function CompsDrawerBag() {
 
   return (
     <>
-      <CompsStyledBadge badgeContent={totalQty} color="secondary">
+      <CompsStyledBadge invisible={false} badgeContent={totalQty} color="secondary">
         <Button onClick={() => setOpenBag(!openBag)} variant="contained" color="secondary" sx={{ mr: 1 }} startIcon={<LocalMallIcon />}>{t('bag')}</Button>
       </CompsStyledBadge>
       <Drawer

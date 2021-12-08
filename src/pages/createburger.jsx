@@ -31,7 +31,7 @@ import theme from '@/styles/theme'
 // }
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageOrdersAbout', 'common', 'storelocator', 'menubag'])
   }
 })
 export default function PagesCreateABurger() {

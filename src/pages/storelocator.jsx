@@ -27,7 +27,7 @@ const navControlStyle = {
 
 export const getStaticProps = async ({ locale }) => ({
   props: {
-    ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
+    ...await serverSideTranslations(locale, ['homepageOrdersAbout', 'common', 'storelocator', 'menubag'])
   }
 })
 

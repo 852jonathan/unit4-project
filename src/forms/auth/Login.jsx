@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
-// import { useTranslation } from 'next-i18next'
+import { useTranslation } from 'next-i18next'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
@@ -34,12 +34,13 @@ const CssTextField = styled(TextField)({
     }
   }
 })
-const RenderForm = ({ errors, touched, isSubmitting }) =>
-  // const { t } = useTranslation('common')
-  (
+const RenderForm = ({ errors, touched, isSubmitting }) => {
+  const { t } = useTranslation('common')
+
+  return (
     <ThemeProvider theme={theme}>
       <Form>
-        <Typography align="center" variant="h6" sx={{ mx: 2 }}>LOGIN</Typography>
+        <Typography align="center" variant="h6" sx={{ mx: 2 }}>{t('login')}</Typography>
         <Box sx={{ m: 2 }}>
           <Field
             id="email-input"
@@ -68,17 +69,18 @@ const RenderForm = ({ errors, touched, isSubmitting }) =>
         </Box>
 
         <Box textAlign="center" sx={{ m: 2 }}>
-          <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Login</Button>
+          <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>{t('login')}</Button>
         </Box>
       </Form>
       <Divider />
 
       <Box sx={{ m: 2 }}>
-        <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>Alternatively, Login with:</Typography>
+        <Typography align="center" variant="subtitle1" sx={{ mx: 2, mt: 2 }}>{t('alternativelyLogin')}</Typography>
       </Box>
     </ThemeProvider>
 
   )
+}
 
 RenderForm.propTypes = {
   errors: PropTypes.shape().isRequired,

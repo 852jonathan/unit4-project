@@ -6,10 +6,13 @@ import authenticateUser from '@/api/helpers/authenticateUser'
 
 const myOrdersShow = async (req, res) => {
   const { query: { id } } = req
+  const { currentUser } = res
 
   const orderShow = await Order.findOne({
     where: {
-      id: Number(id) || 0
+      id: Number(id) || 0,
+      UserId: currentUser.id
+
     },
     include: [
       {

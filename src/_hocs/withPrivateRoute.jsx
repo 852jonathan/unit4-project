@@ -9,7 +9,6 @@ export default function withPrivateRoute(WrappedComponent) {
   return function PrivateRoute(props) {
     const router = useRouter()
     const { user, isLoading } = useUser()
-
     useEffect(() => {
       if (!isLoading && !user) router.push('/')
     }, [isLoading])

@@ -25,6 +25,7 @@
     "bcrypt": "^5.0.1",
     "crypto": "^1.0.1",
     "d3-ease": "^3.0.1",
+    "embla-carousel-react": "^6.0.2",
     "fakergem": "^2.1.0",
     "file-loader": "^6.2.0",
     "formik": "^2.2.9",

@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import ClearIcon from '@mui/icons-material/Clear'
 
+import { useTranslation } from 'next-i18next'
 import useUser from '@/_hooks/user'
 import FormsAuthSignup from '@/forms/auth/Register'
 
@@ -24,6 +25,7 @@ const style = {
 export default function CompsModalsRegister() {
   const [open, setOpen] = useState(false)
   const { emailSignup } = useUser()
+  const { t } = useTranslation('common')
 
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
@@ -44,7 +46,7 @@ export default function CompsModalsRegister() {
 
   return (
     <div>
-      <Button color="info" onClick={handleOpen} sx={{ my: 2, mx: 1, p: 0 }}>NO ACCOUNT YET? REGISTER HERE!</Button>
+      <Button color="info" onClick={handleOpen} sx={{ my: 2, mx: 1, p: 0 }}>{t('noAccountYetRegister')}</Button>
       <Modal
         open={open}
         onClose={handleClose}

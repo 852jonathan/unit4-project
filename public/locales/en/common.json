@@ -14,6 +14,10 @@
   "someInfo2": "MAY VARY SLIGHTLY BY LOCATION.",
   "myOrderHistory": "My Order History",
   "logout": "Logout",
-  "backToHome": "Back To Home"
+  "backToHome": "Back To Home",
+  "noAccountYetRegister": "NO ACCOUNT YET? REGISTER HERE!",
+  "alternativelyLogin": "Alternatively, Login with:",
+  "email": "Email",
+  "password": "Password"
 
 }

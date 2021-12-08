@@ -23,6 +23,25 @@ import CompsLoading from '@/components/Loading'
 
 import useBag from '@/_hooks/useBag'
 
+// const menuItemNames = {
+//   "Classic Cheeseburger"
+//   "Double Cheeseburger with Mushrooms"
+//   "Christmas Burger"
+//   "Squid Ink Bun with Bacon"
+//   "Color Combo Burger"
+//   "Gourmet Cheeseburger"
+//   "Mixbun Burger"
+//   "Pickle Beef Burger"
+//   "Mushroom Burger"
+//   "French Fries"
+//   "Potato Slices"
+//   "Potato Wedges"
+//   "Red Cola"
+//   "Green Can Soda"
+//   "Strawberry Milkshake"
+
+// }
+
 const style = {
   position: 'absolute',
   top: '40%',
@@ -77,7 +96,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
   return (
     <>
       <ButtonBase onClick={handleOpen}>
-        <Card sx={{ minWidth: 345, maxWidth: 345, height: 250, border: 2, pt: 2, borderColor: '#ffc107' }}>
+        <Card sx={{ minWidth: 345, maxWidth: 345, height: 280, border: 2, pt: 3, borderColor: '#ffc107' }}>
           <Image
             alt="menu"
             height="110"

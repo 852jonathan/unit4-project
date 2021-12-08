@@ -45,7 +45,7 @@ function PagesMyOrdersShow() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-my-orders-history">
-        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>Order {'#'}{order.id}</Typography>
+        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>Order ID#: {order.id}</Typography>
 
         <Box sx={{ ml: 3, mb: 3 }}>
           {
@@ -129,7 +129,7 @@ export async function getStaticProps({ params, locale }) {
       fallback: {
         [`/api/my/orders/${params.id}`]: { order: order.toJSON() }
       },
-      ...await serverSideTranslations(locale, ['homepageorders', 'common', 'storelocator', 'menubag'])
+      ...await serverSideTranslations(locale, ['homepageOrdersAbout', 'common', 'storelocator', 'menubag'])
     }
   }
 }

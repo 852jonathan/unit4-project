@@ -14,6 +14,10 @@
   "someInfo2": "可能因位置而略有不同。",
   "myOrderHistory": "訂單記錄",
   "logout": "登出",
-  "backToHome": "回到主頁"
+  "backToHome": "回到主頁",
+  "noAccountYetRegister": "還沒有帳戶？在這裡註冊！",
+  "alternativelyLogin": "可用以下方法登入：",
+  "email": "電郵",
+  "password": "密碼"
 
 }
