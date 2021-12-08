@@ -182,7 +182,7 @@ export default function PagesStoreLocator() {
               <ReactMapGL
                 {...viewport}
                 mapStyle="mapbox://styles/mapbox/outdoors-v11"
-                mapboxApiAccessToken="pk.eyJ1IjoiODUyam9uYXRoYW4iLCJhIjoiY2t3ZGQxYm9pMGl2MTJvbnQyM2I3YmgzZiJ9.Yn1EZWilP6oJ7pcGrcDAaw"
+                mapboxApiAccessToken={process.env.MAPBOX_API_KEY}
                 onViewportChange={(nextViewport) => setViewport(nextViewport)}
               >
                 <NavigationControl style={navControlStyle} />
