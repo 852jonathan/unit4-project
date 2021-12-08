@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
