@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
+
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
@@ -18,6 +20,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import ClearIcon from '@mui/icons-material/Clear'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import { ThemeProvider } from '@mui/material'
+import { useTranslation } from 'next-i18next'
 import theme from '@/styles/theme'
 import CompsLoading from '@/components/Loading'
 
@@ -42,6 +45,18 @@ import useBag from '@/_hooks/useBag'
 
 // }
 
+// const style = {
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   width: 300,
+//   bgcolor: 'background.paper',
+//   border: '2px solid #000',
+//   boxShadow: 24,
+//   p: 2
+// }
+
 const style = {
   position: 'absolute',
   top: '40%',
@@ -59,6 +74,10 @@ export default function CompsCardMenuItem({ product, isLoading }) {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
   const [snackbarShow, setSnackbarShow] = useState(false)
+  const router = useRouter()
+  const { t } = useTranslation('menubag')
+
+  // const [locale, setLocale] = useState(router.locale)
 
   const { addProduct } = useBag()
 
@@ -106,7 +125,14 @@ export default function CompsCardMenuItem({ product, isLoading }) {
           />
           <CardContent>
             <Typography align="center" gutterBottom variant="h5" component="div">
+              {/* {
+              if (router === 'en') {
+                {product.productName}
+              } else {
+                {product.description}
+              } */}
               {product.productName}
+
             </Typography>
             <Typography align="center" gutterBottom variant="body2" color="text.secondary">
               {product.description}
@@ -131,7 +157,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
           }}
         >
           <Alert onClose={handleCloseSnackbar} severity="success" sx={{ width: '100%' }}>
-            Added to Bag!
+            {t('addedToBag')}
           </Alert>
         </Snackbar>
         <Modal
@@ -150,6 +176,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2} columns={16}>
+                {/* <Grid align="center" item xs={12} sm={12} md={6} lg={4} sx={{ mx: 'auto' }}> */}
                 <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
                   {isLoading ? (<CompsLoading />) : (
                     <Image
@@ -160,6 +187,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                     />
                   )}
                 </Grid>
+                {/* <Grid item xs={12} sm={12} md={6} lg={4} sx={{ mx: 'auto' }}> */}
                 <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
 
                   <Typography id="productshow-description" sx={{ mt: 2 }}>
@@ -169,7 +197,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                   <Box sx={{ maxWidth: 100, my: 2 }}>
                     <FormControl fullWidth>
                       <InputLabel color="secondary" variant="standard" htmlFor="uncontrolled-native">
-                        Quantity
+                        {t('quantity')}
                       </InputLabel>
                       <NativeSelect
                         defaultValue={1}
@@ -207,7 +235,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                     variant="contained"
                     color="secondary"
                     startIcon={<AddBoxIcon />}
-                  >Add to Bag
+                  >{t('addToBag')}
                   </Button>
                 </Grid>
               </Grid>

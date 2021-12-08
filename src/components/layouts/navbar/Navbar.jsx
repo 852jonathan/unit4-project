@@ -36,7 +36,7 @@ export default function CompsLayoutsNavbar() {
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
-  console.log(router)
+  console.log('router', router)
   return (
     <ThemeProvider theme={theme}>
       <Box id="navbar" sx={{ flexGrow: 1, margin: 0 }}>

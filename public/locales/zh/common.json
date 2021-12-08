@@ -15,9 +15,19 @@
   "myOrderHistory": "訂單記錄",
   "logout": "登出",
   "backToHome": "回到主頁",
-  "noAccountYetRegister": "還沒有帳戶？在這裡註冊！",
-  "alternativelyLogin": "可用以下方法登入：",
-  "email": "電郵",
-  "password": "密碼"
+  "noAccountYetRegister": "還沒有帳戶？按這裡註冊！",
+  "alternativelyLogin": "或可用以下方法登入：",
+  "email": "電郵地址",
+  "password": "密碼",
+  "Enter your email":"請輸入您的電郵地址",
+  "Enter a valid email":"請輸入有效的電郵地址",
+  "Email is required":"電郵地址是必需的",
+  "Enter your password": "請輸入您的密碼",
+  "Minimum 6 characters": "需要最少6個字",
+  "Password is required": "密碼是必需的",
+  "registerAnAccount": "註冊賬戶",
+  "register": "註冊",
+  "passwordConfirmation":"確認密碼"
+
 
 }

@@ -16,7 +16,7 @@ import CompsLayout from '@/components/layouts/Layout'
 function PagesMyOrdersShow() {
   const { query: { id } } = useRouter()
   const { order, isError, isLoading, errorMessage } = useOrder(id)
-  const { t } = useTranslation('menubag')
+  const { t } = useTranslation(['menubag', 'homepageOrdersAbout'])
 
   const ingredientsMapping = {
     'thin-top-bun': t('thin-top-bun'),
@@ -41,11 +41,11 @@ function PagesMyOrdersShow() {
   return (
     <CompsLayout>
       <Head>
-        <title>MAHABURGER - Show Orders</title>
+        <title>MAHABURGER - {t('showOrders', { ns: 'homepageOrdersAbout' })}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-my-orders-history">
-        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>Order ID#: {order.id}</Typography>
+        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>{t('OrderID', { ns: 'homepageOrdersAbout' })} {'#'}{order.id}</Typography>
 
         <Box sx={{ ml: 3, mb: 3 }}>
           {
@@ -68,13 +68,13 @@ function PagesMyOrdersShow() {
               return (
                 <div key={item.id}>
                   <Typography sx={{ my: 3 }}>
-                    Product: {item.Product.productName}
+                    {t('Product', { ns: 'homepageOrdersAbout' })} {item.Product.productName}
 
-                    {(allIngredients.length > 0) && (<p> Ingredients: {allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}</p>)}
+                    {(allIngredients.length > 0) && (<p> {t('ingredients', { ns: 'homepageOrdersAbout' })} {allIngredients.map((ingredient) => ingredientsMapping[ingredient]).join(', ')}</p>)}
                     <p>
-                      Quantity: {item.quantity}
+                      {t('quantity', { ns: 'homepageOrdersAbout' })} {item.quantity}
                     </p>
-                    Subtotal: {'$'}{item.subTotal}
+                    {t('subtotal', { ns: 'homepageOrdersAbout' })} {'$'}{item.subTotal}
                   </Typography>
                   <Divider />
                 </div>
@@ -83,7 +83,7 @@ function PagesMyOrdersShow() {
             })
           }
           <Typography variant="h5" sx={{ borderTop: 2 }}>
-            Total: {'$'}{order.grandTotal}
+            {t('total', { ns: 'homepageOrdersAbout' })} {'$'}{order.grandTotal}
           </Typography>
 
         </Box>

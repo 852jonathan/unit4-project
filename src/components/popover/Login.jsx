@@ -71,8 +71,9 @@ export default function CompsPopoverLogin() {
             <FontAwesomeIcon icon={faFacebook} />
           </a>
         </Box>
-
-        <CompsModalsRegister />
+        <Box textAlign="center">
+          <CompsModalsRegister />
+        </Box>
       </Popover>
     </div>
   )

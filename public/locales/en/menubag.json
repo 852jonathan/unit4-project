@@ -11,6 +11,7 @@
   "sides": "SIDES",
   "drinks": "DRINKS",
   "createOwnBurger": "Create Your Own Burger!",
+  "customBurger":"Custom Burger",
   "createDesc": "Create your own burger with the ingredients of your choice!",
   "thin-top-bun": "Brioche Top Bun",
   "thin-squid-top-bun": "Squid Ink Top Bun",
@@ -37,8 +38,9 @@
   "selectBotBun": "Please select a bottom bun.",
   "customBurgerAdded": "Custom Burger Added!",
   "selectBothBuns": "Please select both top and bottom buns!",
-  "addToBag": "Add to Bag"
-
+  "addToBag": "Add to Bag",
+  "addedToBag": "Added to Bag!",
+  "quantity": "Quantity"
 
 
 }

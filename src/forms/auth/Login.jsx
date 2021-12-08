@@ -9,6 +9,7 @@ import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import TextField from '@mui/material/TextField'
 import { useTranslation } from 'next-i18next'
+import i18n from 'i18next'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
@@ -44,10 +45,10 @@ const RenderForm = ({ errors, touched, isSubmitting }) => {
         <Box sx={{ m: 2 }}>
           <Field
             id="email-input"
-            label="Email"
+            label={t('email')}
             name="email"
             error={touched.email && Boolean(errors.email)}
-            helperText={touched.email && errors.email ? errors.email : ''}
+            helperText={touched.email && errors.email ? t(errors.email) : ''}
             as={CssTextField}
             fullWidth
             required
@@ -57,11 +58,11 @@ const RenderForm = ({ errors, touched, isSubmitting }) => {
         <Box sx={{ m: 2 }}>
           <Field
             id="password"
-            label="Password"
+            label={t('password')}
             name="password"
             type="password"
             error={touched.password && Boolean(errors.password)}
-            helperText={touched.password && errors.password ? errors.password : ''}
+            helperText={touched.password && errors.password ? t(errors.password) : ''}
             as={CssTextField}
             fullWidth
             required

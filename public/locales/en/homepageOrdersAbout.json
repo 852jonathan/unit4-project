@@ -7,6 +7,16 @@
   "about3": "But we didn’t stop…",
   "about4": " How could we? Fries were about to be reimagined. Whether you order the fries, the potato slices or the potato wedges, they are all made from real Russet potatoes cut with the skin on. They’re washed in a cycle to remove the starch and cooked in vegetable oil for a crispy taste and golden exterior.",
   "about5": "All our products are served from the heart, and we look forward to serving you!",
-  "about6": "Please note that we are only a fictional shop, we do not actually exist!"
+  "about6": "Please note that we are only a fictional shop, we do not actually exist!",
+  "showOrders": "Show Orders",
+  "OrderID":"Order ID:",
+  "Product":"Product:",
+  "ingredients":"Ingredients:",
+  "quantity":"Quantity:",
+  "subtotal":"Subtotal:",
+  "total":"Total:",
+  "ordersHistory":"Orders History",
+  "date":"Date:",
+  "status":"Status:"
 
 }

@@ -18,6 +18,16 @@
   "noAccountYetRegister": "NO ACCOUNT YET? REGISTER HERE!",
   "alternativelyLogin": "Alternatively, Login with:",
   "email": "Email",
-  "password": "Password"
+  "password": "Password",
+  "Enter your email":"Enter your email",
+  "Enter a valid email":"Enter a valid email",
+  "Email is required":"Email is required",
+  "Enter your password": "Enter your password",
+  "Minimum 6 characters": "Minimum 6 characters",
+  "Password is required": "Password is required",
+  "registerAnAccount": "REGISTER AN ACCOUNT",
+  "register": "Register",
+  "passwordConfirmation":"Password Confirmation"
+
 
 }

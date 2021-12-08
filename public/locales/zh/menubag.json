@@ -11,6 +11,7 @@
   "sides": "小吃",
   "drinks": "飲品",
   "createOwnBurger": "自設漢堡包",
+  "customBurger":"自設漢堡包",
   "createDesc": "用您選擇的食材製作屬於自己的漢堡包！",
   "thin-top-bun": "布莉歐麵包",
   "thin-squid-top-bun": "墨魚汁麵包",
@@ -37,6 +38,7 @@
   "selectBotBun": "請選擇一款麵包(下):",
   "customBurgerAdded": "添加了自設漢堡包！",
   "selectBothBuns": "請選擇上和下的麵包!",
-  "addToBag": "添加到購物藍"
-
+  "addToBag": "加入購物籃",
+  "addedToBag": "已加入購物籃！",
+  "quantity": "數量"
 }

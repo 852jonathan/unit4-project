@@ -8,6 +8,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
+import { useTranslation } from 'next-i18next'
 
 import { Formik, Field, Form } from 'formik'
 import * as yup from 'yup'
@@ -34,58 +35,62 @@ const CssTextField = styled(TextField)({
   }
 })
 
-const RenderForm = ({ errors, touched, isSubmitting }) => (
-  <ThemeProvider theme={theme}>
-    <Form>
-      <Typography align="center" variant="h6" sx={{ mx: 2 }}>REGISTER AN ACCOUNT</Typography>
-      <Box sx={{ m: 2 }}>
-        <Field
-          id="email-input"
-          label="Email"
-          name="email"
-          error={touched.email && Boolean(errors.email)}
-          helperText={touched.email && errors.email ? errors.email : ''}
-          as={CssTextField}
-          fullWidth
-          required
-        />
-      </Box>
+const RenderForm = ({ errors, touched, isSubmitting }) => {
+  const { t } = useTranslation('common')
 
-      <Box sx={{ m: 2 }}>
-        <Field
-          id="password-input"
-          label="Password"
-          name="password"
-          type="password"
-          error={touched.password && Boolean(errors.password)}
-          helperText={touched.password && errors.password ? errors.password : ''}
-          as={CssTextField}
-          fullWidth
-          required
-        />
-      </Box>
+  return (
+    <ThemeProvider theme={theme}>
+      <Form>
+        <Typography align="center" variant="h6" sx={{ mx: 2 }}>{t('registerAnAccount')}</Typography>
+        <Box sx={{ m: 2 }}>
+          <Field
+            id="email-input"
+            label={t('email')}
+            name="email"
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email ? errors.email : ''}
+            as={CssTextField}
+            fullWidth
+            required
+          />
+        </Box>
 
-      <Box sx={{ m: 2 }}>
-        <Field
-          id="passwordConfirmation-input"
-          label="Password Confirmation"
-          name="passwordConfirmation"
-          type="password"
-          error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
-          helperText={touched.passwordConfirmation && errors.passwordConfirmation ? errors.passwordConfirmation : ''}
-          as={CssTextField}
-          fullWidth
-          required
-        />
-      </Box>
+        <Box sx={{ m: 2 }}>
+          <Field
+            id="password-input"
+            label={t('password')}
+            name="password"
+            type="password"
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password ? errors.password : ''}
+            as={CssTextField}
+            fullWidth
+            required
+          />
+        </Box>
 
-      <Box textAlign="center" sx={{ m: 2, mt: 3 }}>
-        <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>Register</Button>
-      </Box>
-    </Form>
-  </ThemeProvider>
+        <Box sx={{ m: 2 }}>
+          <Field
+            id="passwordConfirmation-input"
+            label={t('passwordConfirmation')}
+            name="passwordConfirmation"
+            type="password"
+            error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
+            helperText={touched.passwordConfirmation && errors.passwordConfirmation ? errors.passwordConfirmation : ''}
+            as={CssTextField}
+            fullWidth
+            required
+          />
+        </Box>
 
-)
+        <Box textAlign="center" sx={{ m: 2, mt: 3 }}>
+          <Button variant="contained" color="secondary" type="submit" disabled={isSubmitting}>{t('register')}</Button>
+        </Box>
+      </Form>
+    </ThemeProvider>
+
+  )
+}
 
 RenderForm.propTypes = {
   errors: PropTypes.shape().isRequired,
