@@ -96,7 +96,7 @@ export default function PagesStoreLocator() {
 
   const showMapAccordion = stores.map((store, index) => (
     <Accordion
-      className="storeAccordion"
+      id="storeAccordion"
       elevation="5"
       expanded={store.showPopup}
       onClick={() => {

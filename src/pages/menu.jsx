@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+// import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -20,23 +20,21 @@ export const getStaticProps = async ({ locale }) => ({
 })
 
 export default function PagesMenu() {
-  const [showButton, setShowButton] = useState(false)
-
   const { t } = useTranslation('menubag')
 
-  useEffect(() => {
-    const handler = () => {
-      if (window.pageYOffset > 300) {
-        setShowButton(true)
-      } else {
-        setShowButton(false)
-      }
-    }
-    window.addEventListener('scroll', handler)
-    return () => {
-      window.removeEventListener('scroll', handler)
-    }
-  }, [])
+  // useEffect(() => {
+  //   const handler = () => {
+  //     if (window.pageYOffset > 300) {
+  //       setShowButton(true)
+  //     } else {
+  //       setShowButton(false)
+  //     }
+  //   }
+  //   window.addEventListener('scroll', handler)
+  //   return () => {
+  //     window.removeEventListener('scroll', handler)
+  //   }
+  // }, [])
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -53,7 +51,6 @@ export default function PagesMenu() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-menu">
-        {showButton && (
         <Button
           onClick={scrollToTop}
           className="back-to-top"
@@ -61,7 +58,6 @@ export default function PagesMenu() {
         >
           {t('backToTop')}
         </Button>
-        )}
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>
           {t('menu2')}
         </Typography>
