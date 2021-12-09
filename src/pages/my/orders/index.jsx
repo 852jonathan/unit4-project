@@ -25,7 +25,6 @@ function PagesMyOrdersHistory() {
   if (isLoading) return <CompsLoading />
 
   if (isError) return <div>{errorMessage}</div>
-  console.log(orders)
 
   return (
     <CompsLayout>
