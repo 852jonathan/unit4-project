@@ -5,7 +5,7 @@ import Box from '@mui/material/Box'
 import Fab from '@mui/material/Fab'
 import Typography from '@mui/material/Typography'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import { useTranslation } from 'next-i18next'
 import theme from '@/styles/theme'
 

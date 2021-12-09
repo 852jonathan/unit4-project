@@ -10,6 +10,18 @@ body {
   margin: 0
 }
 
+#pages-my-orders-history  {
+  min-height: calc(100vh - 246px - 64px);
+}
+#pages-my-orders-show  {
+  min-height: calc(100vh - 246px - 64px);
+}
+#pages-success {
+  min-height: calc(100vh - 246px - 64px);
+}
+
+
+
 //============ Page: Home Page, Comp: Video Player
 :root {
   --video-width: 100vw;
@@ -81,6 +93,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 1100;
+}
+
+.navlogo {
+  cursor: pointer;
 }
 
 

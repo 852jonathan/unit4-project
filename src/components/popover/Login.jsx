@@ -8,6 +8,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 import { useTranslation } from 'next-i18next'
+import { toast } from 'react-toastify'
 
 // import { SnackbarContext } from '@/components/snackbar/Toast'
 import FormsAuthLogin from '@/forms/auth/Login'
@@ -37,6 +38,13 @@ export default function CompsPopoverLogin() {
       Router.push('/menu')
     }).catch(() => {
       methods.setSubmitting(false)
+      toast.error('Login credentials incorrect, please try again', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true
+      })
       // setToast({ message: 'Login credentials invalid', open: true })
     })
   }

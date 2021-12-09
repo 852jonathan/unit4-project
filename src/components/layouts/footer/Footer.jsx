@@ -1,7 +1,7 @@
 import React from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material/styles'
 import { useTranslation } from 'next-i18next'
 
 import Box from '@mui/material/Box'

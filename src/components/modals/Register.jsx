@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Modal from '@mui/material/Modal'
 import ClearIcon from '@mui/icons-material/Clear'
+import { toast } from 'react-toastify'
 
 import { useTranslation } from 'next-i18next'
 import useUser from '@/_hooks/user'
@@ -40,6 +41,15 @@ export default function CompsModalsRegister() {
       }
     }).catch(() => {
       methods.setSubmitting(false)
+      toast.error('Unable to register with current details, please use another email.', {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      })
       // setSnack({ message: 'Register invalid', open: true })
     })
   }

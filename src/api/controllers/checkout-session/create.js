@@ -69,7 +69,7 @@ const checkoutSessionCreate = async (req, res) => {
       UserId: currentUser.id,
       grandTotal: stripeSession.amount_total / 100,
       StripeID: stripeSession.id,
-      status: 'Pending Payment',
+      status: 'Cancelled Payment',
       OrderProducts: orderProductData
     }, {
       fields: permittedParams,

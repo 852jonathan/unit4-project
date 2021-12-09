@@ -45,8 +45,8 @@ function PagesMyOrdersShow() {
         <title>MAHABURGER - {t('showOrders', { ns: 'homepageOrdersAbout' })}</title>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
-      <div id="pages-my-orders-history">
-        <Typography variant="h4" sx={{ ml: 3, mt: 3, borderBottom: 2 }}>{t('OrderID', { ns: 'homepageOrdersAbout' })} {'#'}{order.id}</Typography>
+      <div id="pages-my-orders-show">
+        <Typography variant="h4" sx={{ ml: 3, mt: 3, mr: 3, borderBottom: 2 }}>{t('OrderID', { ns: 'homepageOrdersAbout' })} {'#'}{order.id}</Typography>
 
         <Box sx={{ ml: 3, mb: 3 }}>
           {
@@ -84,7 +84,7 @@ function PagesMyOrdersShow() {
               )
             })
           }
-          <Typography variant="h5" sx={{ borderTop: 2 }}>
+          <Typography variant="h5" sx={{ borderTop: 2, mr: 3 }}>
             {t('total', { ns: 'homepageOrdersAbout' })} {'$'}{order.grandTotal}
           </Typography>
 

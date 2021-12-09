@@ -171,7 +171,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
               <FormControlLabel
                 control={<Radio size="small" color="info" required />}
                 name={row.name}
-                label={`${row.name} - $ ${row.price}`}
+                label={`${row.name} - $${row.price}`}
                 value={row.link}
                 data-price={row.price}
                 checked={ingredients.top === row.link}
@@ -194,7 +194,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                 <FormControlLabel
                   control={<Checkbox size="small" color="info" />}
                   name={row.name}
-                  label={`${row.name} - $ ${row.price}`}
+                  label={`${row.name} - $${row.price}`}
                   value={row.link}
                   checked={ingredients.middle.includes(row.link)}
                   onChange={handleIngredientsChange}
@@ -209,7 +209,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
                 <FormControlLabel
                   control={<Checkbox size="small" color="info" />}
                   name={row.name}
-                  label={`${row.name} - $ ${row.price}`}
+                  label={`${row.name} - $${row.price}`}
                   value={row.link}
                   checked={ingredients.middle.includes(row.link)}
                   onChange={handleIngredientsChange}
@@ -229,7 +229,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
               <FormControlLabel
                 control={<Radio size="small" color="info" required />}
                 name={row.name}
-                label={`${row.name} - $ ${row.price}`}
+                label={`${row.name} - $${row.price}`}
                 value={row.link}
                 checked={ingredients.bot === row.link}
                 onChange={handleBotBunChange}
@@ -238,7 +238,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
           ))}
         </FormControl>
       </List>
-      <Typography variant="h5" sx={{ mb: 1 }}>{t('subtotal')}{'$'}{`${calcTotal()}`} </Typography>
+      <Typography variant="h5" sx={{ mb: 1 }}>{t('subtotal')} {'$'}{`${calcTotal()}`} </Typography>
       <Snackbar
         open={snackbarShow}
         autoHideDuration={5000}

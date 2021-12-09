@@ -19,7 +19,7 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import ClearIcon from '@mui/icons-material/Clear'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { ThemeProvider, useTheme } from '@mui/material'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import { useTranslation } from 'next-i18next'
@@ -128,6 +128,9 @@ export default function CompsCardMenuItem({ product, isLoading }) {
 
           />
           <CardContent>
+            <Typography align="center" variant="h5" sx={{ fontWeight: 'bold' }}>
+              {'$'}{product.price}
+            </Typography>
             <Typography align="center" gutterBottom variant="h5" component="div">
               {router.locale === 'en' ? product.productName : product.productNameChi}
 
@@ -136,11 +139,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
               {router.locale === 'en' ? product.description : product.descriptionChi}
 
             </Typography>
-            <Typography align="center" variant="h5">
-              $
-              {' '}
-              {product.price}
-            </Typography>
+
           </CardContent>
         </Card>
       </ButtonBase>
@@ -179,7 +178,7 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                   <Grid align="center" item xs={12} md={8} sx={{ mx: 'auto' }}>
                     {isLoading ? (<CompsLoading />) : (
                       <Image
-                        height={150}
+                        height={130}
                         width={120}
                         src={product.image}
                         alt="burger-selected"
@@ -218,8 +217,8 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                       </FormControl>
                     </Box>
 
-                    <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
-                      $ {product.price}
+                    <Typography id="productshow-price" variant="h5" sx={{ my: 2, fontWeight: 'bold' }}>
+                      {'$'}{product.price}
                     </Typography>
 
                     <Button
@@ -292,8 +291,8 @@ export default function CompsCardMenuItem({ product, isLoading }) {
                       </FormControl>
                     </Box>
 
-                    <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
-                      $ {product.price}
+                    <Typography id="productshow-price" variant="h5" sx={{ my: 2, fontWeight: 'bold' }}>
+                      {'$'}{product.price}
                     </Typography>
 
                     <Button

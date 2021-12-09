@@ -77,10 +77,8 @@ function CompsNavbarMobile() {
           <Divider />
           <ListItem>
             <NextLink
-              href="/"
-                // href={handleChangeLang}
+              href={router.pathname}
               locale={router.locale === 'en' ? 'zh' : 'en'}
-                // window.location = window.location.href.replace('/en/', '/zh/')
               passHref
             >
               <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
@@ -94,19 +92,19 @@ function CompsNavbarMobile() {
       </Drawer>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', height: '64px' }}>
         <IconButton onClick={() => setOpenDrawer(!openDrawer)}>
-          <MenuIcon sx={{ ml: 3 }} />
+          <MenuIcon sx={{ ml: 2 }} />
         </IconButton>
-        <NextLink href="/" passHref>
-          <Box id="logopic" sx={{ flexGrow: 1, my: 'auto', p: 0, textAlign: 'center' }}>
+        <Box id="logopic" sx={{ flexGrow: 1, my: 'auto', p: 0, textAlign: 'center' }}>
+          <NextLink href="/" passHref>
             <Image
-              className="z-index-999"
+              className="z-index-999 navlogo"
               src="/assets/logopic.png"
               alt="LOGO"
               height={64}
               width={64}
             />
-          </Box>
-        </NextLink>
+          </NextLink>
+        </Box>
 
         <CompsDrawerBag />
       </Toolbar>

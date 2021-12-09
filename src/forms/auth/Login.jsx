@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { ThemeProvider } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { ThemeProvider, styled } from '@mui/material/styles'
 
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'

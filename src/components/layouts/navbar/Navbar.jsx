@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
 
-import { ThemeProvider, useTheme } from '@mui/material'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
 import AppBar from '@mui/material/AppBar'
@@ -14,6 +14,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
 import LanguageIcon from '@mui/icons-material/Language'
 import useUser from '@/_hooks/user'
+import CompsLoading from '@/components/Loading'
 
 import theme from '@/styles/theme'
 import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
@@ -21,21 +22,15 @@ import CompsPopoverLogin from '@/components/popover/Login'
 import CompsDrawerBag from '@/components/drawer/Bag'
 import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
-// const handleChangeLang = () => {
-// TODO code to change language without going back to '/' page
-//   return (
-
-//   )
-// }
-
 export default function CompsLayoutsNavbar() {
   const { t } = useTranslation('common')
   // const [locale, setLocale] = useState('en')
 
-  const { user } = useUser()
+  const { user, isLoading } = useUser()
   const router = useRouter()
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
+  if (isLoading) return <CompsLoading />
 
   return (
     <ThemeProvider theme={theme}>
@@ -58,7 +53,7 @@ export default function CompsLayoutsNavbar() {
               <Box width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
                 <NextLink href="/" passHref>
                   <Image
-                    className="z-index-999"
+                    className="z-index-999 navlogo"
                     src="/assets/logo3.png"
                     alt="LOGO"
                     height={64}
@@ -68,10 +63,8 @@ export default function CompsLayoutsNavbar() {
                 </NextLink>
               </Box>
               <NextLink
-                href="/"
-                // href={window.location.pathname}
+                href={router.pathname}
                 locale={router.locale === 'en' ? 'zh' : 'en'}
-                // window.location = window.location.href.replace('/en/', '/zh/')
                 passHref
               >
                 <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>

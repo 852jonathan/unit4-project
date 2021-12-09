@@ -21,6 +21,7 @@ export const getStaticProps = async ({ locale }) => ({
 
 export default function PagesMenu() {
   const [showButton, setShowButton] = useState(false)
+
   const { t } = useTranslation('menubag')
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export default function PagesMenu() {
       behavior: 'smooth'
     })
   }
+
   return (
 
     <CompsLayout>
