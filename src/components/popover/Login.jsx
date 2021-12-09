@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // import React, { useState, useContext } from 'react'
 import Router, { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Popover from '@mui/material/Popover'
+import Typography from '@mui/material/Typography'
 import ClearIcon from '@mui/icons-material/Clear'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
@@ -20,9 +21,16 @@ import CompsModalsRegister from '@/components/modals/Register'
 export default function CompsPopoverLogin() {
   // const { setToast } = useContext(SnackbarContext)
   const [anchorEl, setAnchorEl] = useState(null)
+  const [showHttpMsg, setShowHttpMsg] = useState(false)
   const { emailLogin } = useUser()
   const { pathname } = useRouter()
   const { t } = useTranslation('common')
+
+  useEffect(() => {
+    if (window.location.protocol === 'http:') {
+      setShowHttpMsg(true)
+    }
+  }, [])
 
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget)
@@ -75,6 +83,9 @@ export default function CompsPopoverLogin() {
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
+        {
+          showHttpMsg && <Typography color="red">Please refresh the page with https://</Typography>
+        }
         <Box sx={{ mx: 'auto', width: '40px', height: '40px' }}>
           <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
             <FontAwesomeIcon icon={faFacebook} />
