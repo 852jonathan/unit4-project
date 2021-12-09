@@ -16,12 +16,9 @@ const permittedParams = [
 ]
 
 const checkoutSessionCreate = async (req, res) => {
-  console.log('req1================', req)
-
   try {
     const { currentUser } = res
     const { bag } = req.body
-    console.log('req2================', req)
 
     const stripeSession = await stripe.checkout.sessions.create({
       mode: 'payment',

@@ -82,7 +82,6 @@ export default function CompsCardMenuItem({ product, isLoading }) {
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
   // const [locale, setLocale] = useState(router.locale)
-  console.log(router)
 
   const { addProduct } = useBag()
 
