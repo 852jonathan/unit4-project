@@ -1,5 +1,4 @@
 import React from 'react'
-// import React, { useState } from 'react'
 import NextLink from 'next/link'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
@@ -14,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button'
 import LanguageIcon from '@mui/icons-material/Language'
 import useUser from '@/_hooks/user'
-import CompsLoading from '@/components/Loading'
+import CompsNavLoading from '@/components/NavbarLoading'
 
 import theme from '@/styles/theme'
 import CompsLayoutsNavbarProfile from '@/components/layouts/navbar/Profile'
@@ -24,13 +23,12 @@ import CompsNavbarMobile from '@/components/layouts/navbar/MobileNavbar'
 
 export default function CompsLayoutsNavbar() {
   const { t } = useTranslation('common')
-  // const [locale, setLocale] = useState('en')
 
   const { user, isLoading } = useUser()
   const router = useRouter()
   const mobileTheme = useTheme()
   const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
-  if (isLoading) return <CompsLoading />
+  if (isLoading) return <CompsNavLoading />
 
   return (
     <ThemeProvider theme={theme}>
@@ -50,7 +48,7 @@ export default function CompsLayoutsNavbar() {
               <NextLink href="/storelocator" passHref>
                 <Button color="inherit" sx={{ mr: 3 }}>{t('storeLocator')}</Button>
               </NextLink>
-              <Box width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
+              <Box navlogo width="20%" textAlign="center" sx={{ flexGrow: 1, my: 'auto', p: 0 }}>
                 <NextLink href="/" passHref>
                   <Image
                     className="z-index-999 navlogo"
@@ -69,7 +67,6 @@ export default function CompsLayoutsNavbar() {
               >
                 <Button color="inherit" sx={{ mr: 3 }} startIcon={<LanguageIcon fontSize="large" />}>EN / 繁</Button>
               </NextLink>
-
               {
                 user && <CompsLayoutsNavbarProfile />
               }
