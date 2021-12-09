@@ -1,5 +1,6 @@
 import '@/styles/globals.scss'
 import 'react-toastify/dist/ReactToastify.css'
+import 'react-image-gallery/styles/scss/image-gallery.scss'
 import React from 'react'
 import { appWithTranslation } from 'next-i18next'
 import { ToastContainer } from 'react-toastify'
