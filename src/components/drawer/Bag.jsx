@@ -103,7 +103,7 @@ export default function CompsDrawerBag() {
             }
             return (
               <>
-                <List key={item.product.id} sx={{ mb: 0 }}>
+                <List key={item.product.productName} sx={{ mb: 0 }}>
                   <ListItem sx={{ py: 0 }}>
                     <ListItemText sx={{ display: 'flex' }}>{item.quantity}</ListItemText>
                     <ListItem>

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
+// import useMediaQuery from '@mui/material/useMediaQuery'
 
 import CompsLayout from '@/components/layouts/Layout'
 import FormsProductCreateBurger from '@/forms/products/createburger'
@@ -57,6 +58,9 @@ export default function PagesCreateABurger() {
     }
   }
 
+  // const mobileTheme = useTheme()
+  // const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
+
   useEffect(() => {
     window.addEventListener('resize', handleImagePosition)
 
@@ -74,6 +78,7 @@ export default function PagesCreateABurger() {
       </Head>
 
       <div id="pages-createburger">
+
         <ThemeProvider theme={theme}>
           <Typography align="center" variant="h4" sx={{ my: 2 }}>{t('createOwnBurger')}</Typography>
           <Box sx={{ flexGrow: 1, mb: 3 }}>

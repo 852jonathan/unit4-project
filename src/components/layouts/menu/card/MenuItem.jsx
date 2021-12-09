@@ -19,7 +19,9 @@ import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
 import ClearIcon from '@mui/icons-material/Clear'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import { ThemeProvider } from '@mui/material'
+import { ThemeProvider, useTheme } from '@mui/material'
+import useMediaQuery from '@mui/material/useMediaQuery'
+
 import { useTranslation } from 'next-i18next'
 import theme from '@/styles/theme'
 import CompsLoading from '@/components/Loading'
@@ -45,19 +47,19 @@ import useBag from '@/_hooks/useBag'
 
 // }
 
-// const style = {
-//   position: 'absolute',
-//   top: '50%',
-//   left: '50%',
-//   transform: 'translate(-50%, -50%)',
-//   width: 300,
-//   bgcolor: 'background.paper',
-//   border: '2px solid #000',
-//   boxShadow: 24,
-//   p: 2
-// }
+const styleMobile = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 300,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 2
+}
 
-const style = {
+const styleDesktop = {
   position: 'absolute',
   top: '40%',
   left: '50%',
@@ -75,6 +77,9 @@ export default function CompsCardMenuItem({ product, isLoading }) {
   const [snackbarShow, setSnackbarShow] = useState(false)
   const router = useRouter()
   const { t } = useTranslation('menubag')
+
+  const mobileTheme = useTheme()
+  const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
   // const [locale, setLocale] = useState(router.locale)
   console.log(router)
@@ -161,80 +166,155 @@ export default function CompsCardMenuItem({ product, isLoading }) {
           aria-labelledby="productshow-title"
           aria-describedby="productshow-description"
         >
+          {isMobile ? (
+            <Box sx={styleMobile}>
+              <Box sx={{ m: 0, p: 0, textAlign: 'end' }}>
+                <ClearIcon className="clearIcon" onClick={() => handleClose()} />
+              </Box>
+              <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
+                {router.locale === 'en' ? product.productName : product.productNameChi}
 
-          <Box sx={style}>
-            <Box sx={{ m: 0, p: 0, textAlign: 'end' }}>
-              <ClearIcon className="clearIcon" onClick={() => handleClose()} />
-            </Box>
-            <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
-              {router.locale === 'en' ? product.productName : product.productNameChi}
+              </Typography>
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2} columns={16}>
+                  <Grid align="center" item xs={12} md={8} sx={{ mx: 'auto' }}>
+                    {isLoading ? (<CompsLoading />) : (
+                      <Image
+                        height={150}
+                        width={120}
+                        src={product.image}
+                        alt="burger-selected"
+                      />
+                    )}
+                  </Grid>
+                  <Grid item xs={12} md={8} sx={{ mx: 'auto' }}>
 
-            </Typography>
-            <Box sx={{ flexGrow: 1 }}>
-              <Grid container spacing={2} columns={16}>
-                <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
-                  {isLoading ? (<CompsLoading />) : (
-                    <Image
-                      height={250}
-                      width={200}
-                      src={product.image}
-                      alt="burger-selected"
-                    />
-                  )}
+                    <Typography id="productshow-description" sx={{ mt: 2 }}>
+                      {router.locale === 'en' ? product.description : product.descriptionChi}
+                    </Typography>
+
+                    <Box sx={{ maxWidth: 100, my: 2 }}>
+                      <FormControl fullWidth>
+                        <InputLabel color="secondary" variant="standard" htmlFor="uncontrolled-native">
+                          {t('quantity')}
+                        </InputLabel>
+                        <NativeSelect
+                          defaultValue={1}
+                          inputProps={{
+                            name: 'quantity',
+                            id: 'quantity'
+                          }}
+                        >
+                          <option value={1}>1</option>
+                          <option value={2}>2</option>
+                          <option value={3}>3</option>
+                          <option value={4}>4</option>
+                          <option value={5}>5</option>
+                          <option value={6}>6</option>
+                          <option value={7}>7</option>
+                          <option value={8}>8</option>
+                          <option value={9}>9</option>
+                          <option value={10}>10</option>
+                        </NativeSelect>
+                      </FormControl>
+                    </Box>
+
+                    <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
+                      $ {product.price}
+                    </Typography>
+
+                    <Button
+                      onClick={() => {
+                        handleAddToBag()
+                        setSnackbarShow(true)
+                        setTimeout(() => {
+                          setSnackbarShow(false)
+                        }, 2000)
+                      }}
+                      variant="contained"
+                      color="secondary"
+                      startIcon={<AddBoxIcon />}
+                    >{t('addToBag')}
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
-
-                  <Typography id="productshow-description" sx={{ mt: 2 }}>
-                    {router.locale === 'en' ? product.description : product.descriptionChi}
-                  </Typography>
-
-                  <Box sx={{ maxWidth: 100, my: 2 }}>
-                    <FormControl fullWidth>
-                      <InputLabel color="secondary" variant="standard" htmlFor="uncontrolled-native">
-                        {t('quantity')}
-                      </InputLabel>
-                      <NativeSelect
-                        defaultValue={1}
-                        inputProps={{
-                          name: 'quantity',
-                          id: 'quantity'
-                        }}
-                      >
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
-                      </NativeSelect>
-                    </FormControl>
-                  </Box>
-
-                  <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
-                    $ {product.price}
-                  </Typography>
-
-                  <Button
-                    onClick={() => {
-                      handleAddToBag()
-                      setSnackbarShow(true)
-                      setTimeout(() => {
-                        setSnackbarShow(false)
-                      }, 2000)
-                    }}
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<AddBoxIcon />}
-                  >{t('addToBag')}
-                  </Button>
-                </Grid>
-              </Grid>
+              </Box>
             </Box>
-          </Box>
+          ) : (
+            <Box sx={styleDesktop}>
+              <Box sx={{ m: 0, p: 0, textAlign: 'end' }}>
+                <ClearIcon className="clearIcon" onClick={() => handleClose()} />
+              </Box>
+              <Typography id="productshow-title" align="center" variant="h5" component="h2" sx={{ mb: 2 }}>
+                {router.locale === 'en' ? product.productName : product.productNameChi}
+
+              </Typography>
+              <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2} columns={16}>
+                  <Grid align="center" item xs={6} md={8} sx={{ mx: 'auto' }}>
+                    {isLoading ? (<CompsLoading />) : (
+                      <Image
+                        height={250}
+                        width={200}
+                        src={product.image}
+                        alt="burger-selected"
+                      />
+                    )}
+                  </Grid>
+                  <Grid item xs={6} md={8} sx={{ mx: 'auto' }}>
+
+                    <Typography id="productshow-description" sx={{ mt: 2 }}>
+                      {router.locale === 'en' ? product.description : product.descriptionChi}
+                    </Typography>
+
+                    <Box sx={{ maxWidth: 100, my: 2 }}>
+                      <FormControl fullWidth>
+                        <InputLabel color="secondary" variant="standard" htmlFor="uncontrolled-native">
+                          {t('quantity')}
+                        </InputLabel>
+                        <NativeSelect
+                          defaultValue={1}
+                          inputProps={{
+                            name: 'quantity',
+                            id: 'quantity'
+                          }}
+                        >
+                          <option value={1}>1</option>
+                          <option value={2}>2</option>
+                          <option value={3}>3</option>
+                          <option value={4}>4</option>
+                          <option value={5}>5</option>
+                          <option value={6}>6</option>
+                          <option value={7}>7</option>
+                          <option value={8}>8</option>
+                          <option value={9}>9</option>
+                          <option value={10}>10</option>
+                        </NativeSelect>
+                      </FormControl>
+                    </Box>
+
+                    <Typography id="productshow-price" variant="h5" sx={{ my: 2 }}>
+                      $ {product.price}
+                    </Typography>
+
+                    <Button
+                      onClick={() => {
+                        handleAddToBag()
+                        setSnackbarShow(true)
+                        setTimeout(() => {
+                          setSnackbarShow(false)
+                        }, 2000)
+                      }}
+                      variant="contained"
+                      color="secondary"
+                      startIcon={<AddBoxIcon />}
+                    >{t('addToBag')}
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
+          )}
         </Modal>
       </ThemeProvider>
     </>

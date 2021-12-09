@@ -69,7 +69,7 @@ export default function CompsLayoutsNavbar() {
               </Box>
               <NextLink
                 href="/"
-                // href={handleChangeLang}
+                // href={window.location.pathname}
                 locale={router.locale === 'en' ? 'zh' : 'en'}
                 // window.location = window.location.href.replace('/en/', '/zh/')
                 passHref

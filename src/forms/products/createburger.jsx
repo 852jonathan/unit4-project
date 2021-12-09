@@ -138,6 +138,7 @@ export default function FormsProductCreateBurger({ ingredients, setIngredients }
         subTotal: calcTotal(),
         product: {
           productName: t('customBurger'),
+          productNameChi: t('customBurger'),
           ingredients,
           price: calcTotal()
         },
