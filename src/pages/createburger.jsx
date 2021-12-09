@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import { ThemeProvider } from '@mui/material/styles'
+import { ThemeProvider, useTheme } from '@mui/material/styles'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { useTranslation } from 'next-i18next'
-// import useMediaQuery from '@mui/material/useMediaQuery'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 import CompsLayout from '@/components/layouts/Layout'
 import FormsProductCreateBurger from '@/forms/products/createburger'
@@ -38,6 +38,9 @@ export const getStaticProps = async ({ locale }) => ({
 export default function PagesCreateABurger() {
   const { t } = useTranslation('menubag')
 
+  const mobileTheme = useTheme()
+  const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
+
   const [ingredients, setIngredients] = useState({
     top: '',
     middle: [],
@@ -57,9 +60,6 @@ export default function PagesCreateABurger() {
       sumTop += ((containerWidth * 0.53) / 3.8)
     }
   }
-
-  // const mobileTheme = useTheme()
-  // const isMobile = useMediaQuery(mobileTheme.breakpoints.down('md'))
 
   useEffect(() => {
     window.addEventListener('resize', handleImagePosition)
@@ -84,59 +84,118 @@ export default function PagesCreateABurger() {
           <Box sx={{ flexGrow: 1, mb: 3 }}>
             <Grid container spacing={2} columns={16}>
               <Grid item xs={8} md={8}>
-                <Box className="ingredients-list" sx={{ mx: 'auto', width: '40%', position: 'relative' }}>
-                  <Box className="topBun">
-                    {
-                      ingredients.top && (
-                        <div className="ingredient-wrapper">
-                          <Image
-                            onLoadingComplete={handleImagePosition}
-                            className="z-index-999"
-                            src={`/assets/ingredients/${[ingredients.top]}.png`}
-                            alt="top-ingredients"
-                            layout="responsive"
-                            height={80}
-                            width={150}
-                          />
-                        </div>
-                      )
-                    }
-                  </Box>
-                  <Box className="midIngredients">
-                    {
-                      ingredients.middle.map((ingredient, index) => (
-                        <div key={ingredient} className="ingredient-wrapper">
-                          <Image
-                            onLoadingComplete={handleImagePosition}
-                            className={`z-index-${998 - index}`}
-                            src={`/assets/ingredients/${[ingredient]}.png`}
-                            alt="middle-ingredients"
-                            layout="responsive"
-                            height={80}
-                            width={150}
-                          />
-                        </div>
-                      ))
-                    }
-                  </Box>
-                  <Box className="botBun">
-                    {
-                      ingredients.bot && (
-                        <div className="ingredient-wrapper">
-                          <Image
-                            onLoadingComplete={handleImagePosition}
-                            className="z-index-949"
-                            src={`/assets/ingredients/${[ingredients.bot]}.png`}
-                            alt="bot-ingredients"
-                            layout="responsive"
-                            height={80}
-                            width={170}
-                          />
-                        </div>
-                      )
-                    }
-                  </Box>
-                </Box>
+                {
+                  isMobile ? (
+                    <Box className="ingredients-list" sx={{ mx: 'auto', width: '90%', position: 'sticky', top: '100px' }}>
+                      <Box className="topBun">
+                        {
+                        ingredients.top && (
+                          <div className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className="z-index-999"
+                              src={`/assets/ingredients/${[ingredients.top]}.png`}
+                              alt="top-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={150}
+                            />
+                          </div>
+                        )
+                      }
+                      </Box>
+                      <Box className="midIngredients">
+                        {
+                        ingredients.middle.map((ingredient, index) => (
+                          <div key={ingredient} className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className={`z-index-${998 - index}`}
+                              src={`/assets/ingredients/${[ingredient]}.png`}
+                              alt="middle-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={150}
+                            />
+                          </div>
+                        ))
+                      }
+                      </Box>
+                      <Box className="botBun">
+                        {
+                        ingredients.bot && (
+                          <div className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className="z-index-949"
+                              src={`/assets/ingredients/${[ingredients.bot]}.png`}
+                              alt="bot-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={170}
+                            />
+                          </div>
+                        )
+                      }
+                      </Box>
+                    </Box>
+                  ) : (
+                    <Box className="ingredients-list" sx={{ mx: 'auto', width: '40%', position: 'relative' }}>
+                      <Box className="topBun">
+                        {
+                        ingredients.top && (
+                          <div className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className="z-index-999"
+                              src={`/assets/ingredients/${[ingredients.top]}.png`}
+                              alt="top-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={150}
+                            />
+                          </div>
+                        )
+                      }
+                      </Box>
+                      <Box className="midIngredients">
+                        {
+                        ingredients.middle.map((ingredient, index) => (
+                          <div key={ingredient} className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className={`z-index-${998 - index}`}
+                              src={`/assets/ingredients/${[ingredient]}.png`}
+                              alt="middle-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={150}
+                            />
+                          </div>
+                        ))
+                      }
+                      </Box>
+                      <Box className="botBun">
+                        {
+                        ingredients.bot && (
+                          <div className="ingredient-wrapper">
+                            <Image
+                              onLoadingComplete={handleImagePosition}
+                              className="z-index-949"
+                              src={`/assets/ingredients/${[ingredients.bot]}.png`}
+                              alt="bot-ingredients"
+                              layout="responsive"
+                              height={80}
+                              width={170}
+                            />
+                          </div>
+                        )
+                      }
+                      </Box>
+                    </Box>
+                  )
+                }
+
               </Grid>
               <Grid item xs={8} md={8}>
                 <FormsProductCreateBurger ingredients={ingredients} setIngredients={setIngredients} />

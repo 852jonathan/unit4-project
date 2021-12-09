@@ -77,15 +77,15 @@ export default function CompsPopoverLogin() {
           horizontal: 'center'
         }}
       >
+        {
+          showHttpMsg && <Typography align="center" color="red">Please refresh the page with https://</Typography>
+        }
         <Box sx={{ mr: 2, mt: 2, textAlign: 'end' }}>
           <ClearIcon className="clearIcon" onClick={() => handleClose()} />
         </Box>
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
-        {
-          showHttpMsg && <Typography color="red">Please refresh the page with https://</Typography>
-        }
         <Box sx={{ mx: 'auto', width: '40px', height: '40px' }}>
           <a href={`/api/auth/facebook/login?returnTo=${pathname}`}>
             <FontAwesomeIcon icon={faFacebook} />
