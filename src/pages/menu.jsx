@@ -53,6 +53,15 @@ export default function PagesMenu() {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
       </Head>
       <div id="pages-menu">
+        {showButton && (
+        <Button
+          onClick={scrollToTop}
+          className="back-to-top"
+          startIcon={<ArrowCircleUpIcon />}
+        >
+          {t('backToTop')}
+        </Button>
+        )}
         <Typography variant="h4" component="div" align="center" sx={{ m: 2 }}>
           {t('menu2')}
         </Typography>
@@ -81,15 +90,7 @@ export default function PagesMenu() {
 
         <CompsLayoutsMenuGrid category="drinks" />
       </div>
-      {showButton && (
-        <Button
-          onClick={scrollToTop}
-          className="back-to-top"
-          startIcon={<ArrowCircleUpIcon />}
-        >
-          {t('backToTop')}
-        </Button>
-      )}
+
     </CompsLayout>
   )
 }

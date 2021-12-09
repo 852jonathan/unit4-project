@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 
 export default function CompsLoading() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <CircularProgress color="success" />
     </Box>
   )
