@@ -105,7 +105,7 @@ export default function CompsDrawerBag() {
               <>
                 <List key={item.product.productName} sx={{ mb: 0 }}>
                   <ListItem sx={{ py: 0 }}>
-                    <ListItemText sx={{ display: 'flex' }}>{item.quantity}</ListItemText>
+                    <ListItemText sx={{ display: 'flex' }}>{item.quantity}x</ListItemText>
                     <ListItem>
                       {router.locale === 'en' ? (<ListItemText sx={{ p: 0 }} primary={item.product.productName} />) : (<ListItemText sx={{ p: 0 }} primary={item.product.productNameChi} />)}
 
