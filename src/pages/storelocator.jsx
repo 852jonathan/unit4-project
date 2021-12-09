@@ -173,7 +173,7 @@ export default function PagesStoreLocator() {
         <Typography align="center" variant="h4" sx={{ m: 3 }}>{t('storeLocator')} </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={12} md={6} lg={4} order={{ xs: 1, sm: 1, md: 1, lg: 1 }}>
-            <Box sx={{ width: '100%', mx: 1 }}>
+            <Box sx={{ width: '95%', mx: 1 }}>
               {showMapAccordion}
             </Box>
           </Grid>
