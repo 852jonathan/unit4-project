@@ -77,12 +77,12 @@ export default function CompsPopoverLogin() {
           horizontal: 'center'
         }}
       >
-        {
-          showHttpMsg && <Typography align="center" color="red">Please refresh the page with https://</Typography>
-        }
         <Box sx={{ mr: 2, mt: 2, textAlign: 'end' }}>
           <ClearIcon className="clearIcon" onClick={() => handleClose()} />
         </Box>
+        {
+          showHttpMsg && <Typography align="center" color="red">Please refresh the page with https://</Typography>
+        }
         <FormsAuthLogin
           onSubmit={handleLoginSubmit}
         />
