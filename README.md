@@ -1,3 +1,16 @@
+# Description
+MAHABURGER a (fictional) burger chain wants to be able to take online orders for pickup at the shop, and be able to have customers checkout and pay after selecting items from the menu.
+
+# Key Features
+- Fully mobile responsive website using Next.js with MUI (Material UI) components 
+- Able to login with a Facebook account
+- Language change between English/Chinese
+- Interactive map for the store locator
+- Stripe integration for payment
+- Validation on all input forms
+
+
+
 # Instructions
 - Clone and rename folder `$ git clone git@github.com:852jonathan/unit4-project.git [your_project_name_here]`
 - Find and rename all instance of `[your_project_name_here]` to your project name
