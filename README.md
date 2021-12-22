@@ -1,5 +1,5 @@
 # Instructions
-- Clone and rename folder `$ git clone git@github.com:dented-academy/next-starter.git [your_project_name_here]`
+- Clone and rename folder `$ git clone git@github.com:852jonathan/unit4-project.git [your_project_name_here]`
 - Find and rename all instance of `[your_project_name_here]` to your project name
 - Run `$ npm install`
 - Run `$ npx sequelize-cli db:create`

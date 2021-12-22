@@ -29,7 +29,7 @@ function PagesMyOrdersHistory() {
   // if (isLoadingUser) return <CompsLoading />
 
   if (isError) return <div>{errorMessage}</div>
-
+console.log(orders)
   return (
     <CompsLayout>
       <Head>
